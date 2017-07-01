@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Author: Flávio Henrique-->
+<!-- Data: 8 de abr de 2017 -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<div id="wrapper">
+
+		<!-- Navigation -->
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Registro de Venda</h1>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">Registro</div>
+						<div class="panel-body">
+							<div class="row">
+								<h:form role="form">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label>Nome</label> <input class="form-control" />
+											<p class="help-block">Example block-level help text here.</p>
+										</div>
+										<div class="form-group">
+											<label>Forma de Pagamento</label>
+											<div class="radio">
+												<label> <input type="radio" name="optionsRadios"
+													id="optionsRadios1" value="option1" checked="checked" />Crédito
+												</label>
+											</div>
+											<div class="radio">
+												<label> <input type="radio" name="optionsRadios"
+													id="optionsRadios2" value="option2" />Dinheiro
+												</label>
+											</div>
+											<div class="radio">
+												<label> <input type="radio" name="optionsRadios"
+													id="optionsRadios3" value="option3" />Débito
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label>Selects</label> <select class="form-control">
+												<option>1</option>
+												<option>2</option>
+											</select>
+										</div>
+										<div id="sandbox-container">
+											<div class="input-append date">
+												<input type="text" class="span2 form-control" /><span
+													class="add-on"><i class="icon-th"></i></span>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label>Valor</label> <input class="form-control"
+												placeholder="Enter text" />
+										</div>
+										<div class="form-group">
+											<label>Descrição</label>
+											<textarea class="form-control" rows="3"></textarea>
+										</div>
+										<button type="submit" class="btn btn-default">Salvar</button>
+										<button type="reset" class="btn btn-default">Reset</button>
+									</div>
+								</h:form>
+							</div>
+							<!-- /.row (nested) -->
+						</div>
+						<!-- /.panel-body -->
+					</div>
+					<!-- /.panel -->
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /#page-wrapper -->
+
+	</div>
+
+	<h:outputStylesheet library="datapicker/css"
+		name="bootstrap-datepicker.css" />
+	<h:outputScript library="datapicker/js"
+		name="bootstrap-datepicker.min.js" />
+
+	<script type="text/javascript">
+	$(document).ready(function(e) {
+		$('#sandbox-container .input-append.date').datepicker({
+			language: "pt-BR",
+	        format: "dd/mm/yyyy",
+	        startView: new Date(),
+	        autoclose: true
+	    });	
+	});
+	</script>
+
+</ui:composition>

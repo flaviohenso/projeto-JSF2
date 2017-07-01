@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" >
+<h:head>
+	
+	<title>Projeto</title>
+
+	<h:outputStylesheet	name="css/bootstrap/vendor/bootstrap/css/bootstrap.min.css" />
+		
+	<h:outputStylesheet name="css/bootstrap/vendor/metisMenu/metisMenu.min.css" />
+
+	<h:outputStylesheet name="css/bootstrap/dist/css/sb-admin-2.css" />
+
+	<h:outputStylesheet name="css/bootstrap/vendor/morrisjs/morris.css" />
+
+	<h:outputStylesheet name="css/bootstrap/vendor/font-awesome/css/font-awesome.min.css" />
+
+	<!-- jQuery -->
+	<h:outputScript name="js/bootstrap/vendor/jquery/jquery.min.js" />
+
+	<h:outputScript name="js/bootstrap/vendor/bootstrap/js/bootstrap.min.js" />
+
+	<h:outputScript name="js/bootstrap/vendor/metisMenu/metisMenu.min.js" />
+
+	<h:outputScript name="js/bootstrap/vendor/raphael/raphael.min.js" />
+	<h:outputScript name="js/bootstrap/vendor/morrisjs/morris.min.js" />
+	<h:outputScript name="js/bootstrap/data/morris-data.js" />
+
+	<h:outputScript name="js/bootstrap/dist/js/sb-admin-2.js" />
+	
+	
+</h:head>
+<h:body>
+
+	<div id="content">
+		<h:form>
+			<div id="menu">
+				<ui:insert name="menu" />
+			</div>
+		</h:form>
+		<div id="body">
+			<ui:insert name="body" />
+		</div>
+	</div>
+
+</h:body>
+</html>

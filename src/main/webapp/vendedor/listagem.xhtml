@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--Author: Flavio Henrique -->
+<!-- Data: 9 de abr de 2017 -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" template="/tamplete.xhtml">
+
+	<ui:define name="menu">
+		<h:form>
+			<ui:include src="../menu.xhtml" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="body">
+		<ui:include src="table.xhtml" />
+	</ui:define>
+
+</ui:composition>

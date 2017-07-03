@@ -19,23 +19,42 @@ public class HibernateSessionFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		// inicia a transação antes de processar o request
-		EntityManager em = HibernateUtil.emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		
+		/*
+		 *  inicia a transação antes de processar o request
+		 */
+		EntityManager em = JpaUtil.getConnection();
 		try {
-			tx.begin();
+			
+			/*
+			 * Inicia a transaction
+			 */
+			JpaUtil.beginTransaction(em);
+			
+			/*
+			 * Seta o um atributo no request (esse atributo é o entityManager), para ser obtido posteriormente,
+			 * ondem precisar
+			 */
 			request.setAttribute("entityManager", em);
 			
 			chain.doFilter(request, response);
 			
-			tx.commit();
+			/*
+			 * Comita a transaction
+			 */
+			JpaUtil.commitTransaction(em);
 		} catch (Exception e) {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
+			
+			/*
+			 * Verifica em caso de exception se o EntityManager esta aberta, estando aberta chama o metodo de RollBack
+			 */
+			if (em.isOpen()) {
+				JpaUtil.rollBackTransaction(em);
 			}
 		}finally {
-			em.close(); //fecha o EntityManager
+			/*
+			 * em todos os casos o EntytiManager é fechado 
+			 */
+			JpaUtil.closeEntityManager();
 		}
 		
 		
@@ -43,7 +62,6 @@ public class HibernateSessionFilter implements Filter{
 	
 	@Override
 	public void destroy() {
-		HibernateUtil.closeEntityManagerFactory(); //fecha a fabrica do EntityManager
 	}
 
 	@Override

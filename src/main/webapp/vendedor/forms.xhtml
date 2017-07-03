@@ -39,15 +39,27 @@
 											<h:message for="nome" showDetail="true" showSummary="false" />
 										</div>
 										<div class="form-group">
-											<label>CPF</label>
+											<label>Email</label>
+											<h:inputText id="email" class="form-control"
+												value="#{vendedorBean.vendedor.email}" required="true" />
+											<h:message for="email" showDetail="true" showSummary="false" />
+										</div>
+										<div class="form-group">
+											<label>CPF/CNPJ</label>
 											<h:inputText class="form-control"
-												value="#{vendedorBean.vendedor.cpf}" />
+												value="#{vendedorBean.vendedor.documentoReceitaFederal}" />
 										</div>
 										<div class="form-group">
 											<label>Idade</label>
 											<h:inputText id="idade" class="form-control"
 												value="#{vendedorBean.vendedor.idade}" />
 											<h:message for="idade" showDetail="false" showSummary="true" />
+										</div>
+										<div class="form-group">
+											<label>Senha</label>
+											<h:inputSecret id="senha" class="form-control"
+												value="#{vendedorBean.vendedor.senha}" />
+											<h:message for="senha" showDetail="false" showSummary="true" />
 										</div>
 										<h:commandButton action="#{vendedorBean.salvar}"
 											value="Salvar" class="btn btn-default" />

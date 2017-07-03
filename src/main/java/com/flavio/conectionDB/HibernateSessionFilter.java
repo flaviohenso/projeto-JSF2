@@ -48,6 +48,7 @@ public class HibernateSessionFilter implements Filter{
 			 * Verifica em caso de exception se o EntityManager esta aberta, estando aberta chama o metodo de RollBack
 			 */
 			if (em.isOpen()) {
+				System.out.println("RollBack: <<<<<<<<<<<");
 				JpaUtil.rollBackTransaction(em);
 			}
 		}finally {

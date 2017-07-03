@@ -45,22 +45,9 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 	//
 	// }
 	//
-	public void save(T entity) {
+	public void save(T entity) throws Exception{
 
-		// ((EntityManager)
-		// HibernateUtil.getRequestAtribute("entityManager")).persist(entity);
-		//EntityManager entityManager = JpaUtil.getConnection();
-		//try {
-			//JpaUtil.beginTransaction(entityManager);
 		((EntityManager) JpaUtil.getRequestAtribute("entityManager")).persist(entity);
-			//JpaUtil.commitTransaction(entityManager);
-		//} catch (Exception e) {
-			//if (entityManager.isOpen()) {
-			//	JpaUtil.rollBackTransaction(entityManager);
-			//}
-		//} finally {
-			//JpaUtil.closeEntityManager();
-		//}
 
 	}
 	//

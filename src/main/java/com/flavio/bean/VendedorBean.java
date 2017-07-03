@@ -73,11 +73,13 @@ public class VendedorBean implements Serializable{
 		try {
 			serviceVendedor.salvar(vendedor);
 			mensagem.enviar();
+			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!", "Dados salvos com sucesso!");
+		} catch (Exception e) {
+			System.out.println("Erro ao salvar vendedor!!! <<<<<<<<<");
+			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Erro ao salvar!", "Dados salvos com sucesso!");
 		} finally {
 			this.vendedor = new Vendedor();
 		}
-		
-		this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!", "Dados salvos com sucesso!");
 	}
 	
 	public void listVendedores(ActionEvent event){

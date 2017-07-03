@@ -3,47 +3,19 @@
  */
 package com.flavio.model;
 
+import java.io.Serializable;
+
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
-public class Vendedor {
+/*
+ * @DiscriminatorValue contem o valor que irá identificar cada classe na tabela do
+ * banco de dados
+ */
+@DiscriminatorValue("vendedor")
+public class Vendedor extends Usuario implements Serializable{
 	
-	@Id
-	@GeneratedValue
-	private long id;
-	
-	private String nome;
-	
-	private String cpf;
-	
-	private Integer idade;
-	
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	public Integer getIdade() {
-		return idade;
-	}
-	public void setIdade(Integer idade) {
-		this.idade = idade;
-	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-	
+	private static final long serialVersionUID = 1L;
+
 }

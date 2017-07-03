@@ -8,13 +8,13 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.TableGenerator;
 
-@Entity
+@Entity(name="registro")
 public class Registro {
 	
-	@Id
-	@GeneratedValue
 	private long id;
 	private Date dataVenda;
 	private Date dataRegistro;
@@ -22,6 +22,15 @@ public class Registro {
 	private String formaPagamento;
 	private String descricao;
 	
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public Date getDataVenda() {
 		return dataVenda;
 	}
@@ -51,12 +60,6 @@ public class Registro {
 	}
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
-	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
 	}
 	
 }

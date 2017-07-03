@@ -10,7 +10,7 @@ public interface GenericDAO<T,Type extends Serializable> {
 //
 //	public void commitTransaction();
 
-	public void save(T entity);
+	public void save(T entity) throws Exception;
 
 	public void delete (T entity);
 	

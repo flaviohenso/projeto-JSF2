@@ -16,11 +16,13 @@ public class ServiceVendedor {
 	private VendedorDao vendedorDao;
 	
 	public ServiceVendedor() {
-		// obtém a instancia do vendedorDao
+		/*
+		 * obtém a instancia do vendedorDao
+		 */
 		vendedorDao = daoFactory.getVendedorDAO();
 	}
 
-	public void salvar(Vendedor vendedor) {
+	public void salvar(Vendedor vendedor) throws Exception{
 
 		vendedorDao.save(vendedor);
 

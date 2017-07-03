@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -40,7 +41,7 @@ public class Pedido implements Serializable {
 	private List<ItemPedido> itemPedidos = new ArrayList<ItemPedido>();
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -75,6 +76,8 @@ public class Pedido implements Serializable {
 
 	/**
 	 * @Column(columnDefinition = "text"):  Definição especial para a coluna ("text", "blob",...)
+	 * A definição do colummDefinition pode ser um problema caso haja a necessidade de migra para outro banco
+	 * O ideal é deixar a JPA inferir o tipo da coluna de acordo com o tipo Java do atributo.
 	 */
 	@Column(columnDefinition = "text")
 	public String getObservacao() {

@@ -76,7 +76,7 @@ public class VendedorBean implements Serializable{
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!", "Dados salvos com sucesso!");
 		} catch (Exception e) {
 			System.out.println("Erro ao salvar vendedor!!! <<<<<<<<<");
-			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Erro ao salvar!", "Dados salvos com sucesso!");
+			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao salvar!", "Dados salvos com sucesso!");
 		} finally {
 			this.vendedor = new Vendedor();
 		}
@@ -91,7 +91,7 @@ public class VendedorBean implements Serializable{
 		if(vendedores == null){
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_ERROR, "Erro ao consultar vendedores!", "Vendedores esta NULL!");
 		}
-		return "listagem";
+		return "listagem?faces-redirect=true";
 	}
 
 

@@ -3,7 +3,6 @@ package com.flavio.service;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 
 import com.flavio.dao.DAOFactory;
 import com.flavio.dao.VendedorDao;
@@ -23,7 +22,7 @@ public class ServiceVendedor {
 	}
 
 	public void salvar(Vendedor vendedor) throws Exception{
-
+		
 		vendedorDao.save(vendedor);
 
 	}

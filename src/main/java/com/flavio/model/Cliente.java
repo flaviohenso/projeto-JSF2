@@ -28,6 +28,10 @@ public class Cliente extends Usuario implements Serializable {
 	private TipoPessoa tipo;
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 
+	/*
+	 * mappedBy = "cliente" : defini que o lado dominante do relacionamento é Endereço
+	 * através do atributo cliente dessa classe.
+	 */
 	@OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
 	public List<Endereco> getEnderecos() {
 		return enderecos;

@@ -8,30 +8,28 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import com.flavio.conectionDB.JpaUtil;
-import com.flavio.model.Vendedor;
+import com.flavio.model.Pedido;
 
 /**
  * @author root
  *
  */
-public class HibernateVendedorDao extends HibernateDAO<Vendedor, Long> implements VendedorDao{
+public class HibernatePedidoDao extends HibernateDAO<Pedido, Long> implements PedidoDao{
 
 	/**
 	 * @param persistentClass
 	 */
-	public HibernateVendedorDao() {
-		super(Vendedor.class);
+	public HibernatePedidoDao() {
+		super(Pedido.class);
 	}
 	
-	public List<Vendedor> listAllQ(){
+	public List<Pedido> listAllQ(){
 		return ((EntityManager) JpaUtil.getRequestAtribute("entityManager"))
-				.createQuery("Vendedor.findAll",Vendedor.class)
+				.createQuery("Pedido.findAll",Pedido.class)
 				.getResultList();
 	}
-	
-	@Override
-	public void delete(Vendedor entity) {
+
+	public void delete(Pedido entity) {
 		
 	}
-
 }

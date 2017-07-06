@@ -25,12 +25,12 @@ public abstract class DAOFactory {
 	}
 
 	public abstract VendedorDao getVendedorDAO();
-	//
-	// public abstract UsuarioDao getUsuarioDao();
-	//
-	// public abstract AutorizacaoDao getAutorizacaoDao();
-	//
-	// public abstract PermissaoDao getPermissaoDAO();
+	
+	public abstract ClienteDao getClienteDAO();
+
+	public abstract ProdutoDao getProdutoDAO();
+	
+	public abstract PedidoDao getPedidoDAO();
 	//
 	// public abstract FtpDao getFtpDAO();
 }

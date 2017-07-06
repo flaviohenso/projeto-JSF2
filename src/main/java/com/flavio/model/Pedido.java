@@ -35,7 +35,7 @@ public class Pedido implements Serializable {
 	private BigDecimal valorFrete;
 	private BigDecimal valorDesconto;
 	private BigDecimal valorTotal;
-	private Usuario vendedor;
+	private Vendedor vendedor;
 	private Cliente cliente;
 	private EnderecoEntrega enderecoEntrega;
 	private List<ItemPedido> itemPedidos = new ArrayList<ItemPedido>();
@@ -148,7 +148,7 @@ public class Pedido implements Serializable {
 		return vendedor;
 	}
 
-	public void setVendedor(Usuario vendedor) {
+	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
 	}
 

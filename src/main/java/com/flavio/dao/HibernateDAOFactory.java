@@ -4,33 +4,25 @@ package com.flavio.dao;
 
 public class HibernateDAOFactory extends DAOFactory {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.com.vendas.dao.DAOFactory#getVendedorDAO()
-	 */
 	@Override
 	public VendedorDao getVendedorDAO() {
 		return new HibernateVendedorDao();
 	}
 
-	// @Override
-	// public LivroDao getLivroDAO() {
-	// // TODO Auto-generated method stub
-	// return new HibernateLivroDAO();
-	// }
-	//
-	// @Override
-	// public UserDao getUserDAO() {
-	// // TODO Auto-generated method stub
-	// return new HibernateUserDAO();
-	// }
-	//
-	// @Override
-	// public UsuarioDao getUsuarioDao() {
-	// // TODO Auto-generated method stub
-	// return new HibernateUsuarioDAO();
-	// }
+	@Override
+	public ClienteDao getClienteDAO() {
+		return new HibernateClienteDao();
+	}
+
+	@Override
+	public ProdutoDao getProdutoDAO() {
+		return new HibernateProdutoDao();
+	}
+
+	@Override
+	public PedidoDao getPedidoDAO() {
+		return new HibernatePedidoDao();
+	}
 	//
 	// @Override
 	// public AutorizacaoDao getAutorizacaoDao() {

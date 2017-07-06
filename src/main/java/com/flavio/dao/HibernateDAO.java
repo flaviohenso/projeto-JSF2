@@ -74,7 +74,6 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 												// consulta
 		this.query = JpaUtil.getConnection().createQuery(this.criteriaQuery);
 		return this.query.getResultList();
-
 	}
 
 	@SuppressWarnings("unchecked")

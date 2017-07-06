@@ -3,6 +3,9 @@
  */
 package com.flavio.dao;
 
+import java.util.List;
+
+import com.flavio.model.Usuario;
 import com.flavio.model.Vendedor;
 
 /**
@@ -10,5 +13,7 @@ import com.flavio.model.Vendedor;
  *
  */
 public interface VendedorDao extends GenericDAO<Vendedor, Long> {
+	
+	public List<Vendedor> listAllQ();
 
 }

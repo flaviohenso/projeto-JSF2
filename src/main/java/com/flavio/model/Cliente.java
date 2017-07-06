@@ -27,6 +27,7 @@ public class Cliente extends Usuario implements Serializable {
 
 	private TipoPessoa tipo;
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
+	private List<Pedido> pedidos = new ArrayList<Pedido>();
 
 	/*
 	 * mappedBy = "cliente" : defini que o lado dominante do relacionamento é Endereço
@@ -51,4 +52,13 @@ public class Cliente extends Usuario implements Serializable {
 		this.tipo = tipo;
 	}
 
+	@OneToMany(mappedBy = "cliente")
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+	
 }

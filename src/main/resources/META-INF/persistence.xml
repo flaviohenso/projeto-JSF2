@@ -8,16 +8,17 @@
 		<properties>
 
 			<!-- atualiza o banco, gera as tabelas se for preciso -->
-			<property name="hibernate.connection.url"
+			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/vendas?autoReconnect=true" />
-			<property name="hibernate.connection.username" value="java" />
-			<property name="hibernate.connection.password" value="javadb" />
-			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.user" value="java" />
+			<property name="javax.persistence.jdbc.password" value="javadb" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 
 			<!-- propriedades do hibernate -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 
+<!-- 			<property name="hibernate.cache.region.factory_class" value=""/> -->
 			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
 			<property name="hibernate.connection.provider_class"
 				value="org.hibernate.connection.C3P0ConnectionProvider" />

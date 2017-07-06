@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class JpaUtil {
 
-	private static final String PERSISTENCE_UNIT = "vendas";
+	private static final String PERSISTENCE_UNIT = "VendasPU";
 
 	static EntityManagerFactory emf;
 

@@ -24,9 +24,9 @@ public class HibernateVendedorDao extends HibernateDAO<Vendedor, Long> implement
 		super(Vendedor.class);
 	}
 	
-	public List<Vendedor> listAllQ(){
+	public List<Vendedor> listAll(){
 		return ((EntityManager) JpaUtil.getRequestAtribute("entityManager"))
-				.createQuery("Vendedor.findAll",Vendedor.class)
+				.createNamedQuery("Vendedor.findAll")
 				.getResultList();
 	}
 	

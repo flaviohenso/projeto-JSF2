@@ -64,8 +64,7 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 	//
 	// }
 
-	public List<T> listAll() {// por ordem de inserção
-
+	public List<T> listAllD() {// por ordem de inserção
 		CriteriaBuilder criteriaBuilder = ((EntityManager) JpaUtil.getRequestAtribute("entityManager"))
 				.getCriteriaBuilder();
 		this.criteriaQuery = criteriaBuilder.createQuery(this.persistentClass);
@@ -78,7 +77,7 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<T> listAllasc(String coluna) {// por ordem acendente
+	public List<T> listAllascD(String coluna) {// por ordem acendente
 
 		CriteriaBuilder criteriaBuilder = ((EntityManager) JpaUtil.getRequestAtribute("entityManager"))
 				.getCriteriaBuilder();
@@ -93,7 +92,7 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 
 	}
 
-	public T objetoUnico(Integer value, String coluna) {
+	public T objetoUnicoD(Integer value, String coluna) {
 
 		CriteriaBuilder criteriaBuilder = ((EntityManager) JpaUtil.getRequestAtribute("entityManager"))
 				.getCriteriaBuilder();

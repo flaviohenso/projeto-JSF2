@@ -27,7 +27,7 @@ public class HibernateClienteDao extends HibernateDAO<Cliente, Long> implements 
 	
 	public List<Cliente> listAllQ(){
 		return ((EntityManager) JpaUtil.getRequestAtribute("entityManager"))
-				.createQuery("cliente.findAll",Cliente.class)
+				.createQuery("Cliente.findAll")
 				.getResultList();
 	}
 	

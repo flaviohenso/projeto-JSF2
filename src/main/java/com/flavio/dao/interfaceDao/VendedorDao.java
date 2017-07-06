@@ -14,6 +14,6 @@ import com.flavio.model.Vendedor;
  */
 public interface VendedorDao extends GenericDAO<Vendedor, Long> {
 	
-	public List<Vendedor> listAllQ();
+	public List<Vendedor> listAll();
 
 }

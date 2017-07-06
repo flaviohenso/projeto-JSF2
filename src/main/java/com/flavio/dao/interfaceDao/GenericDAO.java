@@ -14,13 +14,13 @@ public interface GenericDAO<T,Type extends Serializable> {
 
 	public void delete (T entity);
 	
-	public List<T> listAll();
+	public List<T> listAllD();
 
 	/**
 	 * @param coluna representa a coluna do banco pela qual deseja ordenar a lista e é do tipo String
 	 * @return retorna uma lista ordenada pela o parametro coluna
 	 */
-	public List<T> listAllasc(String coluna);
+	public List<T> listAllascD(String coluna);
 
 //	public void closeTransaction();
 	
@@ -28,5 +28,5 @@ public interface GenericDAO<T,Type extends Serializable> {
 	 * @param coluna representa a coluna do banco pela qual deseja realizar a busca é do tipo String
 	 * @return retorna uma instancia de objeto
 	 */
-	public T objetoUnico(Integer value, String coluna);
+	public T objetoUnicoD(Integer value, String coluna);
 }

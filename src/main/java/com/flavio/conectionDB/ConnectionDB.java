@@ -1,5 +1,8 @@
 package com.flavio.conectionDB;
 
+/**
+ * NÂO ESTA SENDO UTILIZADA NO PROJETO
+ */
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -7,7 +10,7 @@ import javax.persistence.Persistence;
 //Criando a fábrica de Conexões
 public class ConnectionDB {
 	private static EntityManagerFactory emf = Persistence
-			.createEntityManagerFactory("vendas");
+			.createEntityManagerFactory("VendasPU");
 	private static EntityManager em;
 	
 	public static EntityManager getConnection(){

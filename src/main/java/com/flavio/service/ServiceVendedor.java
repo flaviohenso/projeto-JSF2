@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 
-import com.flavio.dao.DAOFactory;
-import com.flavio.dao.VendedorDao;
+import com.flavio.dao.factoryDao.DAOFactory;
+import com.flavio.dao.interfaceDao.VendedorDao;
 import com.flavio.model.Vendedor;
 
 @RequestScoped

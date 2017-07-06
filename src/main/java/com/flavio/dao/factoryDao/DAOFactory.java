@@ -1,4 +1,9 @@
-package com.flavio.dao;
+package com.flavio.dao.factoryDao;
+
+import com.flavio.dao.interfaceDao.ClienteDao;
+import com.flavio.dao.interfaceDao.PedidoDao;
+import com.flavio.dao.interfaceDao.ProdutoDao;
+import com.flavio.dao.interfaceDao.VendedorDao;
 
 //classe fabrica de DAOs
 

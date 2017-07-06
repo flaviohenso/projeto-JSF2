@@ -1,4 +1,4 @@
-package com.flavio.dao;
+package com.flavio.dao.implementDaos;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +14,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.flavio.conectionDB.JpaUtil;
+import com.flavio.dao.interfaceDao.GenericDAO;
 
 /*
  * Classe que implementa os metodos de acesso ao banco de dados

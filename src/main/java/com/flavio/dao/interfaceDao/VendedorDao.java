@@ -1,7 +1,7 @@
 /**Autor: Flávio Henrique
  * 9 de abr de 2017ProjetoBootStrap2
  */
-package com.flavio.dao;
+package com.flavio.dao.interfaceDao;
 
 import java.util.List;
 

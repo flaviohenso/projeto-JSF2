@@ -1,4 +1,13 @@
-package com.flavio.dao;
+package com.flavio.dao.factoryDao;
+
+import com.flavio.dao.implementDaos.HibernateClienteDao;
+import com.flavio.dao.implementDaos.HibernatePedidoDao;
+import com.flavio.dao.implementDaos.HibernateProdutoDao;
+import com.flavio.dao.implementDaos.HibernateVendedorDao;
+import com.flavio.dao.interfaceDao.ClienteDao;
+import com.flavio.dao.interfaceDao.PedidoDao;
+import com.flavio.dao.interfaceDao.ProdutoDao;
+import com.flavio.dao.interfaceDao.VendedorDao;
 
 //Fabrica de HibernateDAOs 
 

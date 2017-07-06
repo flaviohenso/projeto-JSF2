@@ -1,4 +1,4 @@
-package com.flavio.dao;
+package com.flavio.dao.interfaceDao;
 
 import java.io.Serializable;
 import java.util.List;

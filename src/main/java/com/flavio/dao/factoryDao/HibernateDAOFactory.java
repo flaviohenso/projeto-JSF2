@@ -1,5 +1,8 @@
 package com.flavio.dao.factoryDao;
 
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Produces;
+
 import com.flavio.dao.implementDaos.HibernateClienteDao;
 import com.flavio.dao.implementDaos.HibernatePedidoDao;
 import com.flavio.dao.implementDaos.HibernateProdutoDao;
@@ -13,22 +16,18 @@ import com.flavio.dao.interfaceDao.VendedorDao;
 
 public class HibernateDAOFactory extends DAOFactory {
 
-	@Override
 	public VendedorDao getVendedorDAO() {
 		return new HibernateVendedorDao();
 	}
 
-	@Override
 	public ClienteDao getClienteDAO() {
 		return new HibernateClienteDao();
 	}
 
-	@Override
 	public ProdutoDao getProdutoDAO() {
 		return new HibernateProdutoDao();
 	}
 
-	@Override
 	public PedidoDao getPedidoDAO() {
 		return new HibernatePedidoDao();
 	}

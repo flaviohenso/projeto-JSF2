@@ -10,15 +10,16 @@ import javax.inject.Named;
 public class LoginBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
 	private String email;
 
 	public String logout(){
-		
+		System.out.println("logout");
 		return "acesso";
 	}
 	
 	public String login(){
-		
+		System.out.println("login");
 		return "sucesso";
 	}
 

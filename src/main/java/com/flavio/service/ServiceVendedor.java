@@ -3,6 +3,7 @@ package com.flavio.service;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
 import com.flavio.dao.factoryDao.DAOFactory;
 import com.flavio.dao.interfaceDao.VendedorDao;

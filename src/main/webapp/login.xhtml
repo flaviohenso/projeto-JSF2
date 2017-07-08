@@ -6,8 +6,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:f="http://java.sun.com/jsf/core">
 
 	<div id="wrapper">
 
@@ -17,13 +16,12 @@
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
 					<div class="login-panel panel panel-default">
+						<h:messages id="messages" />
 						<div class="panel-heading">
 							<h3 class="panel-title">Por Favor, Entre Aqui</h3>
 						</div>
 						<div class="panel-body">
 						
-							<p:messages id="messages" autoUpdate="true" closable="true"/>
-							
 							<h:form role="form" prependId="false">
 								<fieldset>
 									<div class="form-group">
@@ -31,16 +29,15 @@
 											placeholder="Login" autofocus="true" name="#{loginBean.email}" />
 									</div>
 									<div class="form-group">
-										<h:inputSecret class="form-control" id="j_password"
-											name="passowrd" value="#{loginBean.senha}" />
+										<h:inputSecret class="form-control" id="j_password"/>
 									</div>
 									<!-- 									<div class="checkbox"> -->
 									<!-- 										<label> <h:selectBooleanCheckbox>Lembre-me!</h:selectBooleanCheckbox> -->
 									<!-- 										</label> -->
 									<!-- 									</div> -->
 									<!-- Change this to a button or input when using this as a form -->
-									<p:commandButton class="btn btn-lg btn-success btn-block"
-										value="Login" action="#{loginBean.login}" ajax="false"/>
+									<h:commandButton class="btn btn-lg btn-success btn-block"
+										value="Login" action="#{loginBean.login()}"/>
 								</fieldset>
 							</h:form>
 						</div>

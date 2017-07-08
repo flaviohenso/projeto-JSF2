@@ -1,76 +1,52 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Author: Flávio Henrique-->
+<!-- Data: 8 de abr de 2017 -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core" >
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
+	<div id="wrapper">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+		<!-- Navigation -->
 
-    <!-- Bootstrap Core CSS -->
-    <h:outputStylesheet	name="css/bootstrap/vendor/bootstrap/css/bootstrap.min.css" />
-
-    <!-- MetisMenu CSS -->
-    <h:outputStylesheet	name="css/bootstrap/vendor/metisMenu/metisMenu.min.css" />
-
-    <!-- Custom CSS -->
-    <h:outputStylesheet	name="css/bootstrap/dist/css/sb-admin-2.css" />
-
-    <!-- Custom Fonts -->
-	<h:outputStylesheet	name="css/bootstrap/vendor/font-awesome/css/font-awesome.min.css" />
-
-</h:head>
-
-<h:body>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
-                    </div>
-                    <div class="panel-body">
-                        <h:form role="form">
-                            <fieldset>
-                                <div class="form-group">
-                                	<h:inputText class="form-control" placeholder="E-mail" autofocus" name="email"></h:inputText>
-                                </div>
-                                <div class="form-group">
-                                	<h:inputSecret class="form-control" name="passowrd"></h:inputSecret>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                    	<h:selectBooleanCheckbox>Remenber Me</h:selectBooleanCheckbox>
-                                    </label>
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
-                            </fieldset>
-                        </h:form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- jQuery -->
-    <h:outputScript name="js/bootstrap/vendor/jquery/jquery.min.js" />
-
-    <!-- Bootstrap Core JavaScript -->
-	<h:outputScript name="js/bootstrap/vendor/bootstrap/js/bootstrap.min.js" />
-
-    <!-- Metis Menu Plugin JavaScript -->
-	<h:outputScript name="js/bootstrap/vendor/metisMenu/metisMenu.min.js" />
-	
-    <!-- Custom Theme JavaScript -->
-	<h:outputScript name="js/bootstrap/dist/js/sb-admin-2.js" />
-	
-</h:body>
-
-</html>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="login-panel panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Por Favor, Entre Aqui</h3>
+						</div>
+						<div class="panel-body">
+						
+							<p:messages id="messages" autoUpdate="true" closable="true"/>
+							
+							<h:form role="form" prependId="false">
+								<fieldset>
+									<div class="form-group">
+										<h:inputText class="form-control" id="j_username"
+											placeholder="Login" autofocus="true" name="#{loginBean.email}" />
+									</div>
+									<div class="form-group">
+										<h:inputSecret class="form-control" id="j_password"
+											name="passowrd" value="#{loginBean.senha}" />
+									</div>
+									<!-- 									<div class="checkbox"> -->
+									<!-- 										<label> <h:selectBooleanCheckbox>Lembre-me!</h:selectBooleanCheckbox> -->
+									<!-- 										</label> -->
+									<!-- 									</div> -->
+									<!-- Change this to a button or input when using this as a form -->
+									<p:commandButton class="btn btn-lg btn-success btn-block"
+										value="Login" action="#{loginBean.login}" ajax="false"/>
+								</fieldset>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</ui:composition>

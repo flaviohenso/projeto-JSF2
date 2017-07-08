@@ -1,4 +1,4 @@
-package com.flavio.conectionDB;
+package com.flavio.util.jpa;
 
 /**
  * NÂO ESTA SENDO UTILIZADA NO PROJETO

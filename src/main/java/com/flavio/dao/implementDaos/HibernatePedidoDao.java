@@ -7,9 +7,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.flavio.conectionDB.JpaUtil;
 import com.flavio.dao.interfaceDao.PedidoDao;
 import com.flavio.model.Pedido;
+import com.flavio.util.jpa.EntityManagerProducer;
 
 /**
  * @author root
@@ -25,7 +25,7 @@ public class HibernatePedidoDao extends HibernateDAO<Pedido, Long> implements Pe
 	}
 	
 	public List<Pedido> listAllQ(){
-		return ((EntityManager) JpaUtil.getRequestAtribute("entityManager"))
+		return ((EntityManager) EntityManagerProducer.getRequestAtribute("entityManager"))
 				.createQuery("Pedido.findAll",Pedido.class)
 				.getResultList();
 	}

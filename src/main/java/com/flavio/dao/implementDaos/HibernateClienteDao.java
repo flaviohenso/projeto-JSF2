@@ -7,10 +7,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.flavio.conectionDB.JpaUtil;
 import com.flavio.dao.interfaceDao.ClienteDao;
 import com.flavio.model.Cliente;
 import com.flavio.model.Vendedor;
+import com.flavio.util.jpa.EntityManagerProducer;
 
 /**
  * @author root
@@ -26,7 +26,7 @@ public class HibernateClienteDao extends HibernateDAO<Cliente, Long> implements 
 	}
 	
 	public List<Cliente> listAllQ(){
-		return ((EntityManager) JpaUtil.getRequestAtribute("entityManager"))
+		return ((EntityManager) EntityManagerProducer.getRequestAtribute("entityManager"))
 				.createQuery("Cliente.findAll")
 				.getResultList();
 	}

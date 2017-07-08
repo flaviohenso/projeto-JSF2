@@ -7,9 +7,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.flavio.conectionDB.JpaUtil;
 import com.flavio.dao.interfaceDao.VendedorDao;
 import com.flavio.model.Vendedor;
+import com.flavio.util.jpa.EntityManagerProducer;
 
 /**
  * @author root
@@ -25,7 +25,7 @@ public class HibernateVendedorDao extends HibernateDAO<Vendedor, Long> implement
 	}
 	
 	public List<Vendedor> listAll(){
-		return ((EntityManager) JpaUtil.getRequestAtribute("entityManager"))
+		return ((EntityManager) EntityManagerProducer.getRequestAtribute("entityManager"))
 				.createNamedQuery("Vendedor.findAll")
 				.getResultList();
 	}

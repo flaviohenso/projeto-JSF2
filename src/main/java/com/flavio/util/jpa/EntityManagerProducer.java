@@ -1,5 +1,9 @@
-package com.flavio.conectionDB;
+package com.flavio.util.jpa;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Disposes;
+import javax.enterprise.inject.Produces;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -8,29 +12,30 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.servlet.http.HttpServletRequest;
 
-public class JpaUtil {
+@ApplicationScoped
+public class EntityManagerProducer {
 
 	private static final String PERSISTENCE_UNIT = "VendasPU";
 
-	static EntityManagerFactory emf;
+	private EntityManagerFactory emf;
 
 	private static ThreadLocal<EntityManager> threadLocalEntiryManager = new ThreadLocal<EntityManager>();
 
-	public static EntityManager getConnection() {
+	public EntityManagerProducer() {
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+	}
+
+	@Produces
+	@RequestScoped
+	public EntityManager getConnection() {
 
 		EntityManager entityManager = threadLocalEntiryManager.get();
-
-		if (emf == null) {
-
-			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-
-		}
 
 		if (entityManager == null || !entityManager.isOpen()) {
 
 			entityManager = emf.createEntityManager();
 
-			JpaUtil.threadLocalEntiryManager.set(entityManager);
+			EntityManagerProducer.threadLocalEntiryManager.set(entityManager);
 
 		}
 
@@ -51,16 +56,10 @@ public class JpaUtil {
 	}
 
 	public static void rollBackTransaction(EntityManager em) {
-		
+
 		em.getTransaction().rollback();
 
 	}
-	//
-	// public static void closeConection() {
-	//
-	// getConnection().close();
-	//
-	// }
 
 	public static Object getRequestAtribute(String name) {
 		FacesContext faceContext = FacesContext.getCurrentInstance();
@@ -69,33 +68,37 @@ public class JpaUtil {
 		return request.getAttribute(name);
 	}
 
-	public static void closeEntityManager() {
+	public static void closeEntityManager(@Disposes EntityManager entityManager) {
+		EntityManager em;
 
-		EntityManager em = threadLocalEntiryManager.get();
+		if (threadLocalEntiryManager.equals(entityManager)) {
+		
+			em = threadLocalEntiryManager.get();
 
-		if (em != null) {
+			if (em != null) {
 
-			EntityTransaction entityTransaction = em.getTransaction();
+				EntityTransaction entityTransaction = em.getTransaction();
 
-			if (entityTransaction.isActive()) {
+				if (entityTransaction.isActive()) {
 
-				entityTransaction.commit();
+					entityTransaction.commit();
 
+				}
+
+				em.close();
+
+				threadLocalEntiryManager.set(null);
 			}
-
-			em.close();
-
-			threadLocalEntiryManager.set(null);
 		}
 
 	}
 
-	public static void closeEntityManagerFactory() {
-
-		closeEntityManager();
-
-		emf.close();
-
-	}
+//	public void closeEntityManagerFactory() {
+//
+//		closeEntityManager();
+//
+//		emf.close();
+//
+//	}
 
 }

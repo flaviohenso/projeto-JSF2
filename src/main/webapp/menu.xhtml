@@ -6,8 +6,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:f="http://java.sun.com/jsf/core">
 
 	<nav class="navbar navbar-default navbar-static-top" role="navigation"
 		style="margin-bottom: 0">
@@ -191,7 +190,7 @@
 				<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
 				<li class="divider"></li>
 				<li>
-				<h:commandLink action="/login?faces-redirect=true"><i class="fa fa-sign-out fa-fw"></i> Logout</h:commandLink></li>
+				<h:commandLink action="#{loginBean.logout}"><i class="fa fa-sign-out fa-fw"></i> Logout</h:commandLink></li>
 			</ul> <!-- /.dropdown-user --></li>
 		<!-- /.dropdown -->
 	</ul>

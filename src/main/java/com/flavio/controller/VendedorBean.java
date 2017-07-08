@@ -1,7 +1,7 @@
 /**Autor: Flávio Henrique
  * 9 de abr de 2017ProjetoBootStrap2
  */
-package com.flavio.bean;
+package com.flavio.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;

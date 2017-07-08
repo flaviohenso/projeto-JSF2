@@ -3,6 +3,7 @@ package com.flavio.dao.implementDaos;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
@@ -13,8 +14,8 @@ import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import com.flavio.conectionDB.JpaUtil;
 import com.flavio.dao.interfaceDao.GenericDAO;
+import com.flavio.util.jpa.EntityManagerProducer;
 
 /*
  * Classe que implementa os metodos de acesso ao banco de dados
@@ -25,6 +26,9 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 	private CriteriaQuery<T> criteriaQuery;
 	private Root<T> root;
 	private TypedQuery<T> query;
+	
+	@Inject
+	private EntityManager entityManager;
 	
 	@SuppressWarnings("unchecked")
 	public HibernateDAO(Class persistentClass) {
@@ -47,8 +51,13 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 	// }
 	//
 	public void save(T entity) throws Exception{
-
-		((EntityManager) JpaUtil.getRequestAtribute("entityManager")).persist(entity);
+		
+		entityManager.persist(entity);
+		
+		/**
+		 * forma de acessar o entityManager pela opensessionview
+		 * ((EntityManager) EntityManagerProducer.getRequestAtribute("entityManager")).persist(entity); 
+		 */
 
 	}
 	//
@@ -65,37 +74,33 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 	// }
 
 	public List<T> listAllD() {// por ordem de inserção
-		CriteriaBuilder criteriaBuilder = ((EntityManager) JpaUtil.getRequestAtribute("entityManager"))
-				.getCriteriaBuilder();
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		this.criteriaQuery = criteriaBuilder.createQuery(this.persistentClass);
 		this.root = criteriaQuery.from(this.persistentClass);
 		this.criteriaQuery.select(this.root); // necessário caso uma condição
 												// where seja adicionada na
 												// consulta
-		this.query = JpaUtil.getConnection().createQuery(this.criteriaQuery);
+		this.query = entityManager.createQuery(this.criteriaQuery);
 		return this.query.getResultList();
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<T> listAllascD(String coluna) {// por ordem acendente
 
-		CriteriaBuilder criteriaBuilder = ((EntityManager) JpaUtil.getRequestAtribute("entityManager"))
-				.getCriteriaBuilder();
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		this.criteriaQuery = criteriaBuilder.createQuery(this.persistentClass);
 		this.root = criteriaQuery.from(this.persistentClass);
 		this.criteriaQuery.select(this.root); // necessário caso uma condição
 												// where seja adicionada na
 												// consulta
-		this.query = JpaUtil.getConnection()
-				.createQuery(this.criteriaQuery.orderBy(criteriaBuilder.asc(root.get(coluna))));
+		this.query = entityManager.createQuery(this.criteriaQuery.orderBy(
+				criteriaBuilder.asc(root.get(coluna))));
 		return this.query.getResultList();
 
 	}
 
 	public T objetoUnicoD(Integer value, String coluna) {
 
-		CriteriaBuilder criteriaBuilder = ((EntityManager) JpaUtil.getRequestAtribute("entityManager"))
-				.getCriteriaBuilder();
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		this.criteriaQuery = criteriaBuilder.createQuery(this.persistentClass);
 		this.root = criteriaQuery.from(this.persistentClass);
 		Expression<? extends Number> codigo = root.get(coluna);
@@ -103,7 +108,7 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 																	// consulta
 		this.criteriaQuery.select(this.root).where(condicao);
 
-		this.query = JpaUtil.getConnection().createQuery(this.criteriaQuery);
+		this.query = entityManager.createQuery(this.criteriaQuery);
 
 		T singleResult = this.query.getSingleResult();
 

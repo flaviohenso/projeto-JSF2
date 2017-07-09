@@ -12,7 +12,12 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ExceptionQueuedEvent;
 import javax.faces.event.ExceptionQueuedEventContext;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 public class JsfExceptionHandler extends ExceptionHandlerWrapper {
+	
+	private static Log log = LogFactory.getLog(JsfExceptionHandler.class);
 
 	private ExceptionHandler wrapped;
 
@@ -32,13 +37,21 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 		while (events.hasNext()) {
 			ExceptionQueuedEvent exceptionQueuedEvent = (ExceptionQueuedEvent) events.next();
 			ExceptionQueuedEventContext exceptionQueuedEventContext = exceptionQueuedEvent.getContext();
-			
+
+			boolean handler = false;
+
 			try {
-				if (exceptionQueuedEventContext.getException() instanceof ViewExpiredException) {
+				Throwable exception = exceptionQueuedEventContext.getException();
+				if (exception instanceof ViewExpiredException) {
+					handler = true;
 					redirect("/");
+				}else {
+					log.error("erro de sistemas: " + exception.getMessage(),exception);
 				}
 			} finally {
-				events.remove();
+				if (handler) {
+					events.remove();
+				}
 			}
 		}
 		getWrapped().handle();
@@ -55,6 +68,6 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 		} catch (IOException e) {
 			throw new FacesException(e);
 		}
-		
+
 	}
 }

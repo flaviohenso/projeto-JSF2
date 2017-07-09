@@ -8,6 +8,7 @@
  			com.flavio.util.jsf.JsfExceptionHandlerFactory
  		</exception-handler-factory>
  	</factory>
+ 	
 	<application>
 		<message-bundle>com.flavio.resources.Messages</message-bundle>
 	</application>

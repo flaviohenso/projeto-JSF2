@@ -30,7 +30,7 @@ public class HibernatePedidoDao extends HibernateDAO<Pedido, Long> implements Pe
 				.getResultList();
 	}
 
-	public void delete(Pedido entity) {
+	public void delete(Pedido entity, EntityManager entityManager) {
 		
 	}
 }

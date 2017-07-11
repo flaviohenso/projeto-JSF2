@@ -3,7 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
-	<display-name>ProjetoBootStrap2</display-name>
+	<display-name>Projeto-web</display-name>
 	
 	<!-- inicio configuração weld -->
 	
@@ -76,8 +76,8 @@
 		<dispatcher>REQUEST</dispatcher>	
 	</filter-mapping>
 	
-	<context-param>
-    	<param-name>primefaces.THEME</param-name>
-    	<param-value>none</param-value>
-  	</context-param>
+<!-- 	<context-param> -->
+<!--     	<param-name>primefaces.THEME</param-name> -->
+<!--     	<param-value>none</param-value> -->
+<!--   	</context-param> -->
 </web-app>

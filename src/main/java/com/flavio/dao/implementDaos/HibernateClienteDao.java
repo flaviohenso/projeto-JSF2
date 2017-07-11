@@ -32,7 +32,7 @@ public class HibernateClienteDao extends HibernateDAO<Cliente, Long> implements 
 	}
 	
 	@Override
-	public void delete(Cliente entity) {
+	public void delete(Cliente entity, EntityManager entityManager) {
 		
 	}
 

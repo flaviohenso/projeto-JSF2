@@ -5,12 +5,16 @@
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 	<persistence-unit name="VendasPU" transaction-type="RESOURCE_LOCAL">
-	
+		
 		<mapping-file>META-INF/consultas/vendedor.xml</mapping-file>
 		<mapping-file>META-INF/consultas/cliente.xml</mapping-file>
 		
 		<class>com.flavio.model.Vendedor</class>
 		<class>com.flavio.model.Registro</class>
+		<class>com.flavio.model.Produto</class>
+		<class>com.flavio.model.Cliente</class>
+		<class>com.flavio.model.Usuario</class>
+		<class>com.flavio.model.Endereco</class>
 		
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		
@@ -23,7 +27,7 @@
 			<property name="javax.persistence.jdbc.password" value="javadb" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 
-<!-- 			<property name="javax.persistence.schema-generation.database.action" value="update"/> -->
+<!-- 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> -->
 <!-- 			<property name="javax.persistence.schema-generation.create-source" value="metadata"/> -->
 <!-- 			<property name="javax.persistence.schema-generation.drop-source" value="metadata"/> -->
 			

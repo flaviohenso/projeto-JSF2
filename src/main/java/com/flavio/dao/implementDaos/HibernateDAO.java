@@ -3,6 +3,7 @@ package com.flavio.dao.implementDaos;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -20,15 +21,13 @@ import com.flavio.util.jpa.EntityManagerProducer;
 /*
  * Classe que implementa os metodos de acesso ao banco de dados
  */
+@RequestScoped
 public abstract class HibernateDAO<T, Type extends Serializable> implements GenericDAO<T, Type> {
 
 	private Class<T> persistentClass;
 	private CriteriaQuery<T> criteriaQuery;
 	private Root<T> root;
 	private TypedQuery<T> query;
-	
-	@Inject
-	private EntityManager entityManager;
 	
 	@SuppressWarnings("unchecked")
 	public HibernateDAO(Class persistentClass) {
@@ -50,9 +49,15 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 	//
 	// }
 	//
-	public void save(T entity) throws Exception{
+	
+	public void save(T entity, EntityManager entityManager) throws Exception{
+		if (entityManager != null) {
+				System.out.println("Enti dentro do seve OK");
+				entityManager.persist(entity);
+		}else {
+			System.out.println("resolver problema no entity igual a null no save]");
+		}
 		
-		entityManager.persist(entity);
 		
 		/**
 		 * forma de acessar o entityManager pela opensessionview
@@ -60,20 +65,9 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 		 */
 
 	}
-	//
-	// public void delete(T entity) {
-	//
-	// HibernateUtil.getConnection().remove(entity);
-	//
-	// }
-	//
-	// public void closeTransaction() {
-	//
-	// HibernateUtil.closeConection();
-	//
-	// }
 
-	public List<T> listAllD() {// por ordem de inserção
+	public List<T> listAllD(EntityManager entityManager) {// por ordem de inserção
+		
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		this.criteriaQuery = criteriaBuilder.createQuery(this.persistentClass);
 		this.root = criteriaQuery.from(this.persistentClass);
@@ -84,7 +78,7 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 		return this.query.getResultList();
 	}
 
-	public List<T> listAllascD(String coluna) {// por ordem acendente
+	public List<T> listAllascD(String coluna, EntityManager entityManager) {// por ordem acendente
 
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		this.criteriaQuery = criteriaBuilder.createQuery(this.persistentClass);
@@ -98,7 +92,7 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 
 	}
 
-	public T objetoUnicoD(Integer value, String coluna) {
+	public T objetoUnicoD(Integer value, String coluna, EntityManager entityManager) {
 
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		this.criteriaQuery = criteriaBuilder.createQuery(this.persistentClass);

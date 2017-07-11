@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 
 import com.flavio.anotation.Sms;
 import com.flavio.model.Vendedor;
@@ -23,7 +25,7 @@ import com.flavio.service.ServiceVendedor;
 /**
  * @author root
  *
- * Quando usa o escopo SessionScoped ou outro tipo de escopo de mante a vida do Bean por muito tempo é necessário
+ * Quando usa o escopo SessionScoped ou outro tipo de escopo que mante a vida do Bean por muito tempo é necessário
  * implementar Serializable, caso contrário um exception do tipo UnserializableDependencyException é gerada.
  */
 @Named
@@ -49,6 +51,7 @@ public class VendedorBean implements Serializable{
 	private ServiceVendedor serviceVendedor;
 	@Inject
 	private ContextMensage contextMensage;
+	
 	
 	/**
 	 * Injetando uma interface e especificando por anotação qual classe que implementa essa interface
@@ -76,18 +79,18 @@ public class VendedorBean implements Serializable{
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!", "Dados salvos com sucesso!");
 		} catch (Exception e) {
 			System.out.println("Erro ao salvar vendedor!!! <<<<<<<<<");
-			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao salvar!", "Dados salvos com sucesso!");
+			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao salvar!", "Erro ao salvar!");
 		} finally {
 			this.vendedor = new Vendedor();
 		}
 	}
 	
 	public void listVendedores(ActionEvent event){
-		vendedores = serviceVendedor.todos();
+		vendedores = serviceVendedor.listRepository();
 	}
 	
 	public String listVendedores(){
-		vendedores = serviceVendedor.todos();
+		vendedores = serviceVendedor.listRepository();
 		if(vendedores == null){
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_ERROR, "Erro ao consultar vendedores!", "Vendedores esta NULL!");
 		}

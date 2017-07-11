@@ -30,7 +30,7 @@ public class HibernateProdutoDao extends HibernateDAO<Produto, Long> implements 
 				.getResultList();
 	}
 
-	public void delete(Produto entity) {
+	public void delete(Produto entity, EntityManager entityManager) {
 		
 	}
 }

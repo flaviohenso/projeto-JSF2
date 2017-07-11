@@ -18,8 +18,6 @@
 	</appender>
 	
 	<root>
-		<level value="TRACE" />
-		<priority valu="info"/>
 		<appender-ref ref="stdout" />
 		<appender-ref ref="arquivo" />
 	</root>

@@ -5,33 +5,42 @@ package com.flavio.dao.implementDaos;
 
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import com.flavio.dao.interfaceDao.VendedorDao;
 import com.flavio.model.Vendedor;
-import com.flavio.util.jpa.EntityManagerProducer;
 
 /**
  * @author root
  *
  */
+@RequestScoped
 public class HibernateVendedorDao extends HibernateDAO<Vendedor, Long> implements VendedorDao{
-
+	
 	/**
 	 * @param persistentClass
 	 */
+	
 	public HibernateVendedorDao() {
 		super(Vendedor.class);
 	}
 	
-	public List<Vendedor> listAll(){
-		return ((EntityManager) EntityManagerProducer.getRequestAtribute("entityManager"))
-				.createNamedQuery("Vendedor.findAll")
+	@SuppressWarnings("unchecked")
+	public List<Vendedor> listAll(EntityManager em){
+		if(em != null){
+			System.out.println("Entity Válido");
+		}else{
+			System.out.println("dentro de HibernateDao é null");
+		}
+		
+		return em.createNamedQuery("Vendedor.findAll")
 				.getResultList();
 	}
 	
 	@Override
-	public void delete(Vendedor entity) {
+	public void delete(Vendedor entity, EntityManager entityManager) {
 		
 	}
 

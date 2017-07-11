@@ -10,12 +10,8 @@ import java.util.List;
 import javax.persistence.Cacheable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 //@NamedQueries({ 
 //	@NamedQuery(name = "Vendedor.findAll", query = "SELECT v FROM Vendedor v")

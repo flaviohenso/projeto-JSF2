@@ -21,7 +21,7 @@ public class VendedorRepository implements Serializable {
 	private EntityManager entityManager;
 
 	public List<Vendedor> listAll() {
-		return entityManager.createNamedQuery("Vendedor.findAll").getResultList();
+		return entityManager.createNamedQuery("Vendedor.findAll",Vendedor.class).getResultList();
 	}
 
 	public boolean save(Vendedor vendedor) throws Exception {

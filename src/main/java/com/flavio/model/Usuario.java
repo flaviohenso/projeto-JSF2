@@ -1,6 +1,8 @@
 package com.flavio.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -10,8 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Entity(name = "usuario")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -35,6 +39,8 @@ public abstract class Usuario implements Serializable{
 	private String email;
 	
 	private String senha;
+	
+	private List<Authoritie> authorities = new ArrayList<Authoritie>();
 	
 	public Usuario() {
 		super();
@@ -91,6 +97,15 @@ public abstract class Usuario implements Serializable{
 
 	public void setDocumentoReceitaFederal(String documentoReceitaFederal) {
 		this.documentoReceitaFederal = documentoReceitaFederal;
+	}
+
+	@ManyToMany(mappedBy = "usuarios")
+	public List<Authoritie> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(List<Authoritie> authorities) {
+		this.authorities = authorities;
 	}
 
 	@Override

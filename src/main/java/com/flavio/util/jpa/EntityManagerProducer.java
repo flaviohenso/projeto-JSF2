@@ -49,10 +49,9 @@ public class EntityManagerProducer {
 
 	}
 	
-	@PostConstruct
-	public void beginTransaction() {
-		if (!threadLocalEntityManager.get().getTransaction().isActive()) {
-			threadLocalEntityManager.get().getTransaction().begin();
+	public static void beginTransaction(EntityManager em) {
+		if (!em.getTransaction().isActive()) {
+			em.getTransaction().begin();
 		}
 	}
 

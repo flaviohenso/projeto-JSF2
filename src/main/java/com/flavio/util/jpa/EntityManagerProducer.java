@@ -51,6 +51,9 @@ public class EntityManagerProducer {
 	public static void beginTransaction(EntityManager em) {
 		if (!em.getTransaction().isActive()) {
 			em.getTransaction().begin();
+			log.info("Transação foi aberta" + em.getMetamodel());
+		}else{
+			log.info("Transação já esta aberta" + em.getMetamodel());
 		}
 	}
 

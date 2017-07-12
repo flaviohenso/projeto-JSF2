@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import com.flavio.model.Vendedor;
 import com.flavio.repository.VendedorRepository;
+import com.flavio.util.security.MD5;
 
 @RequestScoped
 public class ServiceVendedor {
@@ -29,6 +30,7 @@ public class ServiceVendedor {
 	}
 	
 	public void salvar(Vendedor vendedor) throws Exception{
+		vendedor.setSenha(MD5.convertPasswordMd5(vendedor.getSenha()));
 		if(vendedorRepository.save(vendedor)){
 			System.out.println("salvou com suscesso");
 		}else {

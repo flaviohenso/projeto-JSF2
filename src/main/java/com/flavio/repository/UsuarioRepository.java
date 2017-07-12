@@ -47,7 +47,7 @@ public class UsuarioRepository implements Serializable {
 			return this.entityManager.createNamedQuery("Usuario.porEmail", Usuario.class)
 					.setParameter("email", email.toLowerCase()).getSingleResult();
 		} catch (NoResultException e) {
-			log.info("Nenhuma resultado encontrado!");
+			log.info("Nenhuma resultado encontrado!", e);
 		}
 		return null;
 	}

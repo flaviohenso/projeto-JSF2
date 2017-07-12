@@ -10,6 +10,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.flavio.model.Vendedor;
+import com.flavio.util.jpa.EntityManagerProducer;
 
 public class VendedorRepository implements Serializable {
 
@@ -27,7 +28,7 @@ public class VendedorRepository implements Serializable {
 	public boolean save(Vendedor vendedor) throws Exception {
 		if (entityManager != null) {
 			try {
-				//EntityManagerProducer.beginTransaction(entityManager);
+				EntityManagerProducer.beginTransaction(entityManager);
 				entityManager.persist(vendedor);
 				return true;
 			} catch (Exception e) {

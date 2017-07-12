@@ -22,19 +22,19 @@
 <!--     </http> -->
     
 
-    <http auto-config="true" use-expressions="true">
+    <http auto-config="false" use-expressions="true">
     	<intercept-url pattern="/index.xhtml" access="isAuthenticated()"/>
     	<intercept-url pattern="/venda/**" access="hasAnyRole('VENDEDORES')"/>
     	<intercept-url pattern="/vendedor/**" access="hasAnyRole('ADMINISTRADORES')"/>
     	<intercept-url pattern="/**" access="denyAll"/>
     	
-<!--     	<form-login login-page="/acesso.xhtml" default-target-url="/" always-use-default-target="true"/> -->
-<!--     	<logout logout-url="/j_spring_security_logout" invalidate-session="true"/> -->
+    	<form-login login-page="/acesso.xhtml" default-target-url="/" always-use-default-target="true"/>
+    	<logout logout-url="/j_spring_security_logout" invalidate-session="true"/>
     </http>
     
     <authentication-manager>
     	<authentication-provider user-service-ref="appUserDetailsService">
-<!--     	 <password-encoder hash="md5"/> -->
+    	 <password-encoder hash="md5"/>
 <!--     		<user-service> -->
 <!--     			<user name="manoel" password="manoel" authorities="VENDEDORES"/> -->
 <!--     			<user name="flavio" password="flavio" authorities="ADMINISTRADORES"/> -->

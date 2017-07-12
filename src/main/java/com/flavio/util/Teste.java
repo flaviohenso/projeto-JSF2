@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -17,7 +15,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.InternetHeaders;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 public class Teste {
 
@@ -68,7 +65,7 @@ public class Teste {
 			message.setSubject("Enviando email com JavaMail");// Assunto
 			message.setText("Enviei este email utilizando JavaMail com minha conta GMail!");
 
-			Multipart corpo = new MimeMultipart();
+			//Multipart corpo = new MimeMultipart();
 			InternetHeaders headers = new InternetHeaders();
 			headers.addHeader("Content-Type", "application/pdf");
 

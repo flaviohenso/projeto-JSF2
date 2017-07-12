@@ -11,6 +11,7 @@ import javax.persistence.Persistence;
 public class ConnectionDB {
 	private static EntityManagerFactory emf = Persistence
 			.createEntityManagerFactory("VendasPU");
+	@SuppressWarnings("unused")
 	private static EntityManager em;
 	
 	public static EntityManager getConnection(){

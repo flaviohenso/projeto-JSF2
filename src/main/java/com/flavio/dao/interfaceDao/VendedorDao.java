@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.flavio.model.Usuario;
 import com.flavio.model.Vendedor;
 
 /**

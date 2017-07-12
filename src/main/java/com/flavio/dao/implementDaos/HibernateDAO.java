@@ -4,10 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -16,7 +13,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.flavio.dao.interfaceDao.GenericDAO;
-import com.flavio.util.jpa.EntityManagerProducer;
 
 /*
  * Classe que implementa os metodos de acesso ao banco de dados
@@ -30,7 +26,7 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 	private TypedQuery<T> query;
 	
 	@SuppressWarnings("unchecked")
-	public HibernateDAO(Class persistentClass) {
+	public HibernateDAO(@SuppressWarnings("rawtypes") Class persistentClass) {
 
 		super();
 

@@ -11,7 +11,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.flavio.model.Usuario;
-import com.flavio.model.Vendedor;
 import com.flavio.util.jpa.EntityManagerProducer;
 
 public class UsuarioRepository implements Serializable {

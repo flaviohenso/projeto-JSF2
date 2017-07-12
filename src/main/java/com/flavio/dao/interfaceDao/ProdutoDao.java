@@ -5,7 +5,6 @@ package com.flavio.dao.interfaceDao;
 
 import java.util.List;
 
-import com.flavio.model.Cliente;
 import com.flavio.model.Produto;
 
 /**

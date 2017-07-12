@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 
 import com.flavio.dao.interfaceDao.ClienteDao;
 import com.flavio.model.Cliente;
-import com.flavio.model.Vendedor;
 import com.flavio.util.jpa.EntityManagerProducer;
 
 /**
@@ -25,6 +24,7 @@ public class HibernateClienteDao extends HibernateDAO<Cliente, Long> implements 
 		super(Cliente.class);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Cliente> listAllQ(){
 		return ((EntityManager) EntityManagerProducer.getRequestAtribute("entityManager"))
 				.createQuery("Cliente.findAll")

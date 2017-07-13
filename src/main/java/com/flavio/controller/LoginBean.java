@@ -25,40 +25,39 @@ public class LoginBean implements Serializable {
 	@Inject
 	private FacesContext context;
 
-	@Inject @HttpServletRequestOutCDI
+	/*
+	 * Essa injeção de dependência é um bean nativo do CDI
+	 */
+	@Inject
 	private HttpServletRequest httpServletRequest;
 
 	@Inject
 	private HttpServletResponse httpServletResponse;
 
 	public void login() throws ServletException, IOException {
-		RequestDispatcher dispatcher = httpServletRequest.getRequestDispatcher("/j_spring_security_check");
 		/*
 		 * dispacha a requisição para o spring security
 		 */
+		RequestDispatcher dispatcher = httpServletRequest.getRequestDispatcher("/j_spring_security_check");
 		dispatcher.forward(httpServletRequest, httpServletResponse);
 
 		/*
 		 * context.responseComplete(); : encerrar o processamento do JSF
 		 */
 		context.responseComplete();
-
-		System.out.println("login");
 	}
 
 	public void logout() throws ServletException, IOException {
-		RequestDispatcher dispatcher = httpServletRequest.getRequestDispatcher("/j_spring_security_logout");
 		/*
 		 * dispacha a requisição para o spring security
 		 */
+		RequestDispatcher dispatcher = httpServletRequest.getRequestDispatcher("/j_spring_security_logout");
 		dispatcher.forward(httpServletRequest, httpServletResponse);
 
 		/*
 		 * context.responseComplete(); : encerrar o processamento do JSF
 		 */
 		context.responseComplete();
-
-		System.out.println("logout");
 	}
 
 	public String getEmail() {

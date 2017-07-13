@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.flavio.anotation.HttpServletRequestOutCDI;
 
+/**
+ * Classe que produz metodos injetáveis 
+ */
 public class FacesProducer {
 	
 	@Produces
@@ -23,6 +26,10 @@ public class FacesProducer {
 		return getFacesContext().getExternalContext();
 	}
 
+	/*
+	 * Esse método injetável esta anotado com um Qualifier @HttpServletRequestOutCDI
+	 * para diferenciar do bean CDI HttpServletRequest
+	 */
 	@Produces
 	@RequestScoped @HttpServletRequestOutCDI
 	public HttpServletRequest getHttpServletRequest(){

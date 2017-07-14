@@ -210,8 +210,8 @@
 						</span>
 					</div> <!-- /input-group -->
 				</li>
-				<li><a href="../index.xhtml"> Dashboard</a><i
-					class="fa fa-dashboard fa-fw"></i></li>
+				<li><a href="../index.xhtml"><i
+					class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
 				<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 						Charts<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
@@ -220,14 +220,14 @@
 					</ul> <!-- /.nav-second-level --></li>
 
 				<li><h:link>
-						<i class="fa fa-bar-chart-o fa-fw"></i>
-						Vendedor<span class="fa arrow "></span>
+						<i class="fa fa-users fa-fw"/>
+						Vendedores<span class="fa arrow "></span>
 					</h:link>
 					<ul class="nav nav-second-level">
 						<li><h:commandLink
 								action="/vendedor/vendedor?faces-redirect=true" value="Registro" /></li>
 						<li><h:commandLink action="#{vendedorBean.listVendedores}"
-								value="Listagem" /></li>
+								value="Listagem" ><i class="fa fa-list fa-fw"/></h:commandLink></li>
 					</ul> <!-- /.nav-second-level --></li>
 
 				<li><h:link>

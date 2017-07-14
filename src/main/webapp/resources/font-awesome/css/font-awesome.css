@@ -6,8 +6,12 @@
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../fonts/fontawesome-webfont.eot?v=v4.7.0');
-  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=v4.7.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=v4.7.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=v4.7.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=v4.7.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=v4.7.0#fontawesomeregular') format('svg');
+  src: url("#{resource['font-awesome:fonts/fontawesome-webfont.eot']}&v=v4.7.0");
+  src: url("#{resource['font-awesome:fonts/fontawesome-webfont.eot']}&#iefix&v=v4.7.0") format('embedded-opentype'), 
+  url("#{resource['font-awesome:fonts/fontawesome-webfont.woff2']}&v=v4.7.0") format('woff2'), 
+  url("#{resource['font-awesome:fonts/fontawesome-webfont.woff']}&v=v4.7.0") format('woff'), 
+  url("#{resource['font-awesome:fonts/fontawesome-webfont.ttf']}&v=v4.7.0") format('truetype'), 
+  url("#{resource['font-awesome:fonts/fontawesome-webfont.svg']}&v=v4.7.0#fontawesomeregular") format('svg');
   font-weight: normal;
   font-style: normal;
 }

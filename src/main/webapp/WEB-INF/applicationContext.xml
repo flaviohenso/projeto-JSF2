@@ -11,6 +11,7 @@
      
 	<http pattern="/javax.faces.resource/**" security="none"/>
 	<http pattern="/javax.faces.resource/css/**" security="none"/>
+	<http pattern="/javax.faces.resource/images/**" security="none"/>
 	<http pattern="/acesso.xhtml" security="none"/>
 	<http pattern="/erro.xhtml" security="none"/>
 	

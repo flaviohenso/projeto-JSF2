@@ -6,7 +6,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/tags">
 
 	<nav class="navbar navbar-default navbar-static-top" role="navigation"
 		style="margin-bottom: 0">
@@ -181,8 +182,9 @@
 			</ul> <!-- /.dropdown-alerts --></li>
 		<!-- /.dropdown -->
 		<li class="dropdown"><a class="dropdown-toggle"
-			data-toggle="dropdown" href="#">Olá <h:outputText value="#{infoSecurity.userName}"/><i
-				class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+			data-toggle="dropdown" href="#">Olá <h:outputText
+					value="#{infoSecurity.userName}" /><i class="fa fa-user fa-fw"></i>
+				<i class="fa fa-caret-down"></i>
 		</a>
 			<ul class="dropdown-menu dropdown-user">
 				<li><a href="#"><i class="fa fa-user fa-fw"></i> User
@@ -211,7 +213,7 @@
 					</div> <!-- /input-group -->
 				</li>
 				<li><a href="../index.xhtml"><i
-					class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
+						class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
 				<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 						Charts<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
@@ -220,14 +222,16 @@
 					</ul> <!-- /.nav-second-level --></li>
 
 				<li><h:link>
-						<i class="fa fa-users fa-fw"/>
+						<i class="fa fa-users fa-fw" />
 						Vendedores<span class="fa arrow "></span>
 					</h:link>
 					<ul class="nav nav-second-level">
 						<li><h:commandLink
-								action="/vendedor/vendedor?faces-redirect=true" value="Registro" /></li>
+								action="#{vendedorBean.cadastro}" value="Registro" /></li>
 						<li><h:commandLink action="#{vendedorBean.listVendedores}"
-								value="Listagem" ><i class="fa fa-list fa-fw"/></h:commandLink></li>
+								value="Listagem">
+								<i class="fa fa-list fa-fw" />
+							</h:commandLink></li>
 					</ul> <!-- /.nav-second-level --></li>
 
 				<li><h:link>
@@ -246,10 +250,14 @@
 								 Consultar</h:commandLink></li>
 				<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i>
 						Forms</a></li>
-				<li><a href="#"><i class="fa fa-wrench fa-fw"></i> UI
-						Elements<span class="fa arrow"></span></a>
+				<li><a href="#"><i class="fa fa-wrench fa-fw"></i> Sistema<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="panels-wells.html">Panels and Wells</a></li>
+						<li><a href="panels-wells.html">Segurança<span class="fa arrow"/></a>
+							<ul class="nav nav-third-level">
+								<li><h:commandLink action="#{sistemaBean.listAuthoritie}"
+								value="Authorites" /></li>
+							</ul>
+						</li>
 						<li><a href="buttons.html">Buttons</a></li>
 						<li><a href="notifications.html">Notifications</a></li>
 						<li><a href="typography.html">Typography</a></li>

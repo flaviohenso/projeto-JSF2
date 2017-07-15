@@ -10,7 +10,7 @@ import com.flavio.repository.VendedorRepository;
 import com.flavio.util.security.MD5;
 
 @RequestScoped
-public class ServiceVendedor {
+public class ServiceVendedor implements GenericService<Vendedor>{
 
 //	private DAOFactory daoFactory = DAOFactory.getFactory();
 //	private VendedorDao vendedorDao;

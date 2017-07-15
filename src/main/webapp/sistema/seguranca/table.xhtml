@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Author: Flávio Henrique-->
+<!-- Data: 8 de abr de 2017 -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<!-- <ui:insert name="body"> -->
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Authoritie</h1>
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Lista de Authorities</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<h:dataTable width="100%" value="#{sistemaBean.authorities}"
+							var="authoritie"
+							styleClass="table table-striped table-bordered table-hover display"
+							id="dataTables-example" headerClass="order-table-header"
+							rowClasses="gradeA">
+
+							<h:column>
+								<!-- column header -->
+								<f:facet name="header">Nome</f:facet>
+								<!-- row record -->
+    							#{authoritie.nome}
+    						</h:column>
+
+							<h:column>
+								<!-- column header -->
+								<f:facet name="header">Observação</f:facet>
+								<!-- row record -->
+    							#{authoritie.observacao}
+    						</h:column>
+
+						</h:dataTable>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+
+	</div>
+	<!-- 	</ui:insert> -->
+
+	<!-- DataTables CSS -->
+<!-- 	<h:outputStylesheet -->
+<!-- 		name="css/datatable/datatable.min.css" /> -->
+
+	<!-- DataTables CSS -->
+	<h:outputStylesheet
+		name="css/bootstrap/vendor/datatables-plugins/dataTables.bootstrap.css" />
+
+	<!-- DataTables Responsive CSS -->
+	<h:outputStylesheet
+		name="css/bootstrap/vendor/datatables-responsive/dataTables.responsive.css" />
+
+	<!-- DataTables JavaScript -->
+	<h:outputScript
+		name="css/bootstrap/vendor/datatables/js/jquery.dataTables.min.js" />
+	
+	<h:outputScript
+		name="css/bootstrap/vendor/datatables-plugins/js/dataTables.bootstrap.min.js" />
+
+	<h:outputScript
+		name="css/bootstrap/vendor/datatables-responsive/js/dataTables.responsive.js" />
+
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script>
+		$(document).ready(function() {
+			$('#dataTables-example').DataTable({
+				responsive : true
+			});
+		});
+		
+		$(document).ready(function() {
+		    var table = $('#dataTables-example').DataTable( {
+		        "ajax": "data/arrays.txt",
+		        "columnDefs": [ {
+		            "targets": -1,
+		            "data": null,
+		            "defaultContent": "<button>Click!</button>"
+		        } ]
+		    } );
+		 
+		    $('#dataTables-example tbody').on( 'click', 'button', function () {
+		        var data = table.row( $(this).parents('tr') ).data();
+		        alert( data[0] +"'s salary is: "+ data[ 5 ] );
+		    } );
+		} );
+		
+	</script>
+
+</ui:composition>

@@ -69,6 +69,10 @@ public class VendedorBean implements Serializable{
 	}
 	
 	
+	public String cadastro(){
+		return "/vendedor/vendedor?faces-redirect=true";
+	}
+	
 	public void salvar(){
 		
 		try {
@@ -76,7 +80,6 @@ public class VendedorBean implements Serializable{
 			mensagem.enviar();
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!", "Dados salvos com sucesso!");
 		} catch (Exception e) {
-			System.out.println("Erro ao salvar vendedor!!! <<<<<<<<<");
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao salvar!", "Erro ao salvar!");
 		} finally {
 			this.vendedor = new Vendedor();

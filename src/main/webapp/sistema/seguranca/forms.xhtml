@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Author: Flávio Henrique-->
+<!-- Data: 8 de abr de 2017 -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<div id="wrapper">
+
+		<!-- Navigation -->
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Cadastro de Authoritie</h1>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">Cadastro</div>
+						<div class="panel-body">
+							<div class="row">
+								<h:form role="form">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label>Nome</label>
+											<h:inputText class="form-control" required="true" value="#{sistemaBean.authoritie.nome}"/>
+											<p class="help-block">Exemplo: VENDEDOR.</p>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label>Descrição</label>
+											<h:inputTextarea class="form-control" rows="3" value="#{sistemaBean.authoritie.observacao}"/>
+										</div>
+										<h:commandButton class="btn btn-default" action="#{sistemaBean.salvar}" value="Salvar"/>
+										<button type="reset" class="btn btn-default">Reset</button>
+									</div>
+								</h:form>
+							</div>
+							<!-- /.row (nested) -->
+						</div>
+						<!-- /.panel-body -->
+					</div>
+					<!-- /.panel -->
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+		
+			<ui:include src="/sistema/seguranca/table.xhtml"/>
+					
+		</div>
+		<!-- /#page-wrapper -->
+
+	</div>
+
+	<h:outputStylesheet library="datapicker/css"
+		name="bootstrap-datepicker.css" />
+	<h:outputScript library="datapicker/js"
+		name="bootstrap-datepicker.min.js" />
+
+	<script type="text/javascript">
+	$(document).ready(function(e) {
+		$('#sandbox-container .input-append.date').datepicker({
+			language: "pt-BR",
+	        format: "dd/mm/yyyy",
+	        startView: new Date(),
+	        autoclose: true
+	    });	
+	});
+	</script>
+
+</ui:composition>

@@ -10,4 +10,9 @@
 			SELECT v FROM authorities v
 		</query>
 	</named-query>
+	<named-query name="Authorities.findByNome">
+		<query>
+			SELECT v FROM authorities v WHERE v.nome like :nome
+		</query>
+	</named-query>
 </entity-mappings>

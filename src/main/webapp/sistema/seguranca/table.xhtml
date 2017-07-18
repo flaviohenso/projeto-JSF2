@@ -6,14 +6,14 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core">
-
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 	<!-- <ui:insert name="body"> -->
 	<div id="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Authoritie</h1>
+				<h1 class="page-header">Authorities</h1>
 			</div>
 			<!-- /.col-lg-12 -->
 		</div>
@@ -21,7 +21,19 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Lista de Authorities</div>
+					<div class="panel-heading">
+
+						<!-- 						<a href="#myModal" role="button" class="btn btn-primary btn-sm" -->
+						<!-- 							data-toggle="modal">Novo</a> -->
+						<!-- 						<a href="#myModal" role="button" class="btn" data-toggle="modal" id="btn_novo">Novo</a> -->
+
+						<button class="btn btn-primary btn-sm" data-toggle="modal"
+							data-target="#myModal">Novo
+						</button>
+					</div>
+					
+					<ui:include src="/sistema/seguranca/filter.xhtml"></ui:include>
+					
 					<!-- /.panel-heading -->
 					<div class="panel-body">
 						<h:dataTable width="100%" value="#{sistemaBean.authorities}"
@@ -29,6 +41,11 @@
 							styleClass="table table-striped table-bordered table-hover display"
 							id="dataTables-example" headerClass="order-table-header"
 							rowClasses="gradeA">
+
+							<h:column>
+								<!-- row record -->
+								<h:selectBooleanCheckbox />
+							</h:column>
 
 							<h:column>
 								<!-- column header -->
@@ -44,8 +61,44 @@
     							#{authoritie.observacao}
     						</h:column>
 
+							<h:column>
+								<!-- row record -->
+								<div align="center">
+									<a href="#" class="btn btn-xs btn-warning" onclick="return remover();"><span
+										class="fa fa-pencil-square-o" aria-hidden="true"></span>
+										Editar</a>
+								</div>
+							</h:column>
+
+							<h:column>
+								<!-- row record -->
+								<h:form>
+									<div align="center">
+									<h:link action="#{sistemaBean.remover}" onclick="return teste();" class="btn btn-xs btn-danger">
+										<span
+											class="fa fa-minus-circle" aria-hidden="true"></span> Excluir </h:link>
+									</div>
+								</h:form>
+							</h:column>
 						</h:dataTable>
 						<!-- /.table-responsive -->
+
+						<nav aria-label="Page navigation">
+						<ul class="pagination">
+							<li><a href="#" aria-label="Previous"> <span
+									aria-hidden="true">&laquo;</span>
+							</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#" aria-label="Next"> <span
+									aria-hidden="true">&raquo;</span>
+							</a></li>
+						</ul>
+						</nav>
+
 					</div>
 					<!-- /.panel-body -->
 				</div>
@@ -53,13 +106,22 @@
 			</div>
 			<!-- /.col-lg-12 -->
 		</div>
-
 	</div>
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<ui:include src="/sistema/seguranca/form_modal.xhtml"></ui:include>
+			</div>
+		</div>
+	</div>
+
 	<!-- 	</ui:insert> -->
 
 	<!-- DataTables CSS -->
-<!-- 	<h:outputStylesheet -->
-<!-- 		name="css/datatable/datatable.min.css" /> -->
+	<!-- 	<h:outputStylesheet -->
+	<!-- 		name="css/datatable/datatable.min.css" /> -->
 
 	<!-- DataTables CSS -->
 	<h:outputStylesheet
@@ -72,7 +134,9 @@
 	<!-- DataTables JavaScript -->
 	<h:outputScript
 		name="css/bootstrap/vendor/datatables/js/jquery.dataTables.min.js" />
-	
+
+	<h:outputScript name="js/bootstrap/vendor/jquery/jquery.min.js" />
+
 	<h:outputScript
 		name="css/bootstrap/vendor/datatables-plugins/js/dataTables.bootstrap.min.js" />
 
@@ -85,24 +149,35 @@
 			$('#dataTables-example').DataTable({
 				responsive : true
 			});
+
 		});
 		
-		$(document).ready(function() {
-		    var table = $('#dataTables-example').DataTable( {
-		        "ajax": "data/arrays.txt",
-		        "columnDefs": [ {
-		            "targets": -1,
-		            "data": null,
-		            "defaultContent": "<button>Click!</button>"
-		        } ]
-		    } );
-		 
-		    $('#dataTables-example tbody').on( 'click', 'button', function () {
-		        var data = table.row( $(this).parents('tr') ).data();
-		        alert( data[0] +"'s salary is: "+ data[ 5 ] );
-		    } );
-		} );
+		function remover() {
+			
+		    $('#myModal').modal({
+		    	show:true,
+		    	title: 'Default Title',
+		    	type: 'bootstrap-dialog-header'		    	
+		    })
+			
+			return true;
+		}
 		
+		$(document).ready(function() {
+			var table = $('#dataTables-example').DataTable({
+				"ajax" : "data/arrays.txt",
+				"columnDefs" : [ {
+					"targets" : -1,
+					"data" : null,
+					"defaultContent" : "<button>Click!</button>"
+				} ]
+			});
+
+			$('#dataTables-example tbody').on('click', 'button', function() {
+				var data = table.row($(this).parents('tr')).data();
+				alert(data[0] + "'s salary is: " + data[5]);
+			});
+		});
 	</script>
 
 </ui:composition>

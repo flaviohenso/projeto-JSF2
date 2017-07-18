@@ -39,5 +39,10 @@ public class AuthoritieRepository implements Serializable{
 	public List<Authoritie> listAll(){
 		return entityManager.createNamedQuery("Authorities.findAll",Authoritie.class).getResultList();
 	}
-
+	
+	
+	public List<Authoritie> byNome(String nome){
+		return entityManager.createNamedQuery("Authorities.findByNome", Authoritie.class)
+				.setParameter("nome", nome).getResultList();
+	}
 }

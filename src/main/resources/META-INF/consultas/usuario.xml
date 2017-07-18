@@ -12,7 +12,7 @@
 	</named-query>
 	<named-query name="Usuario.porEmail">
 		<query>
-			SELECT v FROM usuario v where lower(v.email) = :email
+			SELECT v FROM usuario v WHERE lower(v.email) = :email
 		</query>
 	</named-query>
 

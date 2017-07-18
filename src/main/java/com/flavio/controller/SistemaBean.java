@@ -7,6 +7,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -25,12 +26,14 @@ public class SistemaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject
+	@Inject @RequestScoped
 	private ContextMensage contextMensage;
 	@Inject @Email
 	private Mensagem mensagem;
 	@Inject
 	private AuthoritieService authoritieService;
+	
+	private String nomePesquisa;
 	
 	public static Log log = LogFactory.getLog(SistemaBean.class);
 	
@@ -40,20 +43,34 @@ public class SistemaBean implements Serializable {
 	public void salvar(){
 		try {
 			authoritieService.salvar(authoritie);
-			this.listAuthoritie();
-			mensagem.enviar();
+			authorities = authoritieService.listRepository();
+			//mensagem.enviar();
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!", "Dados salvos com sucesso!");
 		} catch (Exception e) {
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao salvar!", "Erro ao salvar!");
 			log.error("Erro ao Salvar Authoritie: "+e);
 		}finally {
 			this.authoritie = new Authoritie();
+			//contextMensage.delMsg();
 		}
+	}
+	
+	public void limparMsg(ActionEvent e){
+		contextMensage.delMsg();
+	}
+	
+	public void buscar(){
+		authorities = authoritieService.buscarPorNome(this.nomePesquisa);
+	}
+	
+	public void remover(){
+		System.out.println("removido!");
+		
 	}
 	
 	public String listAuthoritie(){
 		authorities = authoritieService.listRepository();
-		return "/sistema/seguranca/authoritie?faces-redirect=true";
+		return "/sistema/seguranca/listagem?faces-redirect=true";
 	}
 
 	public Authoritie getAuthoritie() {
@@ -66,6 +83,14 @@ public class SistemaBean implements Serializable {
 
 	public List<Authoritie> getAuthorities() {
 		return authorities;
+	}
+
+	public String getNomePesquisa() {
+		return nomePesquisa;
+	}
+
+	public void setNomePesquisa(String nomePesquisa) {
+		this.nomePesquisa = nomePesquisa;
 	}
 
 	public void setAuthorities(List<Authoritie> authorities) {

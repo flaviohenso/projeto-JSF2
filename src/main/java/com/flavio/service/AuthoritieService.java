@@ -31,5 +31,8 @@ public class AuthoritieService implements GenericService<Authoritie>{
 		}
 	}
 	
+	public List<Authoritie> buscarPorNome(String nome){
+		return authoritieRepository.byNome("%"+nome+"%");
+	}
 	
 }

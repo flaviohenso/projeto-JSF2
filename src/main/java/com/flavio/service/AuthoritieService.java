@@ -36,5 +36,13 @@ public class AuthoritieService implements GenericService<Authoritie>{
 	public List<Authoritie> buscarPorNome(String nome){
 		return authoritieRepository.byNome("%"+nome+"%");
 	}
+
+	public boolean remover(Authoritie authoritie) {
+
+		if(authoritieRepository.remover(authoritie)){
+			return true;
+		}
+		return false;
+	}
 	
 }

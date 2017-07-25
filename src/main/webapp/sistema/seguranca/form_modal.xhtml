@@ -6,7 +6,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 	<h:form role="form" prependId="false">
 		<div class="modal-header">
@@ -19,8 +20,7 @@
 				</button>
 			</h4>
 
-			<h:messages styleClass="fa fa-info-circle alert alert-info"
-				showSummary="true" showDetail="false" />
+			<p:messages showSummary="true" showDetail="false" autoUpdate="true" showIcon="false"/>
 
 		</div>
 		<div class="modal-body">
@@ -40,7 +40,7 @@
 
 			<h:commandButton class="btn btn-success btn-sm" id="loading-btn"
 				action="#{sistemaBean.salvar}" value="Salvar">
-				<f:ajax execute="@form" render="dataTables-example @form" />
+				<f:ajax execute="@form" render=":formTable:dataTables-example @form" />
 			</h:commandButton>
 			<button type="reset" class="btn btn-dafault btn-sm">Reset</button>
 		</div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Author: Flávio Henrique-->
+<!-- Data: 8 de abr de 2017 -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:form role="form" prependId="false">
+		<div class="modal fade" id="dialogRemove">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h4 class="modal-title">Confirmar Exclusão</h4>
+					</div>
+					<div class="modal-body">
+						<p>
+							Deseja realmente excluir este Authoritie
+							<h:outputLabel value="#{sistemaBean.authoritie.nome}" />
+						</p>
+					</div>
+					<div class="modal-footer">
+						<h:commandButton class="btn btn-danger"
+							action="#{sistemaBean.limpar}" value="NÂO">
+							<f:ajax execute="@form" render="dataTables-example @form" />
+						</h:commandButton>
+					
+						<h:commandButton class="btn btn-success btn-sm"
+							action="#{sistemaBean.remover}" value="Sim" oncomplete="$('#dialogRemove').modal('hide')">
+							<f:ajax execute="@form" render=":formTable:dataTables-example @form" />
+						</h:commandButton>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+	</h:form>
+</ui:composition>

@@ -7,6 +7,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 	<!-- <ui:insert name="body"> -->
@@ -27,62 +28,74 @@
 						<!-- 							data-toggle="modal">Novo</a> -->
 						<!-- 						<a href="#myModal" role="button" class="btn" data-toggle="modal" id="btn_novo">Novo</a> -->
 
-						<button class="btn btn-primary btn-sm" data-toggle="modal"
-							data-target="#myModal">Novo
-						</button>
+						<p:commandButton styleClass="btn btn-primary btn-sm"
+							title="Excluir" icon="fa fa-plus-circle" value="Novo"
+							oncomplete="create();" process="@this" immediate="true">
+						</p:commandButton>
 					</div>
-					
+
 					<ui:include src="/sistema/seguranca/filter.xhtml"></ui:include>
-					
+
 					<!-- /.panel-heading -->
 					<div class="panel-body">
-						<h:dataTable width="100%" value="#{sistemaBean.authorities}"
-							var="authoritie"
-							styleClass="table table-striped table-bordered table-hover display"
-							id="dataTables-example" headerClass="order-table-header"
-							rowClasses="gradeA">
+						<p:messages showSummary="true" showDetail="false"
+							autoUpdate="true" showIcon="false" />
+						<h:form id="formTable">
+							<h:dataTable width="100%" value="#{sistemaBean.authorities}"
+								var="authoritie"
+								styleClass="table table-striped table-bordered table-hover display"
+								id="dataTables-example" headerClass="order-table-header"
+								rowClasses="gradeA">
 
-							<h:column>
-								<!-- row record -->
-								<h:selectBooleanCheckbox />
-							</h:column>
+								<h:column>
+									<!-- row record -->
+									<h:selectBooleanCheckbox />
+								</h:column>
 
-							<h:column>
-								<!-- column header -->
-								<f:facet name="header">Nome</f:facet>
-								<!-- row record -->
+								<h:column>
+									<!-- column header -->
+									<f:facet name="header">Nome</f:facet>
+									<!-- row record -->
     							#{authoritie.nome}
     						</h:column>
 
-							<h:column>
-								<!-- column header -->
-								<f:facet name="header">Observação</f:facet>
-								<!-- row record -->
+								<h:column>
+									<!-- column header -->
+									<f:facet name="header">Observação</f:facet>
+									<!-- row record -->
     							#{authoritie.observacao}
     						</h:column>
-
-							<h:column>
-								<!-- row record -->
-								<div align="center">
-									<a href="#" class="btn btn-xs btn-warning" onclick="return remover();"><span
-										class="fa fa-pencil-square-o" aria-hidden="true"></span>
-										Editar</a>
-								</div>
-							</h:column>
-
-							<h:column>
-								<!-- row record -->
-								<h:form>
+								<h:column>
+									<!-- row record -->
 									<div align="center">
-									<h:link action="#{sistemaBean.remover}" onclick="return teste();" class="btn btn-xs btn-danger">
-										<span
-											class="fa fa-minus-circle" aria-hidden="true"></span> Excluir </h:link>
+										<a href="#" class="btn btn-xs btn-warning"
+											onclick="remover();"><span class="fa fa-pencil-square-o"
+											aria-hidden="true"></span> Editar</a>
 									</div>
-								</h:form>
-							</h:column>
-						</h:dataTable>
-						<!-- /.table-responsive -->
+								</h:column>
 
+								<h:column>
+									<div align="center">
+										<p:commandButton styleClass="btn btn-xs btn-danger"
+											title="Excluir" icon="fa fa-minus-circle" value="Excluir"
+											oncomplete="remover();" process="@this"
+											update="dataTables-example" immediate="true">
+											<f:setPropertyActionListener value="#{authoritie}"
+												target="#{sistemaBean.authoritie}" />
+										</p:commandButton>
+									</div>
+									<!-- 								<h:commandButton styleClass="btn btn-xs btn-danger"  -->
+									<!-- 									 value="Salvar"> -->
+									<!-- 									<f:setPropertyActionListener value="#{authoritie}" target="#{sistemaBean.authoritie}" /> -->
+									<!-- 								</h:commandButton> -->
+
+									<!-- 								<button class="btn btn-xs btn-danger" data-toggle="modal" -->
+									<!-- 									data-target="#dialogRemove">Excluir</button> -->
+								</h:column>
+							</h:dataTable>
+						</h:form>
+						<!-- /.table-responsive -->
+						<!-- 						</h:form> -->
 						<nav aria-label="Page navigation">
 						<ul class="pagination">
 							<li><a href="#" aria-label="Previous"> <span
@@ -116,6 +129,8 @@
 			</div>
 		</div>
 	</div>
+
+	<ui:include src="/sistema/seguranca/dialog.xhtml"></ui:include>
 
 	<!-- 	</ui:insert> -->
 
@@ -151,18 +166,21 @@
 			});
 
 		});
-		
+
 		function remover() {
-			
-		    $('#myModal').modal({
-		    	show:true,
-		    	title: 'Default Title',
-		    	type: 'bootstrap-dialog-header'		    	
-		    })
-			
-			return true;
+
+			$('#dialogRemove').modal({
+				show : true
+			})
 		}
-		
+
+		function create() {
+
+			$('#myModal').modal({
+				show : true
+			})
+		}
+
 		$(document).ready(function() {
 			var table = $('#dataTables-example').DataTable({
 				"ajax" : "data/arrays.txt",

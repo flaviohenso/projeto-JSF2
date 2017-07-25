@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
+import javax.transaction.Transactional;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -44,5 +46,24 @@ public class AuthoritieRepository implements Serializable{
 	public List<Authoritie> byNome(String nome){
 		return entityManager.createNamedQuery("Authorities.findByNome", Authoritie.class)
 				.setParameter("nome", nome).getResultList();
+	}
+	
+	@Transactional
+	public boolean remover(Authoritie authoritie){
+		try {
+			authoritie = this.BuscarPorID(authoritie.getId());
+			EntityManagerProducer.beginTransaction(entityManager);
+			entityManager.remove(authoritie);
+			entityManager.flush();
+			return true;
+		} catch (PersistenceException e) {
+			log.error("Atuhoritie não pode ser removido! ", e);
+		}
+		return false;
+	}
+	
+	
+	public Authoritie BuscarPorID(Long id){
+		return entityManager.find(Authoritie.class, id);
 	}
 }

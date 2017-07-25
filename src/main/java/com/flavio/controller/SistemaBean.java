@@ -36,13 +36,16 @@ public class SistemaBean implements Serializable {
 
 	public static Log log = LogFactory.getLog(SistemaBean.class);
 
+	/*
+	 * Esse atributo é usado no processo de Exclusão e Criação de um novo Authoritie
+	 */
 	private Authoritie authoritie = new Authoritie();
 	private List<Authoritie> authorities = new ArrayList<Authoritie>();
 
 	public void salvar() {
 		try {
-			contextMensage.delMsg();
-			log.info("passou pela limpeza...");
+			//contextMensage.delMsg();
+			//log.info("passou pela limpeza...");
 			if (authoritieService.salvar(authoritie)) {
 				this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!",
 						"Dados salvos com sucesso!");
@@ -57,9 +60,14 @@ public class SistemaBean implements Serializable {
 			// contextMensage.delMsg();
 		}
 	}
-
+	
 	public void limparMsg() {
 		contextMensage.delMsg();
+	}
+	
+	public void limpar() {
+		authoritie = new Authoritie();
+		log.info("passou pela limpeza...");
 	}
 
 	public void buscar() {
@@ -67,8 +75,14 @@ public class SistemaBean implements Serializable {
 	}
 
 	public void remover() {
-		System.out.println("removido!");
-
+		if(authoritieService.remover(authoritie)){
+			this.authorities = authoritieService.listRepository();
+			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Authoritie removido com sucesso!",
+					"Authoritie removido com sucesso!");
+		}else{
+			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao salvar!", "Erro ao salvar!");
+		}
+		this.limpar();
 	}
 
 	public String listAuthoritie() {

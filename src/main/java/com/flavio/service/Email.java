@@ -27,7 +27,7 @@ public class Email implements Mensagem {
 
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("flavio.henso@gmail.com", "xxxxx");
+				return new PasswordAuthentication("flavio.henso@gmail.com", "18deoutubro2014");
 			}
 		});
 
@@ -53,5 +53,5 @@ public class Email implements Mensagem {
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
-	}		
+	}	
 }

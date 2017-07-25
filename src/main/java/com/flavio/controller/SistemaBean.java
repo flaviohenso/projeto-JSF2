@@ -4,10 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -26,49 +24,54 @@ public class SistemaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject @RequestScoped
+	@Inject
 	private ContextMensage contextMensage;
-	@Inject @Email
+	@Inject
+	@Email
 	private Mensagem mensagem;
 	@Inject
 	private AuthoritieService authoritieService;
-	
+
 	private String nomePesquisa;
-	
+
 	public static Log log = LogFactory.getLog(SistemaBean.class);
-	
+
 	private Authoritie authoritie = new Authoritie();
 	private List<Authoritie> authorities = new ArrayList<Authoritie>();
-		
-	public void salvar(){
+
+	public void salvar() {
 		try {
-			authoritieService.salvar(authoritie);
-			authorities = authoritieService.listRepository();
-			//mensagem.enviar();
-			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!", "Dados salvos com sucesso!");
+			contextMensage.delMsg();
+			log.info("passou pela limpeza...");
+			if (authoritieService.salvar(authoritie)) {
+				this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!",
+						"Dados salvos com sucesso!");
+				authorities = authoritieService.listRepository();
+				// mensagem.enviar();
+			}
 		} catch (Exception e) {
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao salvar!", "Erro ao salvar!");
-			log.error("Erro ao Salvar Authoritie: "+e);
-		}finally {
+			log.error("Erro ao Salvar Authoritie: " + e);
+		} finally {
 			this.authoritie = new Authoritie();
-			//contextMensage.delMsg();
+			// contextMensage.delMsg();
 		}
 	}
-	
-	public void limparMsg(ActionEvent e){
+
+	public void limparMsg() {
 		contextMensage.delMsg();
 	}
-	
-	public void buscar(){
+
+	public void buscar() {
 		authorities = authoritieService.buscarPorNome(this.nomePesquisa);
 	}
-	
-	public void remover(){
+
+	public void remover() {
 		System.out.println("removido!");
-		
+
 	}
-	
-	public String listAuthoritie(){
+
+	public String listAuthoritie() {
 		authorities = authoritieService.listRepository();
 		return "/sistema/seguranca/listagem?faces-redirect=true";
 	}
@@ -96,6 +99,5 @@ public class SistemaBean implements Serializable {
 	public void setAuthorities(List<Authoritie> authorities) {
 		this.authorities = authorities;
 	}
-	
-	
+
 }

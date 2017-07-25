@@ -23,11 +23,13 @@ public class AuthoritieService implements GenericService<Authoritie>{
 	}
 
 	@Override
-	public void salvar(Authoritie authoritie) throws Exception {
+	public boolean salvar(Authoritie authoritie) throws Exception {
 		if(authoritieRepository.save(authoritie)){
 			System.out.println("salvou com suscesso");
+			return true;
 		}else{
 			System.out.println("Erro ao salvar!");
+			return false;
 		}
 	}
 	

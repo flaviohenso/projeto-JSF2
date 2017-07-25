@@ -8,6 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity(name = "produto")
 public class Produto implements Serializable {
@@ -56,6 +61,7 @@ public class Produto implements Serializable {
 		this.valorUnitario = valorUnitario;
 	}
 
+	@NotNull @Min(0) @Max(999)
 	@Column(name = "quantidade_estoque", nullable = false)
 	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;

@@ -29,12 +29,14 @@ public class ServiceVendedor implements GenericService<Vendedor>{
 		return vendedorRepository.listAll();
 	}
 	
-	public void salvar(Vendedor vendedor) throws Exception{
+	public boolean salvar(Vendedor vendedor) throws Exception{
 		vendedor.setSenha(MD5.convertPasswordMd5(vendedor.getSenha()));
 		if(vendedorRepository.save(vendedor)){
 			System.out.println("salvou com suscesso");
+			return true;
 		}else {
 			System.out.println("Erro ao salvar Vendedor!");
+			return false;
 		}
 //		vendedorDao.save(vendedor, em);
 

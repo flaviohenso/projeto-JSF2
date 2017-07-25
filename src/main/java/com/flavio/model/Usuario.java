@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
 
 @Entity(name = "usuario")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -70,6 +73,7 @@ public abstract class Usuario implements Serializable{
 		this.idade = idade;
 	}
 
+	@Email @NotNull
 	@Column(nullable = false, length = 100)
 	public String getEmail() {
 		return email;

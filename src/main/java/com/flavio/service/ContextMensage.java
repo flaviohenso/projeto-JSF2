@@ -1,12 +1,11 @@
 package com.flavio.service;
 
+import java.util.Iterator;
+
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.ActionListener;
 
 @RequestScoped
 //public class ContextMensage implements ActionListener{
@@ -29,10 +28,19 @@ public class ContextMensage {
 	 * remove msg da fila do contexto do jsf
 	 */
 	public void delMsg(){
-		FacesContext facesContext = FacesContext.getCurrentInstance();   
-        if (facesContext != null) {   
-            facesContext.getMessageList().clear();    
-         }
+//		FacesContext facesContext = FacesContext.getCurrentInstance();   
+//        if (facesContext != null) {   
+//        	if(!facesContext.getMessageList().isEmpty())
+//        		facesContext.getMessageList().clear();    
+//         }
+		System.out.println("limpar msg...");
+		  FacesContext facesContext = FacesContext.getCurrentInstance();
+	       if (facesContext != null) {
+	           Iterator iter = facesContext.getMessages();
+	           while (iter.hasNext()) {
+	               iter.remove();
+	           }
+	        }
 	}
 
 //	@Override

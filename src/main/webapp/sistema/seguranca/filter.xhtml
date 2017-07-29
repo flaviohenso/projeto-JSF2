@@ -21,14 +21,11 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="form-group">
-						<select class="form-control">
-							<option>1</option>
-							<option>2</option>
-						</select>
+						<br></br>
 					</div>
 					<div align="right">
 						<h:commandButton class="btn btn-info btn-xs" id="loading-btn"
-							action="#{sistemaBean.buscar}" value="Buscar">
+							action="#{sistemaBean.consultaAuthoritesBean}" value="Buscar">
 							<f:ajax execute="@form" render=":formTable:dataTables-example @formBuscar" />
 						</h:commandButton>
 					</div>

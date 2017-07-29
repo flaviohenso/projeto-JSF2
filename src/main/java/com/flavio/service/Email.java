@@ -27,7 +27,7 @@ public class Email implements Mensagem {
 
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("flavio.henso@gmail.com", "18deoutubro2014");
+				return new PasswordAuthentication("flavio.ati@gmail.com", "988796047");
 			}
 		});
 
@@ -37,7 +37,7 @@ public class Email implements Mensagem {
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("flavio.henso@gmail.com")); // Remetente
+			message.setFrom(new InternetAddress("flavio.ati@gmail.com")); // Remetente
 
 			Address[] toUser = InternetAddress // Destinatário(s)
 					.parse("flavio.henso@gmail.com, flavio.henrique@norteng.com.br");

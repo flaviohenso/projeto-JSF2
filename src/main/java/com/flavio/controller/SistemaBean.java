@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
@@ -11,12 +12,14 @@ import javax.inject.Named;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.primefaces.model.LazyDataModel;
 
 import com.flavio.anotation.Email;
 import com.flavio.model.Authoritie;
 import com.flavio.service.AuthoritieService;
 import com.flavio.service.ContextMensage;
 import com.flavio.service.Mensagem;
+import com.flavio.util.Paginacao;
 
 @Named
 @SessionScoped
@@ -33,24 +36,29 @@ public class SistemaBean implements Serializable {
 	private AuthoritieService authoritieService;
 
 	private String nomePesquisa;
+	private Paginacao paginacao = new Paginacao();
+
+	private LazyDataModel<Authoritie> model;
 
 	public static Log log = LogFactory.getLog(SistemaBean.class);
 
 	/*
-	 * Esse atributo é usado no processo de Exclusão e Criação de um novo Authoritie
+	 * Esse atributo é usado no processo de Exclusão e Criação de um novo
+	 * Authoritie
 	 */
 	private Authoritie authoritie = new Authoritie();
+	
 	private List<Authoritie> authorities = new ArrayList<Authoritie>();
 
 	public void salvar() {
 		try {
-			//contextMensage.delMsg();
-			//log.info("passou pela limpeza...");
+			// contextMensage.delMsg();
+			// log.info("passou pela limpeza...");
 			if (authoritieService.salvar(authoritie)) {
 				this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!",
 						"Dados salvos com sucesso!");
-				authorities = authoritieService.listRepository();
-				// mensagem.enviar();
+				model = authoritieService.consultaAuthoritiePaginacao(paginacao);
+				mensagem.enviar();
 			}
 		} catch (Exception e) {
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao salvar!", "Erro ao salvar!");
@@ -64,22 +72,28 @@ public class SistemaBean implements Serializable {
 	public void limparMsg() {
 		contextMensage.delMsg();
 	}
-	
+
 	public void limpar() {
 		authoritie = new Authoritie();
 		log.info("passou pela limpeza...");
 	}
 
 	public void buscar() {
-		authorities = authoritieService.buscarPorNome(this.nomePesquisa);
+		paginacao.setDescricao(this.nomePesquisa);
+		model = authoritieService.consultaAuthoritiePaginacao(paginacao);
+	}
+
+	@PostConstruct
+	public void consultaAuthorites(){
+		this.model = authoritieService.consultaAuthoritiePaginacao(paginacao);
 	}
 
 	public void remover() {
-		if(authoritieService.remover(authoritie)){
+		if (authoritieService.remover(authoritie)) {
 			this.authorities = authoritieService.listRepository();
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Authoritie removido com sucesso!",
 					"Authoritie removido com sucesso!");
-		}else{
+		} else {
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao salvar!", "Erro ao salvar!");
 		}
 		this.limpar();
@@ -114,4 +128,20 @@ public class SistemaBean implements Serializable {
 		this.authorities = authorities;
 	}
 
+	public Paginacao getPaginacao() {
+		return paginacao;
+	}
+
+	public void setPaginacao(Paginacao paginacao) {
+		this.paginacao = paginacao;
+	}
+
+	public LazyDataModel<Authoritie> getModel() {
+		return model;
+	}
+
+	public void setModel(LazyDataModel<Authoritie> model) {
+		this.model = model;
+	}
+	
 }

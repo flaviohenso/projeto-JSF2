@@ -15,4 +15,9 @@
 			SELECT v FROM authorities v WHERE v.nome like :nome
 		</query>
 	</named-query>
+	<named-query name="Authorities.count">
+		<query>
+			SELECT count(v) FROM authorities v
+		</query>
+	</named-query>
 </entity-mappings>

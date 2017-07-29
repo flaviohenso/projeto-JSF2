@@ -9,7 +9,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-
+	
 	<!-- <ui:insert name="body"> -->
 	<div id="page-wrapper">
 		<div class="row">
@@ -41,40 +41,37 @@
 						<p:messages showSummary="true" showDetail="false"
 							autoUpdate="true" showIcon="false" />
 						<h:form id="formTable">
-							<h:dataTable width="100%" value="#{sistemaBean.authorities}"
-								var="authoritie"
-								styleClass="table table-striped table-bordered table-hover display"
-								id="dataTables-example" headerClass="order-table-header"
-								rowClasses="gradeA">
+							
+							<p:dataTable value="#{sistemaBean.model}" lazy="true"
+								var="authoritie" paginator="true" paginatorPosition="bottom"
+								rows="5" rowStyleClass="gradeA" 
+								tableStyleClass="table table-striped table-bordered table-hover display"
+								id="dataTables-example">
 
-								<h:column>
+								<p:column width="5%">
 									<!-- row record -->
 									<h:selectBooleanCheckbox />
-								</h:column>
+								</p:column>
 
-								<h:column>
-									<!-- column header -->
-									<f:facet name="header">Nome</f:facet>
+								<p:column headerText="Nome" sortBy="#{authoritie.nome}">
 									<!-- row record -->
-    							#{authoritie.nome}
-    						</h:column>
+	    							#{authoritie.nome}
+	    						</p:column>
 
-								<h:column>
-									<!-- column header -->
-									<f:facet name="header">Observação</f:facet>
+								<p:column headerText="Observação" sortBy="#{authoritie.observacao}">
 									<!-- row record -->
-    							#{authoritie.observacao}
-    						</h:column>
-								<h:column>
+	    							#{authoritie.observacao}
+	    						</p:column>
+								<p:column>
 									<!-- row record -->
 									<div align="center">
 										<a href="#" class="btn btn-xs btn-warning"
 											onclick="remover();"><span class="fa fa-pencil-square-o"
 											aria-hidden="true"></span> Editar</a>
 									</div>
-								</h:column>
+								</p:column>
 
-								<h:column>
+								<p:column>
 									<div align="center">
 										<p:commandButton styleClass="btn btn-xs btn-danger"
 											title="Excluir" icon="fa fa-minus-circle" value="Excluir"
@@ -91,26 +88,11 @@
 
 									<!-- 								<button class="btn btn-xs btn-danger" data-toggle="modal" -->
 									<!-- 									data-target="#dialogRemove">Excluir</button> -->
-								</h:column>
-							</h:dataTable>
+								</p:column>
+							</p:dataTable>
 						</h:form>
 						<!-- /.table-responsive -->
 						<!-- 						</h:form> -->
-						<nav aria-label="Page navigation">
-						<ul class="pagination">
-							<li><a href="#" aria-label="Previous"> <span
-									aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#" aria-label="Next"> <span
-									aria-hidden="true">&raquo;</span>
-							</a></li>
-						</ul>
-						</nav>
 
 					</div>
 					<!-- /.panel-body -->

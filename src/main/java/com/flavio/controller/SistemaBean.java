@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -57,7 +58,7 @@ public class SistemaBean implements Serializable {
 			if (authoritieService.salvar(authoritie)) {
 				this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!",
 						"Dados salvos com sucesso!");
-				model = authoritieService.consultaAuthoritiePaginacao(paginacao);
+				model = authoritieService.consultaPaginada(paginacao);
 				mensagem.enviar();
 			}
 		} catch (Exception e) {
@@ -78,14 +79,19 @@ public class SistemaBean implements Serializable {
 		log.info("passou pela limpeza...");
 	}
 
+	public String home() {
+		log.info("Direcioando para o Home...");
+		return "/index.xhtml?faces-redirect=true";
+	}
+	
 	public void buscar() {
 		paginacao.setDescricao(this.nomePesquisa);
-		model = authoritieService.consultaAuthoritiePaginacao(paginacao);
+		model = authoritieService.consultaPaginada(paginacao);
 	}
 
 	@PostConstruct
 	public void consultaAuthorites(){
-		this.model = authoritieService.consultaAuthoritiePaginacao(paginacao);
+		this.model = authoritieService.consultaPaginada(paginacao);
 	}
 
 	public void remover() {

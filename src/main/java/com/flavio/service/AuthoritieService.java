@@ -50,7 +50,7 @@ public class AuthoritieService implements GenericService<Authoritie>{
 		return false;
 	}
 	
-	public LazyDataModel<Authoritie> consultaAuthoritiePaginacao(Paginacao paginacao) {
+	public LazyDataModel<Authoritie> consultaPaginada(Paginacao paginacao) {
 		return new LazyDataModel<Authoritie>() {
 
 			private static final long serialVersionUID = 1L;

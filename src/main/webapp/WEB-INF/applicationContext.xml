@@ -28,6 +28,8 @@
     	<intercept-url pattern="/venda/**" access="hasAnyRole('VENDEDORES')"/>
     	<intercept-url pattern="/vendedor/**" access="hasAnyRole('ADMINISTRADORES')"/>
     	<intercept-url pattern="/sistema/**" access="hasAnyRole('ADMINISTRADORES')"/>
+    	<intercept-url pattern="/categoria/**" access="hasAnyRole('ADMINISTRADORES')"/>
+    	<intercept-url pattern="/produto/**" access="hasAnyRole('ADMINISTRADORES')"/>
     	<intercept-url pattern="/**" access="denyAll"/>
     	
     	<form-login login-page="/acesso.xhtml" default-target-url="/" always-use-default-target="true"/>

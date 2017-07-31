@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Author: Flávio Henrique-->
+<!-- Data: 8 de abr de 2017 -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:form role="form" >
+		<div class="modal-header">
+			<h5 class="modal-title">Modal title</h5>
+			<button type="button" class="close" data-dismiss="modal"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+
+
+			<div class="col-lg-6">
+				<div class="form-group">
+					<h:outputLabel for="authoritie_nome" >Nome</h:outputLabel>
+					<h:inputText class="form-control" required="true"
+						value="#{sistemaBean.authoritie.nome}" id="authoritie_nome"/>
+					<p class="help-block">Exemplo: VENDEDOR.</p>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="form-group">
+					<h:outputLabel for="authoritie_observacao">Descrição</h:outputLabel>
+					<h:inputTextarea class="form-control" rows="3" id="authoritie_observacao"
+						value="#{sistemaBean.authoritie.observacao}" />
+				</div>
+
+			</div>
+
+		</div>
+		<div class="modal-footer">
+			<h:commandButton class="btn btn-default"
+				action="#{sistemaBean.salvar}" value="Salvar" />
+			<button type="reset" class="btn btn-default">Reset</button>
+		</div>
+	</h:form>
+
+	<h:outputStylesheet library="datapicker/css"
+		name="bootstrap-datepicker.css" />
+	<h:outputScript library="datapicker/js"
+		name="bootstrap-datepicker.min.js" />
+
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+			$('#sandbox-container .input-append.date').datepicker({
+				language : "pt-BR",
+				format : "dd/mm/yyyy",
+				startView : new Date(),
+				autoclose : true
+			});
+		});
+	</script>
+
+</ui:composition>

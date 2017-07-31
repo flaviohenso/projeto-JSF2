@@ -212,13 +212,16 @@
 						</span>
 					</div> <!-- /input-group -->
 				</li>
-				<li><a href="../index.xhtml"><i
-						class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
-				<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
-						Charts<span class="fa arrow"></span></a>
+				<li><h:commandLink action="#{sistemaBean.home}" >
+				<i class="fa fa-dashboard fa-fw"></i> Dashboard
+				</h:commandLink></li>
+				<li><a href="#"><i class="fa fa-fw fa-folder-open-o"></i>
+						Cadastro<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="flot.html">Flot Charts</a></li>
-						<li><a href="morris.html">Morris.js Charts</a></li>
+						<li><h:commandLink action="#{categoriaBean.list}"
+								value="Categorias" /></li>
+						<li><h:commandLink action="#{produtoBean.list}"
+								value="Produtos" /></li>
 					</ul> <!-- /.nav-second-level --></li>
 
 				<li><h:link>

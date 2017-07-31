@@ -9,22 +9,16 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
 
 import com.flavio.model.Authoritie;
 import com.flavio.util.Paginacao;
 import com.flavio.util.jpa.EntityManagerProducer;
-import com.mysql.jdbc.StringUtils;
 
 public class AuthoritieRepository implements Serializable {
 
@@ -90,7 +84,7 @@ public class AuthoritieRepository implements Serializable {
 		criteriaQuery = criteriaBuilder.createQuery(Authoritie.class);
 		root = criteriaQuery.from(Authoritie.class);
 		criteriaQuery.select(root);
-		
+
 		query = entityManager.createQuery(this.criteriaQuery);
 
 		query.setFirstResult(paginacao.getPrimeiroRegistro());
@@ -117,7 +111,6 @@ public class AuthoritieRepository implements Serializable {
 		return entityManager.createQuery(cq).getSingleResult().intValue();
 	}
 
-	
 	private CriteriaQuery<Authoritie> criarCriteriaParaFiltro(Paginacao paginacao) {
 
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();

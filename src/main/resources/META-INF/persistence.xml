@@ -10,6 +10,8 @@
 		<mapping-file>META-INF/consultas/cliente.xml</mapping-file>
 		<mapping-file>META-INF/consultas/usuario.xml</mapping-file>
 		<mapping-file>META-INF/consultas/authoritie.xml</mapping-file>
+		<mapping-file>META-INF/consultas/categoria.xml</mapping-file>
+		<mapping-file>META-INF/consultas/produto.xml</mapping-file>
 		
 		<class>com.flavio.model.Vendedor</class>
 		<class>com.flavio.model.Registro</class>

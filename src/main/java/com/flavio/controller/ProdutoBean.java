@@ -69,6 +69,7 @@ public class ProdutoBean implements Serializable {
 						"Dados salvos com sucesso!");
 				model = produtoService.consultaPaginada(paginacao);
 				mensagem.enviar();
+				limpar();
 			}
 		} catch (Exception e) {
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao salvar!", "Erro ao salvar!");

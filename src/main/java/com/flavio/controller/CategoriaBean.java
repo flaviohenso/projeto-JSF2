@@ -69,6 +69,7 @@ public class CategoriaBean implements Serializable {
 						"Dados salvos com sucesso!");
 				model = categoriasService.consultaPaginada(paginacao);
 				mensagem.enviar();
+				limpar();
 			}
 		} catch (Exception e) {
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao salvar!", "Erro ao salvar!");

@@ -85,6 +85,10 @@ public class ProdutoRepository implements Serializable{
 		root = criteriaQuery.from(Produto.class);
 		criteriaQuery.select(root);
 
+		if (paginacao.getDescricao() != null) {
+			criteriaQuery.where(criteriaBuilder.like(root.get("nome"), "%"+paginacao.getDescricao()+"%"));
+		}
+		
 		query = entityManager.createQuery(this.criteriaQuery);
 
 		query.setFirstResult(paginacao.getPrimeiroRegistro());

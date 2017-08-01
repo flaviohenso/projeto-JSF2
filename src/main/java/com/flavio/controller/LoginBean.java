@@ -12,8 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.flavio.anotation.HttpServletRequestOutCDI;
-
 @Named
 @SessionScoped
 public class LoginBean implements Serializable {

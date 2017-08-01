@@ -22,18 +22,18 @@ import com.flavio.util.jpa.EntityManagerProducer;
 public class CategoriaRepository implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	public static Log log = LogFactory.getLog(CategoriaRepository.class);
 
 	@Inject
 	private EntityManager entityManager;
-	
+
 	private CriteriaQuery<Categoria> criteriaQuery;
 
 	private Root<Categoria> root;
 
 	private TypedQuery query;
-	
+
 	public boolean save(Categoria categoria) throws Exception {
 		if (entityManager != null) {
 			try {
@@ -48,7 +48,7 @@ public class CategoriaRepository implements Serializable {
 			return false;
 		}
 	}
-	
+
 	public List<Categoria> listAll() {
 		return entityManager.createNamedQuery("Categoria.findAll", Categoria.class).getResultList();
 	}
@@ -83,7 +83,10 @@ public class CategoriaRepository implements Serializable {
 		criteriaQuery = criteriaBuilder.createQuery(Categoria.class);
 		root = criteriaQuery.from(Categoria.class);
 		criteriaQuery.select(root);
-
+		
+		if (paginacao.getDescricao() != null) {
+			criteriaQuery.where(criteriaBuilder.like(root.get("nome"), "%"+paginacao.getDescricao()+"%"));
+		}
 		query = entityManager.createQuery(this.criteriaQuery);
 
 		query.setFirstResult(paginacao.getPrimeiroRegistro());

@@ -14,7 +14,6 @@ import org.apache.commons.logging.LogFactory;
 import org.primefaces.model.LazyDataModel;
 
 import com.flavio.anotation.Email;
-import com.flavio.model.Authoritie;
 import com.flavio.model.Categoria;
 import com.flavio.service.CategoriasService;
 import com.flavio.service.ContextMensage;
@@ -56,6 +55,11 @@ public class CategoriaBean implements Serializable {
 	public void consultaCategorias(){
 		categoria = new Categoria();
 		this.model = categoriasService.consultaPaginada(paginacao);
+	}
+	
+	public void buscar() {
+		paginacao.setDescricao(this.nomePesquisa);
+		model = categoriasService.consultaPaginada(paginacao);
 	}
 	
 	public void salvar() {

@@ -57,6 +57,11 @@ public class ProdutoBean implements Serializable {
 		this.model = produtoService.consultaPaginada(paginacao);
 	}
 	
+	public void buscar() {
+		paginacao.setDescricao(this.nomePesquisa);
+		model = produtoService.consultaPaginada(paginacao);
+	}
+	
 	public void salvar() {
 		try {
 			if (produtoService.salvar(produto)) {

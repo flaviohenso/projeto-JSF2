@@ -9,7 +9,6 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
@@ -84,6 +83,10 @@ public class AuthoritieRepository implements Serializable {
 		criteriaQuery = criteriaBuilder.createQuery(Authoritie.class);
 		root = criteriaQuery.from(Authoritie.class);
 		criteriaQuery.select(root);
+		
+		if (paginacao.getDescricao() != null) {
+			criteriaQuery.where(criteriaBuilder.like(root.get("nome"), "%"+paginacao.getDescricao()+"%"));
+		}
 
 		query = entityManager.createQuery(this.criteriaQuery);
 

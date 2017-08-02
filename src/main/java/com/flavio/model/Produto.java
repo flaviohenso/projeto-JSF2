@@ -8,9 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity(name = "produto")
 public class Produto implements Serializable {
@@ -22,6 +26,7 @@ public class Produto implements Serializable {
 	private String sku;
 	private BigDecimal valorUnitario;
 	private Integer quantidadeEstoque;
+	private Categoria categoria;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -32,7 +37,8 @@ public class Produto implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
+	@NotBlank @Size(max=55)
 	@Column(nullable = false, length = 200)
 	public String getNome() {
 		return nome;
@@ -42,6 +48,7 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
+	@NotBlank
 	public String getSku() {
 		return sku;
 	}
@@ -50,6 +57,7 @@ public class Produto implements Serializable {
 		this.sku = sku;
 	}
 
+	@NotNull
 	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
@@ -67,6 +75,16 @@ public class Produto implements Serializable {
 
 	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
+	}
+	
+	@NotNull
+	@ManyToOne
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 	@Override

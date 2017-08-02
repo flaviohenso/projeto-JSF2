@@ -1,8 +1,8 @@
 package com.flavio.repository;
 
-import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
@@ -19,7 +19,8 @@ import com.flavio.model.Categoria;
 import com.flavio.util.Paginacao;
 import com.flavio.util.jpa.EntityManagerProducer;
 
-public class CategoriaRepository implements Serializable {
+@RequestScoped
+public class CategoriaRepository {
 
 	private static final long serialVersionUID = 1L;
 
@@ -112,4 +113,5 @@ public class CategoriaRepository implements Serializable {
 
 		return entityManager.createQuery(cq).getSingleResult().intValue();
 	}
+
 }

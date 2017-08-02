@@ -52,8 +52,9 @@ public class CategoriaBean implements Serializable {
 	}
 	
 	@PostConstruct
-	public void consultaCategorias(){
+	public void init(){//consultaCategorias
 		categoria = new Categoria();
+		categorias = categoriasService.listRepository();
 		this.model = categoriasService.consultaPaginada(paginacao);
 	}
 	

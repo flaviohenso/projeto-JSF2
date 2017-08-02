@@ -24,7 +24,7 @@ public class ProdutoService implements GenericService<Produto> {
 
 	@Override
 	public boolean salvar(Produto produto) throws Exception {
-		
+		System.out.println("chamou dentro de salvar repositorio");
 		if(produtoRepository.save(produto)){
 			System.out.println("salvou com suscesso");
 			return true;

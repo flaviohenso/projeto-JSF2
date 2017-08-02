@@ -26,7 +26,6 @@ public class CategoriasService implements GenericService<Categoria>{
 	@Override
 	public boolean salvar(Categoria categoria) throws Exception {
 		if(categoriaRepository.save(categoria)){
-			System.out.println("salvou com suscesso");
 			return true;
 		}else{
 			System.out.println("Erro ao salvar!");

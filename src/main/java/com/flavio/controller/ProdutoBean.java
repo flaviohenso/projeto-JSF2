@@ -14,7 +14,9 @@ import org.apache.commons.logging.LogFactory;
 import org.primefaces.model.LazyDataModel;
 
 import com.flavio.anotation.Email;
+import com.flavio.model.Categoria;
 import com.flavio.model.Produto;
+import com.flavio.service.CategoriasService;
 import com.flavio.service.ContextMensage;
 import com.flavio.service.Mensagem;
 import com.flavio.service.ProdutoService;
@@ -33,6 +35,8 @@ public class ProdutoBean implements Serializable {
 	private Mensagem mensagem;
 	@Inject
 	private ProdutoService produtoService;
+	@Inject
+	private CategoriasService categoriasService;
 
 	public static Log log = LogFactory.getLog(ProdutoBean.class);
 
@@ -41,7 +45,7 @@ public class ProdutoBean implements Serializable {
 	private String nomePesquisa;
 	private Paginacao paginacao = new Paginacao();
 
-	private Produto produto;
+	private Produto produto = new Produto();
 
 	private LazyDataModel<Produto> model;
 	
@@ -53,7 +57,6 @@ public class ProdutoBean implements Serializable {
 	
 	@PostConstruct
 	public void consultaProdutos(){
-		produto = new Produto();
 		this.model = produtoService.consultaPaginada(paginacao);
 	}
 	
@@ -124,7 +127,5 @@ public class ProdutoBean implements Serializable {
 	public void setPaginacao(Paginacao paginacao) {
 		this.paginacao = paginacao;
 	}
-	
-	
 
 }

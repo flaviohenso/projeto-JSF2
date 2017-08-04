@@ -1,11 +1,13 @@
 package com.flavio.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 
 import com.flavio.model.Vendedor;
 import com.flavio.repository.VendedorRepository;
@@ -41,7 +43,6 @@ public class ServiceVendedor implements GenericService<Vendedor>{
 			System.out.println("Erro ao salvar Vendedor!");
 			return false;
 		}
-//		vendedorDao.save(vendedor, em);
 
 	}
 
@@ -53,15 +54,23 @@ public class ServiceVendedor implements GenericService<Vendedor>{
 
 	@Override
 	public LazyDataModel<Vendedor> consultaPaginada(Paginacao paginacao) {
-		// TODO Auto-generated method stub
-		return null;
+		return new LazyDataModel<Vendedor>() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public List<Vendedor> load(int first, int pageSize, String sortField, SortOrder sortOrder,
+					Map<String, Object> filters) {
+				paginacao.setPrimeiroRegistro(first);
+				paginacao.setQuantidadeRegistros(pageSize);
+				paginacao.setAscendente(SortOrder.ASCENDING.equals(sortOrder));
+				paginacao.setPropriedadeOrdenacao(sortField);
+
+				setRowCount(vendedorRepository.quantidadeFiltrados(paginacao));
+
+				return vendedorRepository.filtrados(paginacao);
+			}
+
+		};
 	}
-
-//	public List<Vendedor> todos() {
-//		if(em != null){
-//			System.out.println("Entity Válido");
-//		}
-//		return vendedorDao.listAll(em);
-//	}
-
 }

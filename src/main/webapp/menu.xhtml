@@ -212,8 +212,8 @@
 						</span>
 					</div> <!-- /input-group -->
 				</li>
-				<li><h:commandLink action="#{sistemaBean.home}" >
-				<i class="fa fa-dashboard fa-fw"></i> Dashboard
+				<li><h:commandLink action="#{sistemaBean.home}">
+						<i class="fa fa-dashboard fa-fw"></i> Dashboard
 				</h:commandLink></li>
 				<li><a href="#"><i class="fa fa-fw fa-folder-open-o"></i>
 						Cadastro<span class="fa arrow"></span></a>
@@ -222,19 +222,21 @@
 								value="Categorias" /></li>
 						<li><h:commandLink action="#{produtoBean.list}"
 								value="Produtos" /></li>
+						<li><h:commandLink action="#{vendedorBean.list}"
+								value="Vendedores">
+							</h:commandLink></li>
+						<li><h:commandLink action="#{clienteBean.list}"
+								value="Clientes" /></li>
 					</ul> <!-- /.nav-second-level --></li>
 
 				<li><h:link>
 						<i class="fa fa-users fa-fw" />
-						Vendedores<span class="fa arrow "></span>
+						Financeiro<span class="fa arrow "></span>
 					</h:link>
 					<ul class="nav nav-second-level">
-						<li><h:commandLink
-								action="#{vendedorBean.cadastro}" value="Registro" /></li>
-						<li><h:commandLink action="#{vendedorBean.listVendedores}"
-								value="Listagem">
-								<i class="fa fa-list fa-fw" />
-							</h:commandLink></li>
+						<li><h:commandLink action="#{vendedorBean.cadastro}"
+								value="Registro" /></li>
+						<li></li>
 					</ul> <!-- /.nav-second-level --></li>
 
 				<li><h:link>
@@ -247,28 +249,48 @@
 						<li><h:commandLink
 								action="/venda/listagem?faces-redirect=true" value="Listagem" /></li>
 					</ul> <!-- /.nav-second-level --></li>
-				<li><a href="tables.html"><i class="fa fa-table fa-fw"></i>
-						Tables</a></li>
-				<li><h:commandLink action="/index?faces-redirect=true">
-								 Consultar</h:commandLink></li>
-				<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i>
-						Forms</a></li>
-				<li><a href="#"><i class="fa fa-wrench fa-fw"></i> Sistema<span class="fa arrow"></span></a>
+
+				<li><h:link>
+						<i class="fa fa-bar-chart-o fa-fw"></i>
+						Compras<span class="fa arrow "></span>
+					</h:link>
 					<ul class="nav nav-second-level">
-						<li><a href="panels-wells.html">Segurança<span class="fa arrow"/></a>
+						<li><h:commandLink action="/venda/venda?faces-redirect=true"
+								value="Registro" /></li>
+						<li><h:commandLink
+								action="/venda/listagem?faces-redirect=true" value="Listagem" /></li>
+					</ul> <!-- /.nav-second-level --></li>
+
+				<li><h:link>
+						<i class="fa fa-bar-chart-o fa-fw"></i>
+						Estoque<span class="fa arrow "></span>
+					</h:link>
+					<ul class="nav nav-second-level">
+						<li><h:commandLink action="/venda/venda?faces-redirect=true"
+								value="Registro" /></li>
+						<li><h:commandLink
+								action="/venda/listagem?faces-redirect=true" value="Listagem" /></li>
+					</ul> <!-- /.nav-second-level --></li>
+
+				<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i>
+						Catálogo</a></li>
+				<li><a href="#"><i class="fa fa-wrench fa-fw"></i> Sistema<span
+						class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li><a href="panels-wells.html">Segurança<span
+								class="fa arrow" /></a>
 							<ul class="nav nav-third-level">
 								<li><h:commandLink action="#{sistemaBean.listAuthoritie}"
-								value="Authorites" /></li>
-							</ul>
-						</li>
+										value="Authorites" /></li>
+							</ul></li>
 						<li><a href="buttons.html">Buttons</a></li>
 						<li><a href="notifications.html">Notifications</a></li>
 						<li><a href="typography.html">Typography</a></li>
 						<li><a href="icons.html"> Icons</a></li>
 						<li><a href="grid.html">Grid</a></li>
 					</ul> <!-- /.nav-second-level --></li>
-				<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>
-						Multi-Level Dropdown<span class="fa arrow"></span></a>
+				<li><a href="#"><i class="fa fa-sitemap fa-fw"></i> Suporte<span
+						class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li><a href="#">Second Level Item</a></li>
 						<li><a href="#">Second Level Item</a></li>
@@ -279,12 +301,6 @@
 								<li><a href="#">Third Level Item</a></li>
 								<li><a href="#">Third Level Item</a></li>
 							</ul> <!-- /.nav-third-level --></li>
-					</ul> <!-- /.nav-second-level --></li>
-				<li><a href="#"><i class="fa fa-files-o fa-fw"></i> Sample
-						Pages<span class="fa arrow"></span></a>
-					<ul class="nav nav-second-level">
-						<li><a href="blank.html">Blank Page</a></li>
-						<li><a href="login.html">Login Page</a></li>
 					</ul> <!-- /.nav-second-level --></li>
 			</ul>
 		</div>

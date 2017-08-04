@@ -10,8 +10,6 @@
     <b:bean id="appUserDetailsService" class="com.flavio.security.AppUserDetailsService"/>
      
 	<http pattern="/javax.faces.resource/**" security="none"/>
-	<http pattern="/javax.faces.resource/css/**" security="none"/>
-	<http pattern="/javax.faces.resource/images/**" security="none"/>
 	<http pattern="/acesso.xhtml" security="none"/>
 	<http pattern="/erro.xhtml" security="none"/>
 	
@@ -27,9 +25,11 @@
     	<intercept-url pattern="/index.xhtml" access="isAuthenticated()"/>
     	<intercept-url pattern="/venda/**" access="hasAnyRole('VENDEDORES')"/>
     	<intercept-url pattern="/vendedor/**" access="hasAnyRole('ADMINISTRADORES')"/>
+    	<intercept-url pattern="/cliente/**" access="hasAnyRole('ADMINISTRADORES')"/>
     	<intercept-url pattern="/sistema/**" access="hasAnyRole('ADMINISTRADORES')"/>
     	<intercept-url pattern="/categoria/**" access="hasAnyRole('ADMINISTRADORES')"/>
     	<intercept-url pattern="/produto/**" access="hasAnyRole('ADMINISTRADORES')"/>
+    	<intercept-url pattern="/estoque/**" access="hasAnyRole('ADMINISTRADORES')"/>
     	<intercept-url pattern="/**" access="denyAll"/>
     	
     	<form-login login-page="/acesso.xhtml" default-target-url="/" always-use-default-target="true"/>

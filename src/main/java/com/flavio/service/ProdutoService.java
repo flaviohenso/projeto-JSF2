@@ -1,8 +1,10 @@
 package com.flavio.service;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 import org.primefaces.model.LazyDataModel;
@@ -12,8 +14,10 @@ import com.flavio.model.Produto;
 import com.flavio.repository.ProdutoRepository;
 import com.flavio.util.Paginacao;
 
-public class ProdutoService implements GenericService<Produto> {
-	
+@ViewScoped
+public class ProdutoService implements GenericService<Produto>, Serializable {
+
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private ProdutoRepository produtoRepository;
 
@@ -24,20 +28,27 @@ public class ProdutoService implements GenericService<Produto> {
 
 	@Override
 	public boolean salvar(Produto produto) throws Exception {
-		System.out.println("chamou dentro de salvar repositorio");
-		if(produtoRepository.save(produto)){
+		if (produtoRepository.save(produto)) {
 			System.out.println("salvou com suscesso");
 			return true;
-		}else{
+		} else {
 			System.out.println("Erro ao salvar!");
 			return false;
 		}
+
+	}
+
+	public Produto produtoByID(Long id) {
 		
+		if (id != null)
+			return produtoRepository.BuscarPorID(id);
+		
+		return null;
 	}
 
 	@Override
 	public boolean remover(Produto produto) {
-		if(produtoRepository.remover(produto)){
+		if (produtoRepository.remover(produto)) {
 			return true;
 		}
 		return false;
@@ -48,21 +59,20 @@ public class ProdutoService implements GenericService<Produto> {
 		return new LazyDataModel<Produto>() {
 
 			private static final long serialVersionUID = 1L;
-			
+
 			@Override
-			public List<Produto> load(int first, int pageSize,
-					String sortField, SortOrder sortOrder,
+			public List<Produto> load(int first, int pageSize, String sortField, SortOrder sortOrder,
 					Map<String, Object> filters) {
 				paginacao.setPrimeiroRegistro(first);
 				paginacao.setQuantidadeRegistros(pageSize);
 				paginacao.setAscendente(SortOrder.ASCENDING.equals(sortOrder));
 				paginacao.setPropriedadeOrdenacao(sortField);
-				
+
 				setRowCount(produtoRepository.quantidadeFiltrados(paginacao));
-				
+
 				return produtoRepository.filtrados(paginacao);
 			}
-			
+
 		};
 	}
 

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Author: Flávio Henrique-->
+<!-- Data: 8 de abr de 2017 -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<h:form role="formBuscar">
+				<div class="col-lg-6">
+					<div class="form-group">
+						<h:inputText class="form-control" pt:placeholder="Nome" value="#{categoriaBean.nomePesquisa}"/>
+						<p class="help-block">Example block-level help text here.</p>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="form-group">
+						<br></br>
+					</div>
+					<div align="right">
+						<h:commandButton class="btn btn-info btn-xs" id="loading-btn"
+							action="#{categoriaBean.buscar}" value="Buscar">
+							<f:ajax execute="@form" render=":formTable:dataTables-example @formBuscar" />
+						</h:commandButton>
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</div>
+
+	<!-- 	</ui:insert> -->
+
+	<!-- DataTables CSS -->
+	<!-- 	<h:outputStylesheet -->
+	<!-- 		name="css/datatable/datatable.min.css" /> -->
+
+	<!-- DataTables CSS -->
+	<h:outputStylesheet
+		name="css/bootstrap/vendor/datatables-plugins/dataTables.bootstrap.css" />
+
+	<!-- DataTables Responsive CSS -->
+	<h:outputStylesheet
+		name="css/bootstrap/vendor/datatables-responsive/dataTables.responsive.css" />
+
+	<!-- DataTables JavaScript -->
+	<h:outputScript
+		name="css/bootstrap/vendor/datatables/js/jquery.dataTables.min.js" />
+
+	<h:outputScript name="js/bootstrap/vendor/jquery/jquery.min.js" />
+
+	<h:outputScript
+		name="css/bootstrap/vendor/datatables-plugins/js/dataTables.bootstrap.min.js" />
+
+	<h:outputScript
+		name="css/bootstrap/vendor/datatables-responsive/js/dataTables.responsive.js" />
+
+</ui:composition>

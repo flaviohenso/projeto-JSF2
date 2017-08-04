@@ -19,7 +19,7 @@ import com.flavio.model.Produto;
 import com.flavio.util.Paginacao;
 import com.flavio.util.jpa.EntityManagerProducer;
 
-public class ProdutoRepository implements Serializable{
+public class ProdutoRepository implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,19 +27,22 @@ public class ProdutoRepository implements Serializable{
 
 	@Inject
 	private EntityManager entityManager;
-	
+
 	private CriteriaQuery<Produto> criteriaQuery;
 
 	private Root<Produto> root;
 
 	private TypedQuery query;
-	
-	
+
 	public boolean save(Produto produto) throws Exception {
 		if (entityManager != null) {
 			try {
 				EntityManagerProducer.beginTransaction(entityManager);
-				this.entityManager.persist(produto);
+				if (produto.getId() == null) {
+					this.entityManager.persist(produto);
+				}else{
+					this.entityManager.merge(produto);
+				}
 				return true;
 			} catch (Exception e) {
 				log.error("Ocorreu um erro ao salvar produto: " + e.getMessage());
@@ -49,7 +52,7 @@ public class ProdutoRepository implements Serializable{
 			return false;
 		}
 	}
-	
+
 	public List<Produto> listAll() {
 		return entityManager.createNamedQuery("Produto.findAll", Produto.class).getResultList();
 	}
@@ -86,9 +89,9 @@ public class ProdutoRepository implements Serializable{
 		criteriaQuery.select(root);
 
 		if (paginacao.getDescricao() != null) {
-			criteriaQuery.where(criteriaBuilder.like(root.get("nome"), "%"+paginacao.getDescricao()+"%"));
+			criteriaQuery.where(criteriaBuilder.like(root.get("nome"), "%" + paginacao.getDescricao() + "%"));
 		}
-		
+
 		query = entityManager.createQuery(this.criteriaQuery);
 
 		query.setFirstResult(paginacao.getPrimeiroRegistro());

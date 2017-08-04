@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Author: Flávio Henrique-->
+<!-- Data: 8 de abr de 2017 -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form role="form" prependId="false" id="form_modal">
+		<div class="modal-header">
+			<h4 class="modal-title" id="modalLabel">
+				Cadastro de Vendedor
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</h4>
+
+			<p:messages showSummary="true" showDetail="false" autoUpdate="true"
+				showIcon="false" />
+
+		</div>
+		<div class="modal-body">
+
+			<div class="form-group">
+				<h:outputLabel for="vendedor_nome">Nome</h:outputLabel>
+				<h:inputText id="vendedor_nome" class="form-control"
+					value="#{vendedorBean.vendedor.nome}" required="true" />
+				<h:message for="nome" showDetail="true" showSummary="false" />
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="vendedor_email">Email</h:outputLabel>
+				<h:inputText id="vendedor_email" class="form-control"
+					value="#{vendedorBean.vendedor.email}" required="true" />
+				<h:message for="email" showDetail="true" showSummary="false" />
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="vendedor_cpfcnpj">CPF/CNPJ</h:outputLabel>
+				<h:inputText id="vendedor_cpfcnpj" class="form-control"
+					value="#{vendedorBean.vendedor.documentoReceitaFederal}"
+					required="true" />
+				<h:message for="documentoReceitaFederal" showDetail="false"
+					showSummary="true" />
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="vendedor_idade">Idade</h:outputLabel>
+				<h:inputText id="vendedor_idade" class="form-control"
+					value="#{vendedorBean.vendedor.idade}" required="true" />
+				<h:message for="idade" showDetail="false" showSummary="true" />
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="vendedor_senha">Senha</h:outputLabel>
+				<h:inputSecret id="vendedor_senha" class="form-control"
+					value="#{vendedorBean.vendedor.senha}" />
+				<h:message for="senha" showDetail="false" showSummary="true" />
+			</div>
+		</div>
+		<div class="modal-footer">
+
+			<h:commandButton class="btn btn-success btn-sm" id="loading-btn"
+				action="#{vendedorBean.salvar}" value="Salvar">
+				<f:ajax execute="@form" render=":formTable:dataTables-example @form" />
+			</h:commandButton>
+			<button type="reset" class="btn btn-dafault btn-sm">Reset</button>
+		</div>
+	</h:form>
+
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+			$('#sandbox-container .input-append.date').datepicker({
+				language : "pt-BR",
+				format : "dd/mm/yyyy",
+				startView : new Date(),
+				autoclose : true
+			});
+
+		});
+		$('button').button({
+			loadingText : 'Processando...'
+		});
+
+		$('#loading-btn').click(function() {
+			var btn = $(this);
+			btn.button('loading');
+			setTimeout(function() {
+				btn.button('reset');
+			}, 2000);
+		});
+	</script>
+
+</ui:composition>

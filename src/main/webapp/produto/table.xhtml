@@ -29,7 +29,7 @@
 						<!-- 						<a href="#myModal" role="button" class="btn" data-toggle="modal" id="btn_novo">Novo</a> -->
 
 						<p:commandButton styleClass="btn btn-primary btn-sm"
-							title="Excluir" icon="fa fa-plus-circle" value="Novo"
+							title="Novo" icon="fa fa-plus-circle" value="Novo"
 							oncomplete="create();" process="@this" immediate="true">
 						</p:commandButton>
 					</div>
@@ -76,9 +76,14 @@
 								<p:column>
 									<!-- row record -->
 									<div align="center">
-										<a href="#" class="btn btn-xs btn-warning"
-											onclick="remover();"><span class="fa fa-pencil-square-o"
-											aria-hidden="true"></span> Editar</a>
+										<p:commandButton styleClass="btn btn-xs btn-warning"
+											title="Editar" icon="fa fa-pencil-square-o" value="Editar"
+											oncomplete="create();" process="@this"
+											update="dataTables-example" immediate="true">
+											<f:setPropertyActionListener value="#{produto}"
+												target="#{produtoBean.produto}" />
+												<f:ajax event="click" execute="@form" render=":form_modal"/>
+										</p:commandButton>
 									</div>
 								</p:column>
 

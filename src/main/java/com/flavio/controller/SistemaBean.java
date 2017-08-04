@@ -95,7 +95,7 @@ public class SistemaBean implements Serializable {
 
 	public void remover() {
 		if (authoritieService.remover(authoritie)) {
-			this.authorities = authoritieService.listRepository();
+			this.consultaAuthorites();
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Authoritie removido com sucesso!",
 					"Authoritie removido com sucesso!");
 		} else {

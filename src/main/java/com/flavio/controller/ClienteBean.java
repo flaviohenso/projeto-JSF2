@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -14,15 +14,15 @@ import org.apache.commons.logging.LogFactory;
 import org.primefaces.model.LazyDataModel;
 
 import com.flavio.anotation.Email;
-import com.flavio.model.Produto;
+import com.flavio.model.Cliente;
+import com.flavio.service.ClienteService;
 import com.flavio.service.ContextMensage;
 import com.flavio.service.Mensagem;
-import com.flavio.service.ProdutoService;
 import com.flavio.util.Paginacao;
 
 @Named
-@ViewScoped
-public class ProdutoBean implements Serializable {
+@RequestScoped
+public class ClienteBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,92 +32,66 @@ public class ProdutoBean implements Serializable {
 	@Email
 	private Mensagem mensagem;
 	@Inject
-	private ProdutoService produtoService;
-
-	public static Log log = LogFactory.getLog(ProdutoBean.class);
-
-	private List<Produto> produtos;
-
+	private ClienteService clienteService;
+	
+	public static Log log = LogFactory.getLog(ClienteBean.class);
+	
 	private String nomePesquisa;
 	private Paginacao paginacao = new Paginacao();
+	
+	private LazyDataModel<Cliente> model;
+	private List<Cliente> clientes;
+	private Cliente cliente;
 
-	private Produto produto = new Produto();
-
-	private LazyDataModel<Produto> model;
 	
 	public void limpar() {
-		produto = new Produto();
+		cliente = new Cliente();
 		log.info("passou pela limpeza...");
 	}
 	
 	@PostConstruct
-	public void consultaProdutos(){
-		this.model = produtoService.consultaPaginada(paginacao);
+	public void init(){//consultaCategorias
+		cliente = new Cliente();
+		clientes = clienteService.listRepository();
+		this.model = clienteService.consultaPaginada(paginacao);
 	}
 	
 	public void buscar() {
 		paginacao.setDescricao(this.nomePesquisa);
-		model = produtoService.consultaPaginada(paginacao);
+		model = clienteService.consultaPaginada(paginacao);
 	}
-	
-	public void edit(){
-		System.out.println(produto.getNome() + " produto para editar");
-		//this.produto = produtoService.produtoByID(produto.getId());		
-	}
+
 	
 	public void salvar() {
 		try {
-			if (produtoService.salvar(produto)) {
+			if (clienteService.salvar(cliente)) {
 				this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!",
 						"Dados salvos com sucesso!");
-				model = produtoService.consultaPaginada(paginacao);
+				model = clienteService.consultaPaginada(paginacao);
 				mensagem.enviar();
 				limpar();
 			}
 		} catch (Exception e) {
 			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao salvar!", "Erro ao salvar!");
-			log.error("Erro ao Salvar Produto: " + e);
+			log.error("Erro ao Salvar Cliente: " + e);
 			e.printStackTrace();
 		}
 
 	}
-	
 
 	public String list() {
-		produtos = produtoService.listRepository();
-		return "/produto/listagem?faces-redirect=true";
+		clientes = clienteService.listRepository();
+		return "/cliente/listagem?faces-redirect=true";
 	}
-
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
+	
+	
+	
 	public String getNomePesquisa() {
 		return nomePesquisa;
 	}
 
 	public void setNomePesquisa(String nomePesquisa) {
 		this.nomePesquisa = nomePesquisa;
-	}
-
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
-	public LazyDataModel<Produto> getModel() {
-		return model;
-	}
-
-	public void setModel(LazyDataModel<Produto> model) {
-		this.model = model;
 	}
 
 	public Paginacao getPaginacao() {
@@ -128,4 +102,28 @@ public class ProdutoBean implements Serializable {
 		this.paginacao = paginacao;
 	}
 
+	public LazyDataModel<Cliente> getModel() {
+		return model;
+	}
+
+	public void setModel(LazyDataModel<Cliente> model) {
+		this.model = model;
+	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
 }

@@ -10,13 +10,9 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-@NamedQueries({ 
-	@NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
-})
+
 @Entity
 /*
  * @DiscriminatorValue contem o valor que irá identificar cada classe na tabela do

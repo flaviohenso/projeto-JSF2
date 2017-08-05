@@ -9,7 +9,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-	
+
 	<!-- <ui:insert name="body"> -->
 	<div id="page-wrapper">
 		<div class="row">
@@ -41,10 +41,10 @@
 						<p:messages showSummary="true" showDetail="false"
 							autoUpdate="true" showIcon="false" />
 						<h:form id="formTable">
-							
+
 							<p:dataTable value="#{categoriaBean.model}" lazy="true"
 								var="categoria" paginator="true" paginatorPosition="bottom"
-								rows="5" rowStyleClass="gradeA" 
+								rows="5" rowStyleClass="gradeA"
 								tableStyleClass="table table-striped table-bordered table-hover display"
 								id="dataTables-example">
 
@@ -108,7 +108,14 @@
 		</div>
 	</div>
 
-	<ui:include src="/categoria/dialog.xhtml"></ui:include>
+
+	<div class="modal fade" id="dialogRemove">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<ui:include src="/categoria/dialog.xhtml"></ui:include>
+			</div>
+		</div>
+	</div>
 
 	<!-- 	</ui:insert> -->
 
@@ -156,6 +163,13 @@
 
 			$('#myModal').modal({
 				show : true
+			})
+		}
+		
+		function hideDialog() {
+
+			$('#dialogRemove').modal({
+				hide : true
 			})
 		}
 

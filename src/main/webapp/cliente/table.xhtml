@@ -43,24 +43,24 @@
 								tableStyleClass="table table-striped table-bordered table-hover display"
 								id="dataTables-example" width="100%">
 
-							<p:column>
-								<!-- column header -->
-								<f:facet name="header">Nome</f:facet>
-								<!-- row record -->
+								<p:column>
+									<!-- column header -->
+									<f:facet name="header">Nome</f:facet>
+									<!-- row record -->
     							#{cliente.nome}
     						</p:column>
 
-							<p:column>
-								<!-- column header -->
-								<f:facet name="header">Idade</f:facet>
-								<!-- row record -->
+								<p:column>
+									<!-- column header -->
+									<f:facet name="header">Idade</f:facet>
+									<!-- row record -->
     							#{cliente.idade}
     						</p:column>
-    						
-    						<p:column>
-								<!-- column header -->
-								<f:facet name="header">CPF</f:facet>
-								<!-- row record -->
+
+								<p:column>
+									<!-- column header -->
+									<f:facet name="header">CPF</f:facet>
+									<!-- row record -->
     							#{cliente.documentoReceitaFederal}
     						</p:column>
 								<p:column>
@@ -72,7 +72,7 @@
 											update="dataTables-example" immediate="true">
 											<f:setPropertyActionListener value="#{cliente}"
 												target="#{clienteBean.cliente}" />
-											<f:ajax event="click" execute="@form" render=":form_modal"/>
+											<f:ajax event="click" execute="@form" render=":form_modal" />
 										</p:commandButton>
 									</div>
 								</p:column>
@@ -81,8 +81,7 @@
 										<p:commandButton styleClass="btn btn-xs btn-danger"
 											title="Excluir" icon="fa fa-minus-circle" value="Excluir"
 											oncomplete="remover();" process="@this"
-											update="dataTables-example" immediate="true"
-											action="#{clienteBean.edit}">
+											update="dataTables-example" immediate="true">
 											<f:setPropertyActionListener value="#{cliente}"
 												target="#{clienteBean.cliente}" />
 										</p:commandButton>
@@ -112,7 +111,13 @@
 		</div>
 	</div>
 
-	<ui:include src="/cliente/dialog.xhtml"></ui:include>
+	<div class="modal fade" id="dialogRemove">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<ui:include src="/cliente/dialog.xhtml"></ui:include>
+			</div>
+		</div>
+	</div>
 
 	<!-- DataTables CSS -->
 	<h:outputStylesheet
@@ -125,7 +130,7 @@
 	<!-- DataTables JavaScript -->
 	<h:outputScript
 		name="css/bootstrap/vendor/datatables/js/jquery.dataTables.min.js" />
-	
+
 	<h:outputScript
 		name="css/bootstrap/vendor/datatables-plugins/js/dataTables.bootstrap.min.js" />
 
@@ -153,23 +158,29 @@
 				show : true
 			})
 		}
+		
+		function hideDialog() {
+
+			$('#dialogRemove').modal({
+				hide : true
+			})
+		}
 
 		$(document).ready(function() {
-		    var table = $('#dataTables-example').DataTable( {
-		        "ajax": "data/arrays.txt",
-		        "columnDefs": [ {
-		            "targets": -1,
-		            "data": null,
-		            "defaultContent": "<button>Click!</button>"
-		        } ]
-		    } );
-		 
-		    $('#dataTables-example tbody').on( 'click', 'button', function () {
-		        var data = table.row( $(this).parents('tr') ).data();
-		        alert( data[0] +"'s salary is: "+ data[ 5 ] );
-		    } );
-		} );
-		
+			var table = $('#dataTables-example').DataTable({
+				"ajax" : "data/arrays.txt",
+				"columnDefs" : [ {
+					"targets" : -1,
+					"data" : null,
+					"defaultContent" : "<button>Click!</button>"
+				} ]
+			});
+
+			$('#dataTables-example tbody').on('click', 'button', function() {
+				var data = table.row($(this).parents('tr')).data();
+				alert(data[0] + "'s salary is: " + data[5]);
+			});
+		});
 	</script>
 
 </ui:composition>

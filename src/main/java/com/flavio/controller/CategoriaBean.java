@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,7 +22,7 @@ import com.flavio.service.Mensagem;
 import com.flavio.util.Paginacao;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class CategoriaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -55,12 +56,27 @@ public class CategoriaBean implements Serializable {
 	public void init(){//consultaCategorias
 		categoria = new Categoria();
 		categorias = categoriasService.listRepository();
-		this.model = categoriasService.consultaPaginada(paginacao);
+		this.listaPagianda();
 	}
 	
 	public void buscar() {
 		paginacao.setDescricao(this.nomePesquisa);
-		model = categoriasService.consultaPaginada(paginacao);
+		this.listaPagianda();
+	}
+	
+	public void remover(){
+		if(categoriasService.remover(categoria)){
+			this.listaPagianda();
+			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Categoria removido com sucesso!",
+					"Categoria removido com sucesso!");
+		}else{
+			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao remover!", "Erro ao remover!");
+		}
+		this.limpar();
+	}
+	
+	private void listaPagianda(){
+		this.model = categoriasService.consultaPaginada(paginacao);
 	}
 	
 	public void salvar() {
@@ -68,7 +84,7 @@ public class CategoriaBean implements Serializable {
 			if (categoriasService.salvar(categoria)) {
 				this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!",
 						"Dados salvos com sucesso!");
-				model = categoriasService.consultaPaginada(paginacao);
+				this.listaPagianda();
 				mensagem.enviar();
 				limpar();
 			}

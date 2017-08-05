@@ -14,13 +14,13 @@ import com.flavio.repository.ClienteRepository;
 import com.flavio.util.Paginacao;
 import com.flavio.util.security.MD5;
 
-public class ClienteService implements GenericService<Cliente>, Serializable{
+public class ClienteService implements GenericService<Cliente>, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private ClienteRepository clienteRepository;
-	
+
 	@Override
 	public List<Cliente> listRepository() {
 		// TODO Auto-generated method stub
@@ -30,16 +30,20 @@ public class ClienteService implements GenericService<Cliente>, Serializable{
 	@Override
 	public boolean salvar(Cliente cliente) throws Exception {
 		cliente.setSenha(MD5.convertPasswordMd5(cliente.getSenha()));
-		if(clienteRepository.save(cliente)){
+		if (clienteRepository.save(cliente)) {
 			return true;
 		}
-		
+
 		return false;
 	}
 
 	@Override
 	public boolean remover(Cliente cliente) {
-		// TODO Auto-generated method stub
+		if (cliente != null) {
+			if (clienteRepository.remover(cliente)) {
+				return true;
+			}
+		}
 		return false;
 	}
 

@@ -18,7 +18,7 @@ import com.flavio.model.Cliente;
 import com.flavio.util.Paginacao;
 import com.flavio.util.jpa.EntityManagerProducer;
 
-public class ClienteRepository implements GenericRepository<Cliente, Serializable> {
+public class ClienteRepository implements GenericRepository<Cliente, Serializable>, Serializable {
 
 	private static final long serialVersionUID = 1L;
 

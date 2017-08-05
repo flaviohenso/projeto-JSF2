@@ -9,36 +9,30 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 	<h:form role="form" prependId="false">
-		<div class="modal fade" id="dialogRemove">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">×</button>
-						<h4 class="modal-title">Confirmar Exclusão</h4>
-					</div>
-					<div class="modal-body">
-						<p>
-							Deseja realmente excluir este Categoria
-							<h:outputLabel value="#{categoriaBean.categoria.nome}" />
-						</p>
-					</div>
-					<div class="modal-footer">
-						<h:commandButton class="btn btn-danger"
-							action="#{categoriaBean.limpar}" value="NÂO">
-							<f:ajax execute="@form" render="dataTables-example @form" />
-						</h:commandButton>
-					
-						<h:commandButton class="btn btn-success btn-sm"
-							action="#{categoriaBean.remover}" value="Sim" oncomplete="$('#dialogRemove').modal('hide')">
-							<f:ajax execute="@form" render=":formTable:dataTables-example @form" />
-						</h:commandButton>
-					</div>
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal-dialog -->
+
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h4 class="modal-title">Confirmar Exclusão</h4>
 		</div>
-		<!-- /.modal -->
+		<div class="modal-body">
+			<p>
+				Deseja realmente excluir este Categoria
+				<h:outputLabel value="#{categoriaBean.categoria.nome}" />
+			</p>
+		</div>
+		<div class="modal-footer">
+			<h:commandButton class="btn btn-danger"
+				action="#{categoriaBean.limpar}" value="NÂO">
+				<f:ajax execute="@form" render="dataTables-example @form" onevent="hideDialog();"/>
+			</h:commandButton>
+
+			<h:commandButton class="btn btn-success btn-sm"
+				action="#{categoriaBean.remover}" value="Sim"
+				oncomplete="$('#dialogRemove').modal('hide')">
+				<f:ajax execute="@form" render=":formTable:dataTables-example @form" onevent="hideDialog();"/>
+			</h:commandButton>
+		</div>
+
 	</h:form>
 </ui:composition>

@@ -52,7 +52,7 @@ public class ClienteBean implements Serializable {
 	public void init(){//consultaCategorias
 		cliente = new Cliente();
 		clientes = clienteService.listRepository();
-		this.model = clienteService.consultaPaginada(paginacao);
+		this.listaPagianda();
 	}
 	
 	public void limpar() {
@@ -62,17 +62,32 @@ public class ClienteBean implements Serializable {
 	
 	public void buscar() {
 		paginacao.setDescricao(this.nomePesquisa);
-		model = clienteService.consultaPaginada(paginacao);
+		this.listaPagianda();
 	}
 
+	private void listaPagianda(){
+		this.model = clienteService.consultaPaginada(paginacao);
+	}
+	
 	public void edit(){}
+	
+	public void remover(){
+		if (clienteService.remover(cliente)) {
+			this.listaPagianda();
+			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Cliente removido com sucesso!",
+					"Cliente removido com sucesso!");
+		} else {
+			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao remover!", "Erro ao remover!");
+		}
+		this.limpar();
+	}
 	
 	public void salvar() {
 		try {
 			if (clienteService.salvar(cliente)) {
 				this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!",
 						"Dados salvos com sucesso!");
-				model = clienteService.consultaPaginada(paginacao);
+				this.listaPagianda();
 				mensagem.enviar();
 				limpar();
 			}

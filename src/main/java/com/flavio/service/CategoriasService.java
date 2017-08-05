@@ -13,33 +13,37 @@ import com.flavio.model.Categoria;
 import com.flavio.repository.CategoriaRepository;
 import com.flavio.util.Paginacao;
 
-public class CategoriasService implements GenericService<Categoria>, Serializable{
-	
+public class CategoriasService implements GenericService<Categoria>, Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private CategoriaRepository categoriaRepository;
 
 	@Override
 	public List<Categoria> listRepository() {
-		
+
 		return categoriaRepository.listAll();
 	}
 
 	@Override
 	public boolean salvar(Categoria categoria) throws Exception {
-		if(categoriaRepository.save(categoria)){
+
+		if (categoriaRepository.save(categoria)) {
 			return true;
-		}else{
+		} else {
 			System.out.println("Erro ao salvar!");
 			return false;
 		}
+
 	}
 
 	@Override
 	public boolean remover(Categoria categoria) {
-		if(categoriaRepository.remover(categoria)){
-			return true;
+		if (categoria.getId() != null) {
+			if (categoriaRepository.remover(categoria)) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -49,21 +53,20 @@ public class CategoriasService implements GenericService<Categoria>, Serializabl
 		return new LazyDataModel<Categoria>() {
 
 			private static final long serialVersionUID = 1L;
-			
+
 			@Override
-			public List<Categoria> load(int first, int pageSize,
-					String sortField, SortOrder sortOrder,
+			public List<Categoria> load(int first, int pageSize, String sortField, SortOrder sortOrder,
 					Map<String, Object> filters) {
 				paginacao.setPrimeiroRegistro(first);
 				paginacao.setQuantidadeRegistros(pageSize);
 				paginacao.setAscendente(SortOrder.ASCENDING.equals(sortOrder));
 				paginacao.setPropriedadeOrdenacao(sortField);
-				
+
 				setRowCount(categoriaRepository.quantidadeFiltrados(paginacao));
-				
+
 				return categoriaRepository.filtrados(paginacao);
 			}
-			
+
 		};
 	}
 

@@ -21,7 +21,7 @@ import com.flavio.util.Paginacao;
 import com.flavio.util.jpa.EntityManagerProducer;
 
 @RequestScoped
-public class CategoriaRepository implements GenericRepository<Categoria, Serializable> {
+public class CategoriaRepository implements GenericRepository<Categoria, Serializable>, Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -60,9 +60,9 @@ public class CategoriaRepository implements GenericRepository<Categoria, Seriali
 				.getResultList();
 	}
 
-	@Transactional
 	public boolean remover(Categoria categoria) {
 		try {
+			System.out.println(categoria.getId() + " removendo categoria >>>>>>");
 			categoria = this.BuscarPorID(categoria.getId());
 			EntityManagerProducer.beginTransaction(entityManager);
 			entityManager.remove(categoria);

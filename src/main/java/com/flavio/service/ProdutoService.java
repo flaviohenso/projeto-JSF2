@@ -29,13 +29,9 @@ public class ProdutoService implements GenericService<Produto>, Serializable {
 	@Override
 	public boolean salvar(Produto produto) throws Exception {
 		if (produtoRepository.save(produto)) {
-			System.out.println("salvou com suscesso");
 			return true;
-		} else {
-			System.out.println("Erro ao salvar!");
-			return false;
-		}
-
+		} 
+		return false;
 	}
 
 	public Produto produtoByID(Long id) {

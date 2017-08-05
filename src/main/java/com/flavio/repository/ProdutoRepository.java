@@ -19,8 +19,8 @@ import com.flavio.model.Produto;
 import com.flavio.util.Paginacao;
 import com.flavio.util.jpa.EntityManagerProducer;
 
-public class ProdutoRepository implements Serializable {
-
+public class ProdutoRepository implements GenericRepository<Produto, Serializable>, Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	public static Log log = LogFactory.getLog(ProdutoRepository.class);

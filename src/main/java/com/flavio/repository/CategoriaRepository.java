@@ -1,5 +1,6 @@
 package com.flavio.repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -20,8 +21,8 @@ import com.flavio.util.Paginacao;
 import com.flavio.util.jpa.EntityManagerProducer;
 
 @RequestScoped
-public class CategoriaRepository {
-
+public class CategoriaRepository implements GenericRepository<Categoria, Serializable> {
+	
 	private static final long serialVersionUID = 1L;
 
 	public static Log log = LogFactory.getLog(CategoriaRepository.class);

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,16 +22,18 @@ import com.flavio.service.Mensagem;
 import com.flavio.util.Paginacao;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class ClienteBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private ContextMensage contextMensage;
+	
 	@Inject
 	@Email
 	private Mensagem mensagem;
+	
 	@Inject
 	private ClienteService clienteService;
 	
@@ -44,10 +47,6 @@ public class ClienteBean implements Serializable {
 	private Cliente cliente;
 
 	
-	public void limpar() {
-		cliente = new Cliente();
-		log.info("passou pela limpeza...");
-	}
 	
 	@PostConstruct
 	public void init(){//consultaCategorias
@@ -56,11 +55,17 @@ public class ClienteBean implements Serializable {
 		this.model = clienteService.consultaPaginada(paginacao);
 	}
 	
+	public void limpar() {
+		cliente = new Cliente();
+		log.info("passou pela limpeza...");
+	}
+	
 	public void buscar() {
 		paginacao.setDescricao(this.nomePesquisa);
 		model = clienteService.consultaPaginada(paginacao);
 	}
 
+	public void edit(){}
 	
 	public void salvar() {
 		try {

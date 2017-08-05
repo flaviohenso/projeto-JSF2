@@ -12,7 +12,7 @@
 	<h:form role="form" prependId="false" id="form_modal">
 		<div class="modal-header">
 			<h4 class="modal-title" id="modalLabel">
-				Cadastro de Vendedor
+				Cadastro de Cliente
 
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
@@ -27,42 +27,42 @@
 		<div class="modal-body">
 
 			<div class="form-group">
-				<h:outputLabel for="vendedor_nome">Nome</h:outputLabel>
-				<h:inputText id="vendedor_nome" class="form-control"
-					value="#{vendedorBean.vendedor.nome}" required="true" />
-				<h:message for="nome" showDetail="true" showSummary="false" />
+				<h:outputLabel for="cliente_nome">Nome</h:outputLabel>
+				<h:inputText id="cliente_nome" class="form-control"
+					value="#{clienteBean.cliente.nome}" required="true" />
+				<h:message for="cliente_nome" showDetail="true" showSummary="false" />
 			</div>
 			<div class="form-group">
-				<h:outputLabel for="vendedor_email">Email</h:outputLabel>
-				<h:inputText id="vendedor_email" class="form-control"
-					value="#{vendedorBean.vendedor.email}" required="true" />
-				<h:message for="email" showDetail="true" showSummary="false" />
+				<h:outputLabel for="cliente_email">Email</h:outputLabel>
+				<h:inputText id="cliente_email" class="form-control"
+					value="#{clienteBean.cliente.email}" required="true" />
+				<h:message for="cliente_email" showDetail="true" showSummary="false" />
 			</div>
 			<div class="form-group">
-				<h:outputLabel for="vendedor_cpfcnpj">CPF/CNPJ</h:outputLabel>
-				<h:inputText id="vendedor_cpfcnpj" class="form-control"
-					value="#{vendedorBean.vendedor.documentoReceitaFederal}"
+				<h:outputLabel for="cliente_cpfcnpj">CPF/CNPJ</h:outputLabel>
+				<h:inputText id="cliente_cpfcnpj" class="form-control"
+					value="#{clienteBean.cliente.documentoReceitaFederal}"
 					required="true" />
-				<h:message for="documentoReceitaFederal" showDetail="false"
+				<h:message for="cliente_cpfcnpj" showDetail="false"
 					showSummary="true" />
 			</div>
 			<div class="form-group">
-				<h:outputLabel for="vendedor_idade">Idade</h:outputLabel>
-				<h:inputText id="vendedor_idade" class="form-control"
-					value="#{vendedorBean.vendedor.idade}" required="true" />
-				<h:message for="idade" showDetail="false" showSummary="true" />
+				<h:outputLabel for="cliente_idade">Idade</h:outputLabel>
+				<h:inputText id="cliente_idade" class="form-control"
+					value="#{clienteBean.cliente.idade}" required="true" />
+				<h:message for="cliente_idade" showDetail="false" showSummary="true" />
 			</div>
 			<div class="form-group">
-				<h:outputLabel for="vendedor_senha">Senha</h:outputLabel>
-				<h:inputSecret id="vendedor_senha" class="form-control"
-					value="#{vendedorBean.vendedor.senha}" />
-				<h:message for="senha" showDetail="false" showSummary="true" />
+				<h:outputLabel for="cliente_senha">Senha</h:outputLabel>
+				<h:inputSecret id="cliente_senha" class="form-control"
+					value="#{clienteBean.cliente.senha}" />
+				<h:message for="cliente_senha" showDetail="false" showSummary="true" />
 			</div>
 		</div>
 		<div class="modal-footer">
 
 			<h:commandButton class="btn btn-success btn-sm" id="loading-btn"
-				action="#{vendedorBean.salvar}" value="Salvar">
+				action="#{clienteBean.salvar}" value="Salvar">
 				<f:ajax execute="@form" render=":formTable:dataTables-example @form" />
 			</h:commandButton>
 			<button type="reset" class="btn btn-dafault btn-sm">Reset</button>
@@ -88,7 +88,7 @@
 			btn.button('loading');
 			setTimeout(function() {
 				btn.button('reset');
-			}, 2000);
+			}, 4000);
 		});
 	</script>
 

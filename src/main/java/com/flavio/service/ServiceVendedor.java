@@ -1,5 +1,6 @@
 package com.flavio.service;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -15,10 +16,12 @@ import com.flavio.util.Paginacao;
 import com.flavio.util.security.MD5;
 
 @RequestScoped
-public class ServiceVendedor implements GenericService<Vendedor>{
+public class ServiceVendedor implements GenericService<Vendedor>, Serializable{
 
 //	private DAOFactory daoFactory = DAOFactory.getFactory();
 //	private VendedorDao vendedorDao;
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Inject
 	private VendedorRepository vendedorRepository;

@@ -1,5 +1,6 @@
 package com.flavio.service;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +13,9 @@ import com.flavio.model.Categoria;
 import com.flavio.repository.CategoriaRepository;
 import com.flavio.util.Paginacao;
 
-public class CategoriasService implements GenericService<Categoria>{
+public class CategoriasService implements GenericService<Categoria>, Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Inject
 	private CategoriaRepository categoriaRepository;

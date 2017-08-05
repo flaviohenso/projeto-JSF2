@@ -1,5 +1,6 @@
 package com.flavio.service;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +15,10 @@ import com.flavio.repository.AuthoritieRepository;
 import com.flavio.util.Paginacao;
 
 @RequestScoped
-public class AuthoritieService implements GenericService<Authoritie>{
+public class AuthoritieService implements GenericService<Authoritie>, Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	@Inject
 	private AuthoritieRepository authoritieRepository;
 

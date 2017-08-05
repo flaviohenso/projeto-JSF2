@@ -19,8 +19,8 @@ import com.flavio.model.Authoritie;
 import com.flavio.util.Paginacao;
 import com.flavio.util.jpa.EntityManagerProducer;
 
-public class AuthoritieRepository implements Serializable {
-
+public class AuthoritieRepository implements GenericRepository<Authoritie, Serializable> {
+	
 	private static final long serialVersionUID = 1L;
 
 	public static Log log = LogFactory.getLog(AuthoritieRepository.class);

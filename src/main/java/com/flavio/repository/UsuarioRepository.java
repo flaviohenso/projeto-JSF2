@@ -11,9 +11,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.flavio.model.Usuario;
+import com.flavio.util.Paginacao;
 import com.flavio.util.jpa.EntityManagerProducer;
 
-public class UsuarioRepository implements Serializable {
+public class UsuarioRepository implements GenericRepository<Usuario, Serializable> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -49,6 +50,30 @@ public class UsuarioRepository implements Serializable {
 		} catch (NoResultException e) {
 			log.info("Nenhuma resultado encontrado!", e);
 		}
+		return null;
+	}
+
+	@Override
+	public List<Usuario> filtrados(Paginacao paginacao) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int quantidadeFiltrados(Paginacao paginacao) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean remover(Usuario entity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Usuario BuscarPorID(Long id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -16,13 +16,15 @@ import javax.transaction.Transactional;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.flavio.exception.CategoriaException;
 import com.flavio.model.Categoria;
+import com.flavio.model.Produto;
 import com.flavio.util.Paginacao;
 import com.flavio.util.jpa.EntityManagerProducer;
 
 @RequestScoped
 public class CategoriaRepository implements GenericRepository<Categoria, Serializable>, Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public static Log log = LogFactory.getLog(CategoriaRepository.class);
@@ -60,9 +62,8 @@ public class CategoriaRepository implements GenericRepository<Categoria, Seriali
 				.getResultList();
 	}
 
-	public boolean remover(Categoria categoria) {
+	public boolean remover(Categoria categoria) throws CategoriaException {
 		try {
-			System.out.println(categoria.getId() + " removendo categoria >>>>>>");
 			categoria = this.BuscarPorID(categoria.getId());
 			EntityManagerProducer.beginTransaction(entityManager);
 			entityManager.remove(categoria);
@@ -70,8 +71,10 @@ public class CategoriaRepository implements GenericRepository<Categoria, Seriali
 			return true;
 		} catch (PersistenceException e) {
 			log.error("Categoria não pode ser removido! ", e);
+			throw new CategoriaException("Erro ao remover do banco de dados favor entrar em contato "
+					+ "com o adminsitrador informando o erro a seguir: " + e.getMessage());
 		}
-		return false;
+
 	}
 
 	public Categoria BuscarPorID(Long id) {
@@ -85,9 +88,9 @@ public class CategoriaRepository implements GenericRepository<Categoria, Seriali
 		criteriaQuery = criteriaBuilder.createQuery(Categoria.class);
 		root = criteriaQuery.from(Categoria.class);
 		criteriaQuery.select(root);
-		
+
 		if (paginacao.getDescricao() != null) {
-			criteriaQuery.where(criteriaBuilder.like(root.get("nome"), "%"+paginacao.getDescricao()+"%"));
+			criteriaQuery.where(criteriaBuilder.like(root.get("nome"), "%" + paginacao.getDescricao() + "%"));
 		}
 		query = entityManager.createQuery(this.criteriaQuery);
 
@@ -113,6 +116,17 @@ public class CategoriaRepository implements GenericRepository<Categoria, Seriali
 		cq.select(cb.count(cq.from(Categoria.class)));
 
 		return entityManager.createQuery(cq).getSingleResult().intValue();
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean cascadeAll(Categoria categoria) {
+		if (!entityManager.createNamedQuery("Produto.categoria", Produto.class)
+				.setParameter("categoria", categoria).getResultList().isEmpty()) {
+			return true;
+		}
+		return false;
 	}
 
 }

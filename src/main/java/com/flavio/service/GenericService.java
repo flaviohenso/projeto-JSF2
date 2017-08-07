@@ -9,6 +9,6 @@ import com.flavio.util.Paginacao;
 public interface GenericService<T> {
 	public List<T> listRepository();
 	public boolean salvar(T t) throws Exception;
-	public boolean remover(T t);
+	public boolean remover(T t) throws Exception;
 	public LazyDataModel<T> consultaPaginada(Paginacao paginacao);
 }

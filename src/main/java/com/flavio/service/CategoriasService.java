@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
+import com.flavio.exception.CategoriaException;
 import com.flavio.model.Categoria;
 import com.flavio.repository.CategoriaRepository;
 import com.flavio.util.Paginacao;
@@ -39,15 +40,22 @@ public class CategoriasService implements GenericService<Categoria>, Serializabl
 	}
 
 	@Override
-	public boolean remover(Categoria categoria) {
-		if (categoria.getId() != null) {
+	public boolean remover(Categoria categoria) throws CategoriaException{
+		/*
+		 * remove a categoria se a categoria existir e se não estiver associada
+		 * a nenhum produto
+		 */
+		if (categoria.getId() != null && !categoriaRepository.cascadeAll(categoria)) {
 			if (categoriaRepository.remover(categoria)) {
 				return true;
 			}
+		} else {
+			throw new CategoriaException(categoria.getId() == null ? "Categoria não presente na base de dados" : 
+				"Essa categoria não pode ser removida pois esta associada a um produto");
 		}
 		return false;
 	}
-
+	
 	@Override
 	public LazyDataModel<Categoria> consultaPaginada(Paginacao paginacao) {
 		return new LazyDataModel<Categoria>() {

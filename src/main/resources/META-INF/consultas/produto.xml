@@ -20,4 +20,9 @@
 			SELECT count(v) FROM produto v
 		</query>
 	</named-query>
+	<named-query name="Produto.categoria">
+		<query>
+			SELECT v FROM produto v where v.categoria = :categoria
+		</query>
+	</named-query>
 </entity-mappings>

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -15,6 +14,7 @@ import org.apache.commons.logging.LogFactory;
 import org.primefaces.model.LazyDataModel;
 
 import com.flavio.anotation.Email;
+import com.flavio.exception.CategoriaException;
 import com.flavio.model.Categoria;
 import com.flavio.service.CategoriasService;
 import com.flavio.service.ContextMensage;
@@ -65,12 +65,15 @@ public class CategoriaBean implements Serializable {
 	}
 	
 	public void remover(){
-		if(categoriasService.remover(categoria)){
-			this.listaPagianda();
-			this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Categoria removido com sucesso!",
-					"Categoria removido com sucesso!");
-		}else{
-			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, "Erro ao remover!", "Erro ao remover!");
+		try {
+			if(categoriasService.remover(categoria)){
+				this.listaPagianda();
+				this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Categoria removido com sucesso!",
+						"Categoria removido com sucesso!");
+			}
+		} catch (CategoriaException e) {
+			this.contextMensage.addmsg("", FacesMessage.SEVERITY_WARN, e.getMessage(), e.getMessage());
+			e.printStackTrace();
 		}
 		this.limpar();
 	}

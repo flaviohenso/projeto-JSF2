@@ -227,10 +227,12 @@
 							</h:commandLink></li>
 						<li><h:commandLink action="#{clienteBean.list}"
 								value="Clientes" /></li>
+						<li><h:commandLink action="#{fornecedorBean.list}"
+								value="Fornecedores" /></li>
 					</ul> <!-- /.nav-second-level --></li>
 
 				<li><h:link>
-						<i class="fa fa-users fa-fw" />
+						<i class="fa fa-calculator fa-fw" />
 						Financeiro<span class="fa arrow "></span>
 					</h:link>
 					<ul class="nav nav-second-level">
@@ -251,18 +253,18 @@
 					</ul> <!-- /.nav-second-level --></li>
 
 				<li><h:link>
-						<i class="fa fa-bar-chart-o fa-fw"></i>
+						<i class="fa fa-file fa-fw"></i>
 						Compras<span class="fa arrow "></span>
 					</h:link>
 					<ul class="nav nav-second-level">
-						<li><h:commandLink action="/venda/venda?faces-redirect=true"
-								value="Registro" /></li>
+						<li><h:commandLink action="#{compraBean.list}"
+								value="Pedidos" /></li>
 						<li><h:commandLink
 								action="/venda/listagem?faces-redirect=true" value="Listagem" /></li>
 					</ul> <!-- /.nav-second-level --></li>
 
 				<li><h:link>
-						<i class="fa fa-bar-chart-o fa-fw"></i>
+						<i class="fa fa-cubes fa-fw"></i>
 						Estoque<span class="fa arrow "></span>
 					</h:link>
 					<ul class="nav nav-second-level">
@@ -272,7 +274,7 @@
 								action="/venda/listagem?faces-redirect=true" value="Listagem" /></li>
 					</ul> <!-- /.nav-second-level --></li>
 
-				<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i>
+				<li><a href="forms.html"><i class="fa fa-picture-o fa-fw"></i>
 						Catálogo</a></li>
 				<li><a href="#"><i class="fa fa-wrench fa-fw"></i> Sistema<span
 						class="fa arrow"></span></a>
@@ -289,8 +291,8 @@
 						<li><a href="icons.html"> Icons</a></li>
 						<li><a href="grid.html">Grid</a></li>
 					</ul> <!-- /.nav-second-level --></li>
-				<li><a href="#"><i class="fa fa-sitemap fa-fw"></i> Suporte<span
-						class="fa arrow"></span></a>
+				<li><a href="#"><i class="fa fa-life-ring fa-fw"></i>
+						Suporte<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li><a href="#">Second Level Item</a></li>
 						<li><a href="#">Second Level Item</a></li>

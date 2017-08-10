@@ -4,6 +4,7 @@
 package com.flavio.service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +13,6 @@ import javax.inject.Inject;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-import com.flavio.model.Categoria;
 import com.flavio.model.Fornecedor;
 import com.flavio.repository.FornecedorRepository;
 import com.flavio.util.Paginacao;
@@ -69,6 +69,24 @@ public class FornecedorService implements GenericService<Fornecedor>, Serializab
 			}
 
 		};
+	}
+
+	/**
+	 * @param term
+	 * @return
+	 */
+	public ArrayList<String> autoComplete(String term) {
+		
+		ArrayList<String> fornecedoresString = new ArrayList<String>();
+		List<Fornecedor> fornecedores;
+		
+		fornecedores = fornecedorRepository.buscarPorNome(term);
+		
+		for (Fornecedor fornecedor : fornecedores) {
+			fornecedoresString.add(fornecedor.getNome()+ ":" +fornecedor.getCnpj());
+		}
+		
+		return fornecedoresString;
 	}
 
 }

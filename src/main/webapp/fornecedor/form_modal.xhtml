@@ -10,8 +10,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<h:form role="form" prependId="false" id="form_modal">
-		<div class="modal-header"
-			style="background-color: #2E64FE; color: white;">
+		<div class="modal-header bg-primary">
 			<h4 class="modal-title" id="modalLabel">
 				Cadastro de Fornecedor
 
@@ -27,82 +26,139 @@
 		</div>
 
 		<div class="modal-body">
-			<div class="col-lg-6 form-group">
-				<div class="form-group">
-					<h:outputLabel for="fornecedor_nome">Nome</h:outputLabel>
-					<h:inputText id="fornecedor_nome" class="form-control"
-						value="#{fornecedorBean.fornecedor.nome}" required="true" />
-					<h:message for="fornecedor_nome" showDetail="true"
-						showSummary="false" />
-				</div>
-				<div class="form-group">
-					<h:outputLabel for="fornecedor_cnpj">CNPJ</h:outputLabel>
-					<h:inputText id="fornecedor_cnpj" class="form-control"
-						value="#{fornecedorBean.fornecedor.cnpj}" required="true" />
-					<h:message for="fornecedor_cnpj" showDetail="true"
-						showSummary="false" />
-				</div>
-				<div class="form-group">
-					<h:outputLabel for="fornecedor_ie">Inscrição Estadual</h:outputLabel>
-					<h:inputText id="fornecedor_ie" class="form-control"
-						value="#{fornecedorBean.fornecedor.ie}" required="true" />
-					<h:message for="fornecedor_ie" showDetail="false"
-						showSummary="true" />
-				</div>
-				<div class="form-group">
-					<h:outputLabel for="fornecedor_telefone">Telefone</h:outputLabel>
-					<h:inputText id="fornecedor_telefone" class="form-control"
-						value="#{fornecedorBean.fornecedor.telefone}" required="true" />
-					<h:message for="fornecedor_telefone" showDetail="false"
-						showSummary="true" />
-				</div>
 
-				<div class="form-group">
-					<h:outputLabel for="fornecedor_cep">Cep</h:outputLabel>
-					<h:inputText id="fornecedor_cep" class="form-control"
-						value="#{fornecedorBean.fornecedor.cep}" required="true" />
-					<h:message for="fornecedor_cep" showDetail="false"
-						showSummary="true" />
+			<div class="tabbable">
+				<!-- Only required for left/right tabs -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab1" data-toggle="tab">Fornecedor</a></li>
+					<li><a href="#tab2" data-toggle="tab">Endereço</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1">
+						<div class="well">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="form-group">
+										<h:outputLabel for="fornecedor_nome">Nome</h:outputLabel>
+										<h:inputText id="fornecedor_nome" class="form-control"
+											value="#{fornecedorBean.fornecedor.nome}" required="true" />
+										<h:message for="fornecedor_nome" showDetail="true"
+											showSummary="false" />
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<h:outputLabel for="fornecedor_cnpj">CNPJ</h:outputLabel>
+												<h:inputText id="fornecedor_cnpj" class="form-control"
+													value="#{fornecedorBean.fornecedor.cnpj}" required="true" />
+												<h:message for="fornecedor_cnpj" showDetail="true"
+													showSummary="false" />
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<h:outputLabel for="fornecedor_ie">Inscrição Estadual</h:outputLabel>
+												<h:inputText id="fornecedor_ie" class="form-control"
+													value="#{fornecedorBean.fornecedor.ie}" required="true" />
+												<h:message for="fornecedor_ie" showDetail="false"
+													showSummary="true" />
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<h:outputLabel for="fornecedor_telefone">Telefone</h:outputLabel>
+												<h:inputText id="fornecedor_telefone" class="form-control"
+													value="#{fornecedorBean.fornecedor.telefone}"
+													required="true" />
+												<h:message for="fornecedor_telefone" showDetail="false"
+													showSummary="true" />
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<h:outputLabel for="fornecedor_contato">Contato</h:outputLabel>
+												<h:inputText id="fornecedor_contato" class="form-control"
+													value="#{fornecedorBean.fornecedor.contato}"
+													required="true" />
+												<h:message for="fornecedor_contato" showDetail="false"
+													showSummary="true" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="tab2">
+						<div class="well">
+							<div class="row">
+
+								<div class="col-xs-6">
+									<div class="form-group">
+										<h:outputLabel for="fornecedor_cep">Cep</h:outputLabel>
+										<h:inputText id="fornecedor_cep" class="form-control"
+											value="#{fornecedorBean.fornecedor.cep}" required="true" />
+										<h:message for="fornecedor_cep" showDetail="false"
+											showSummary="true" />
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="fornecedor_logradouro">Rua</h:outputLabel>
+										<h:inputText id="fornecedor_logradouro" class="form-control"
+											value="#{fornecedorBean.fornecedor.logradouro}"
+											required="true" />
+										<h:message for="fornecedor_logradouro" showDetail="false"
+											showSummary="true" />
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="fornecedor_numero">Numero</h:outputLabel>
+										<h:inputText id="fornecedor_numero" class="form-control"
+											value="#{fornecedorBean.fornecedor.numero}" required="true" />
+										<h:message for="fornecedor_numero" showDetail="false"
+											showSummary="true" />
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="form-group">
+										<h:outputLabel for="fornecedor_complemento">Complemento</h:outputLabel>
+										<h:inputText id="fornecedor_complemento" class="form-control"
+											value="#{fornecedorBean.fornecedor.complemento}"
+											required="true" />
+										<h:message for="fornecedor_complemento" showDetail="false"
+											showSummary="true" />
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="fornecedor_uf">UF</h:outputLabel>
+										<h:inputText id="fornecedor_uf" class="form-control"
+											value="#{fornecedorBean.fornecedor.uf}" required="true" />
+										<h:message for="fornecedor_uf" showDetail="false"
+											showSummary="true" />
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="fornecedor_cidade">Cidade</h:outputLabel>
+										<h:inputText id="fornecedor_cidade" class="form-control"
+											value="#{fornecedorBean.fornecedor.cidade}" required="true" />
+										<h:message for="fornecedor_cidade" showDetail="false"
+											showSummary="true" />
+									</div>
+								</div>
+								<div class="col-xs-12">
+									<div class="form-group">
+										<h:outputLabel for="fornecedor_observacao">Observacao</h:outputLabel>
+										<h:inputTextarea id="fornecedor_observacao"
+											class="form-control"
+											value="#{fornecedorBean.fornecedor.observacao}" rows="2"
+											cols="5" required="true" />
+										<h:message for="fornecedor_observacao" showDetail="false"
+											showSummary="true" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="col-lg-6 form-group">
-				<div class="form-group">
-					<h:outputLabel for="fornecedor_logradouro">Rua</h:outputLabel>
-					<h:inputText id="fornecedor_logradouro" class="form-control"
-						value="#{fornecedorBean.fornecedor.logradouro}" required="true" />
-					<h:message for="fornecedor_logradouro" showDetail="false"
-						showSummary="true" />
-				</div>
-				<div class="form-group">
-					<h:outputLabel for="fornecedor_numero">Numero</h:outputLabel>
-					<h:inputText id="fornecedor_numero" class="form-control"
-						value="#{fornecedorBean.fornecedor.numero}" required="true" />
-					<h:message for="fornecedor_numero" showDetail="false"
-						showSummary="true" />
-				</div>
-				<div class="form-group">
-					<h:outputLabel for="fornecedor_complemento">Complemento</h:outputLabel>
-					<h:inputText id="fornecedor_complemento" class="form-control"
-						value="#{fornecedorBean.fornecedor.complemento}" required="true" />
-					<h:message for="fornecedor_complemento" showDetail="false"
-						showSummary="true" />
-				</div>
-				<div class="form-group">
-					<h:outputLabel for="fornecedor_uf">UF</h:outputLabel>
-					<h:inputText id="fornecedor_uf" class="form-control"
-						value="#{fornecedorBean.fornecedor.uf}" required="true" />
-					<h:message for="fornecedor_uf" showDetail="false"
-						showSummary="true" />
-				</div>
-				<div class="form-group">
-					<h:outputLabel for="fornecedor_cidade">Cidade</h:outputLabel>
-					<h:inputText id="fornecedor_cidade" class="form-control"
-						value="#{fornecedorBean.fornecedor.cidade}" required="true" />
-					<h:message for="fornecedor_cidade" showDetail="false"
-						showSummary="true" />
-				</div>
-			</div>
-			
 		</div>
 		<div class="modal-footer">
 			<h:commandButton class="btn btn-success btn-sm" id="loading-btn"

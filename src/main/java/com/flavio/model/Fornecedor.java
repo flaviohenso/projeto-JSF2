@@ -33,6 +33,7 @@ public class Fornecedor implements Serializable{
 	private String cidade;
 	private String uf;
 	private String cep;
+	private String Observacao;
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
@@ -106,6 +107,12 @@ public class Fornecedor implements Serializable{
 	}
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+	public String getObservacao() {
+		return Observacao;
+	}
+	public void setObservacao(String observacao) {
+		Observacao = observacao;
 	}
 	@Override
 	public int hashCode() {

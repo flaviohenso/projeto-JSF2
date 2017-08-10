@@ -32,6 +32,7 @@
     	<intercept-url pattern="/estoque/**" access="hasAnyRole('ADMINISTRADORES')"/>
     	<intercept-url pattern="/compras/**" access="hasAnyRole('ADMINISTRADORES')"/>
     	<intercept-url pattern="/fornecedor/**" access="hasAnyRole('ADMINISTRADORES')"/>
+    	<intercept-url pattern="/autoCompleteFornecedor/**" access="hasAnyRole('ADMINISTRADORES')"/>
     	<intercept-url pattern="/**" access="denyAll"/>
     	
     	<form-login login-page="/acesso.xhtml" default-target-url="/" always-use-default-target="true"/>

@@ -4,6 +4,7 @@
 package com.flavio.repository;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -110,6 +111,16 @@ public class FornecedorRepository implements GenericRepository<Fornecedor, Seria
 	@Override
 	public Fornecedor BuscarPorID(Long id) {
 		return entityManager.find(Fornecedor.class, id);
+	}
+
+	/**
+	 * @param term
+	 * @return
+	 */
+	public List<Fornecedor> buscarPorNome(String term) {
+		
+		return entityManager.createNamedQuery("Fornecedor.findByNome", Fornecedor.class).setParameter("nome", "%" + term + "%").getResultList();
+		
 	}
 
 }

@@ -28,7 +28,7 @@ public class ClienteRepository implements GenericRepository<Cliente, Serializabl
 	public static Log log = LogFactory.getLog(ClienteRepository.class);
 
 	private CriteriaQuery<Cliente> criteriaQuery;
-
+ 
 	private Root<Cliente> root;
 
 	private TypedQuery query;

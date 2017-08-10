@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Author: Flávio Henrique-->
+<!-- Data: 8 de abr de 2017 -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form role="form" prependId="false" id="form_modal">
+		<div class="modal-header bg-primary">
+			<h4 class="modal-title" id="modalLabel">
+				Cadastro de Pedido
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</h4>
+
+			<p:messages showSummary="true" showDetail="false" autoUpdate="true"
+				showIcon="false" />
+
+		</div>
+		<div class="modal-body">
+			<div class="tabbable">
+				<!-- Only required for left/right tabs -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab1" data-toggle="tab">Fornecedor</a></li>
+					<li><a href="#tab2" data-toggle="tab">Itens</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="well">Numero do Pedido: ds-3483</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="well">
+									<div class="form-group">
+										<label for="username" class="control-label">Username</label> <input
+											type="text" class="form-control" id="username"
+											name="username" value="" required=""
+											title="Please enter you username"
+											placeholder="example@gmail.com" /> <span class="help-block"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="well">
+									<div class="form-group">
+										<label for="username" class="control-label">Username</label> <input
+											type="text" class="form-control" id="username"
+											name="username" value="" required=""
+											title="Please enter you username"
+											placeholder="example@gmail.com" /> <span class="help-block"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="tab2">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="well">Item</div>
+							</div>
+						</div>
+						<ui:include src="/compras/table_item.xhtml"></ui:include>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+
+			<h:commandButton class="btn btn-success btn-sm" id="loading-btn"
+				action="#{compraBean.salvar}" value="Salvar">
+				<f:ajax execute="@form" render=":formTable:dataTables-example @form" />
+			</h:commandButton>
+			<button type="reset" class="btn btn-dafault btn-sm">Reset</button>
+		</div>
+	</h:form>
+
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+			$('#sandbox-container .input-append.date').datepicker({
+				language : "pt-BR",
+				format : "dd/mm/yyyy",
+				startView : new Date(),
+				autoclose : true
+			});
+
+		});
+		$('button').button({
+			loadingText : 'Processando...'
+		});
+
+		$('#loading-btn').click(function() {
+			var btn = $(this);
+			btn.button('loading');
+			setTimeout(function() {
+				btn.button('reset');
+			}, 2000);
+		});
+	</script>
+
+</ui:composition>

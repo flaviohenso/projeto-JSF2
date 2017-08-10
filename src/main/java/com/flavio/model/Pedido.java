@@ -35,8 +35,8 @@ public class Pedido implements Serializable {
 	private BigDecimal valorFrete;
 	private BigDecimal valorDesconto;
 	private BigDecimal valorTotal;
-	private Vendedor vendedor;
 	private Cliente cliente;
+	private Fornecedor fornecedor;
 	private EnderecoEntrega enderecoEntrega;
 	private List<ItemPedido> itemPedidos = new ArrayList<ItemPedido>();
 	
@@ -140,19 +140,6 @@ public class Pedido implements Serializable {
 	}
 
 	/**
-	 * @ManyToOne: Muitos pedidos podem ser para um vendedor 
-	 */
-	@ManyToOne
-	@JoinColumn(name = "vendedor_id", nullable = false)
-	public Usuario getVendedor() {
-		return vendedor;
-	}
-
-	public void setVendedor(Vendedor vendedor) {
-		this.vendedor = vendedor;
-	}
-
-	/**
 	 * @ManyToOne: Muitos pedidos podem ser para um cliente
 	 */
 	@ManyToOne
@@ -189,6 +176,14 @@ public class Pedido implements Serializable {
 
 	public void setItemPedidos(List<ItemPedido> itemPedidos) {
 		this.itemPedidos = itemPedidos;
+	}
+	
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 
 	@Override

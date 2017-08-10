@@ -27,18 +27,18 @@ public class Vendedor extends Usuario implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private List<Pedido> pedidos = new ArrayList<Pedido>();
+	private List<Venda> vendas = new ArrayList<Venda>();
 
 	/*
 	 * @OneToMany(mappedBy = "vendedor"): defini que a chave estrangeira vai esta na Entity Pedido
 	 */
 	@OneToMany(mappedBy = "vendedor")
-	public List<Pedido> getPedidos() {
-		return pedidos;
+	public List<Venda> getVendas() {
+		return vendas;
 	}
 
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
+	public void setVendas(List<Venda> vendas) {
+		this.vendas = vendas;
 	}
 
 }

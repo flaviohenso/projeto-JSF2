@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- Author: Flávio Henrique-->
+<!-- Data: 8 de abr de 2017 -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	
+	
+						<p:messages showSummary="true" showDetail="false"
+							autoUpdate="true" showIcon="false" />
+						<h:form id="formTableItem">
+							
+							<p:dataTable value="#{produtoBean.model}" lazy="true"
+								var="produto" paginator="true" paginatorPosition="bottom"
+								rows="5" rowStyleClass="gradeA" 
+								tableStyleClass="table table-striped table-bordered table-hover display"
+								id="dataTables-itens">
+
+								<p:column width="5%">
+									<!-- row record -->
+									<h:selectBooleanCheckbox />
+								</p:column>
+
+								<p:column headerText="Nome" sortBy="#{produto.nome}">
+									<!-- row record -->
+	    							#{produto.nome}
+	    						</p:column>
+	    						
+	    						<p:column headerText="Nome" sortBy="#{produto.sku}">
+									<!-- row record -->
+	    							#{produto.sku}
+	    						</p:column>
+	    						
+	    						<p:column headerText="Nome" sortBy="#{produto.valorUnitario}">
+									<!-- row record -->
+	    							#{produto.valorUnitario}
+	    						</p:column>
+	    						
+	    						<p:column headerText="Nome" sortBy="#{produto.quantidadeEstoque}">
+									<!-- row record -->
+	    							#{produto.quantidadeEstoque}
+	    						</p:column>
+
+								<p:column>
+									<div align="center">
+										<p:commandButton styleClass="btn btn-xs btn-danger"
+											title="Excluir" icon="fa fa-minus-circle" value="Excluir"
+											oncomplete="remover();" process="@this"
+											update="dataTables-itens" immediate="true">
+											<f:setPropertyActionListener value="#{produto}"
+												target="#{produtoBean.produto}" />
+										</p:commandButton>
+									</div>
+									<!-- 								<h:commandButton styleClass="btn btn-xs btn-danger"  -->
+									<!-- 									 value="Salvar"> -->
+									<!-- 									<f:setPropertyActionListener value="#{authoritie}" target="#{sistemaBean.authoritie}" /> -->
+									<!-- 								</h:commandButton> -->
+
+									<!-- 								<button class="btn btn-xs btn-danger" data-toggle="modal" -->
+									<!-- 									data-target="#dialogRemove">Excluir</button> -->
+								</p:column>
+							</p:dataTable>
+						</h:form>
+				
+
+	<!-- 	</ui:insert> -->
+
+	<!-- DataTables CSS -->
+	<!-- 	<h:outputStylesheet -->
+	<!-- 		name="css/datatable/datatable.min.css" /> -->
+
+	<!-- DataTables CSS -->
+	<h:outputStylesheet
+		name="css/bootstrap/vendor/datatables-plugins/dataTables.bootstrap.css" />
+
+	<!-- DataTables Responsive CSS -->
+	<h:outputStylesheet
+		name="css/bootstrap/vendor/datatables-responsive/dataTables.responsive.css" />
+
+	<!-- DataTables JavaScript -->
+	<h:outputScript
+		name="css/bootstrap/vendor/datatables/js/jquery.dataTables.min.js" />
+
+	<h:outputScript name="js/bootstrap/vendor/jquery/jquery.min.js" />
+
+	<h:outputScript
+		name="css/bootstrap/vendor/datatables-plugins/js/dataTables.bootstrap.min.js" />
+
+	<h:outputScript
+		name="css/bootstrap/vendor/datatables-responsive/js/dataTables.responsive.js" />
+
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script>
+		$(document).ready(function() {
+			$('#dataTables-example').DataTable({
+				responsive : true
+			});
+
+		});
+
+		function remover() {
+
+			$('#dialogRemove').modal({
+				show : true
+			})
+		}
+
+		function create() {
+
+			$('#myModal').modal({
+				show : true
+			})
+		}
+
+		$(document).ready(function() {
+			var table = $('#dataTables-example').DataTable({
+				"ajax" : "data/arrays.txt",
+				"columnDefs" : [ {
+					"targets" : -1,
+					"data" : null,
+					"defaultContent" : "<button>Click!</button>"
+				} ]
+			});
+
+			$('#dataTables-example tbody').on('click', 'button', function() {
+				var data = table.row($(this).parents('tr')).data();
+				alert(data[0] + "'s salary is: " + data[5]);
+			});
+		});
+	</script>
+
+</ui:composition>

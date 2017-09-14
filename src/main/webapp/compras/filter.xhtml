@@ -13,21 +13,46 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<h:form role="formBuscar">
-				<div class="col-lg-6">
-					<div class="form-group">
-						<h:inputText class="form-control" pt:placeholder="Nome" value="#{compraBean.nomePesquisa}"/>
-						<p class="help-block">Example block-level help text here.</p>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<h:inputText class="form-control" pt:placeholder="Número Pedido"
+								value="#{compraBean.nomePesquisa}" />
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<h:inputText class="form-control" pt:placeholder="Fornecedor"
+								value="#{compraBean.nomePesquisa}" />
+						</div>
 					</div>
 				</div>
-				<div class="col-lg-6">
-					<div class="form-group">
-						<br></br>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<h:inputText class="form-control" pt:placeholder="Status"
+								value="#{compraBean.nomePesquisa}" />
+						</div>
 					</div>
-					<div align="right">
-						<h:commandButton class="btn btn-info btn-xs" id="loading-btn"
-							action="#{compraBean.buscar}" value="Buscar">
-							<f:ajax execute="@form" render=":formTable:dataTables-example @formBuscar" />
-						</h:commandButton>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<div class="input-daterange input-group" id="datepicker">
+								<input type="text" class="input-sm form-control" name="start" />
+								<span class="input-group-addon">Até</span> <input type="text"
+									class="input-sm form-control" name="end" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div align="right">
+							<h:commandButton class="btn btn-info btn-xs" id="loading-btn"
+								action="#{compraBean.buscar}" value="Buscar">
+								<f:ajax execute="@form"
+									render=":formTable:dataTables-example @formBuscar" />
+							</h:commandButton>
+						</div>
 					</div>
 				</div>
 			</h:form>
@@ -59,5 +84,12 @@
 
 	<h:outputScript
 		name="css/bootstrap/vendor/datatables-responsive/js/dataTables.responsive.js" />
+
+	<script type="text/javascript">
+		$('#sandbox-container .input-daterange').datepicker({
+			language : "pt-BR",
+			multidate : false
+		});
+	</script>
 
 </ui:composition>

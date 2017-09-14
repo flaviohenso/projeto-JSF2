@@ -1,6 +1,7 @@
 package com.flavio.service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -71,5 +72,24 @@ public class ProdutoService implements GenericService<Produto>, Serializable {
 
 		};
 	}
+
+	/**
+	 * @param term
+	 * @return
+	 */
+	public ArrayList<String> autoComplete(String term) {
+		
+		ArrayList<String> produtosString = new ArrayList<String>();
+		List<Produto> produtos;
+		
+		produtos = produtoRepository.byNome(term);
+		
+		for (Produto produto : produtos) {
+			produtosString.add(produto.getNome()+ ":" +produto.getSku());
+		}
+		
+		return produtosString;
+	}
+
 
 }

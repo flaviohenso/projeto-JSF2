@@ -117,4 +117,5 @@ public class ProdutoRepository implements GenericRepository<Produto, Serializabl
 
 		return entityManager.createQuery(cq).getSingleResult().intValue();
 	}
+
 }

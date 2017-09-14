@@ -40,25 +40,35 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab1">
-						<div class="row">
-							<div class="col-xs-6">
-								<div class="well">
+						<div class="well">
+							<div class="row">
+								<div class="col-xs-6">
 									<div class="form-group">
 										<label for="username" class="control-label">Nome</label>
-										<h:inputText class="typeahead form-control" required="true"
-											value="#{compraBean.pedido.fornecedor.nome}"
-											id="fornecedor_nome" data-provide="typeahead" />
+										<div class="input-group">
+											<h:inputText class="typeahead form-control" required="true"
+												id="fornecedor_nome" data-provide="typeahead"
+												autocomplete="off" >
+												<f:ajax listener="#{compraBean.atualizaModel}" execute="@this" render=":form_modal:labelFornecedor" event="valueChange"/>
+											</h:inputText>
+											<h:inputHidden id="selecao"/>
+											<span class="input-group-btn"> <p:commandButton
+													styleClass="btn btn-lg btn-primary" icon="fa fa-plus"
+													oncomplete="create();" process="@this" immediate="true">
+													<f:setPropertyActionListener value="#{compra}"
+														target="#{compraBean.pedido}" />
+													<f:ajax event="click" execute="@form" render=":form_modal" />
+												</p:commandButton>
+											</span>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-xs-6">
-								<div class="well">
-									<div class="form-group">
-										<label for="username" class="control-label">Username</label> <input
-											type="text" class="form-control" id="username"
-											name="username" value="" required=""
-											title="Please enter you username"
-											placeholder="example@gmail.com" /> <span class="help-block"></span>
+								<div class="col-xs-5">
+									<div id="labelFornecedor">
+										<h:outputLabel>#{compraBean.pedido.fornecedor.nome}</h:outputLabel>
+										<h:outputLabel>#{compraBean.pedido.fornecedor.nome}</h:outputLabel>
+										<h:outputLabel>#{compraBean.pedido.fornecedor.nome}</h:outputLabel>
+										<h:outputLabel>#{compraBean.pedido.fornecedor.nome}</h:outputLabel>
 									</div>
 								</div>
 							</div>
@@ -78,7 +88,7 @@
 		<div class="modal-footer">
 
 			<h:commandButton class="btn btn-success btn-sm" id="loading-btn"
-				action="#{compraBean.salvar}" value="Salvar">
+				action="#{compraBean.salvar}" value="Salvar" >
 				<f:ajax execute="@form" render=":formTable:dataTables-example @form" />
 			</h:commandButton>
 			<button type="reset" class="btn btn-dafault btn-sm">Reset</button>
@@ -86,27 +96,66 @@
 	</h:form>
 
 	<script type="text/javascript">
-		// 		$(document).ready(function() {
-		$(function() {
+	$(function() {
+		
+// 		var options = {
+// 				data: ["blue", "green", "pink", "red", "yellow"]
+// 			};
+		
+// 		$('#fornecedor_nome').easyAutocomplete(options);
+		
 			$("#fornecedor_nome")
 					.typeahead(
 							{
-
+								minLength : 3,
 								source : function(query, process) {
-									return $.getJSON('autoCompleteFornecedor',
-											{
-												query : query
-											}, function(data) {
-												return process(data);
-											});
+									fornecedores = [];
+							        map = {};
+									return $.get('autoCompleteFornecedor',
+													{
+														query : query
+													},
+													function(data) {
+														var resultList = data
+																.map(function(
+																		item) {
+																	var aItem = item.nome;
+																	return aItem;
+																});
+														
+														 $(data).each(function(key, value) {             
+															 fornecedores.push({label:value.nome, value:value.id});
+													       });
+													        console.log(fornecedores);
+														process(resultList);
+													});
 								},
-								minLength : 3
+								matcher : function(item) {
+										if (item.toLowerCase().indexOf(
+												this.query.trim().toLowerCase()) != -1) {
+											return true;
+										}
+								},
+								autoSelect: true,
+								sorter : function(items) {
+									return items.sort();
+								},
+								highlighter : function(item) {
+									var regex = new RegExp('(' + this.query
+											+ ')', 'gi');
+									return item.replace(regex,
+											"<strong>$1</strong>");
+								},
+								updater : function(item) {
+									$("#selecao").val(item);
+									return item;
+								}
 							});
 
 		});
-		// 		});
 
 		$(document).ready(function(e) {
+			
 			$('#sandbox-container .input-append.date').datepicker({
 				language : "pt-BR",
 				format : "dd/mm/yyyy",

@@ -20,6 +20,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity(name = "pedido")
 public class Pedido implements Serializable {
@@ -27,6 +31,7 @@ public class Pedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	private String codigo;
 	private Date dataCriacao;
 	private Date dataEntrega;
 	private String observacao;
@@ -48,6 +53,16 @@ public class Pedido implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	
+	@NotBlank @NotNull
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	/**

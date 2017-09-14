@@ -9,7 +9,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-	
+
 	<!-- <ui:insert name="body"> -->
 	<div id="page-wrapper">
 		<div class="row">
@@ -28,9 +28,9 @@
 						<!-- 							data-toggle="modal">Novo</a> -->
 						<!-- 						<a href="#myModal" role="button" class="btn" data-toggle="modal" id="btn_novo">Novo</a> -->
 
-						<p:commandButton styleClass="btn btn-primary btn-sm"
-							title="Novo" icon="fa fa-plus-circle" value="Novo"
-							oncomplete="create();" process="@this" immediate="true">
+						<p:commandButton styleClass="btn btn-primary btn-sm" title="Novo"
+							icon="fa fa-plus-circle" value="Novo" oncomplete="create();"
+							process="@this" immediate="true">
 						</p:commandButton>
 					</div>
 
@@ -41,10 +41,10 @@
 						<p:messages showSummary="true" showDetail="false"
 							autoUpdate="true" showIcon="false" />
 						<h:form id="formTable">
-							
-							<p:dataTable value="#{compraBean.model}" lazy="true"
-								var="compra" paginator="true" paginatorPosition="bottom"
-								rows="5" rowStyleClass="gradeA" 
+
+							<p:dataTable value="#{compraBean.model}" lazy="true" var="compra"
+								paginator="true" paginatorPosition="bottom" rows="5"
+								rowStyleClass="gradeA"
 								tableStyleClass="table table-striped table-bordered table-hover display"
 								id="dataTables-example">
 
@@ -57,18 +57,18 @@
 									<!-- row record -->
 	    							#{compra.nome}
 	    						</p:column>
-	    						
-	    						<p:column headerText="Nome" sortBy="#{compra.sku}">
+
+								<p:column headerText="Nome" sortBy="#{compra.sku}">
 									<!-- row record -->
 	    							#{compra.sku}
 	    						</p:column>
-	    						
-	    						<p:column headerText="Nome" sortBy="#{compra.valorUnitario}">
+
+								<p:column headerText="Nome" sortBy="#{compra.valorUnitario}">
 									<!-- row record -->
 	    							#{compra.valorUnitario}
 	    						</p:column>
-	    						
-	    						<p:column headerText="Nome" sortBy="#{compra.quantidadeEstoque}">
+
+								<p:column headerText="Nome" sortBy="#{compra.quantidadeEstoque}">
 									<!-- row record -->
 	    							#{compra.quantidadeEstoque}
 	    						</p:column>
@@ -82,7 +82,7 @@
 											update="dataTables-example" immediate="true">
 											<f:setPropertyActionListener value="#{compra}"
 												target="#{compraBean.pedido}" />
-												<f:ajax event="click" execute="@form" render=":form_modal"/>
+											<f:ajax event="click" execute="@form" render=":form_modal" />
 										</p:commandButton>
 									</div>
 								</p:column>
@@ -143,17 +143,25 @@
 	<!-- DataTables Responsive CSS -->
 	<h:outputStylesheet
 		name="css/bootstrap/vendor/datatables-responsive/dataTables.responsive.css" />
-		
-	<h:outputStylesheet
-		name="css/jqueryui/typeahead.css" />
+
+	<h:outputStylesheet name="css/jqueryui/typeahead.css" />
+
+<!-- 	<h:outputStylesheet -->
+<!-- 		name="css/easyAutocomplete/easy-autocomplete.min.css" /> -->
+
+<!-- 	<h:outputStylesheet -->
+<!-- 		name="css/easyAutocomplete/easy-autocomplete.themes.min.css" /> -->
 
 	<!-- DataTables JavaScript -->
 	<h:outputScript
 		name="css/bootstrap/vendor/datatables/js/jquery.dataTables.min.js" />
 
 	<h:outputScript name="js/bootstrap/vendor/jquery/jquery.min.js" />
-	
-	<h:outputScript name="js/typeahead/bootstrap3-typeahead.min.js" />
+<!-- 	<h:outputScript name="js/jquery-1.11.2.min.js" /> -->
+
+<!-- 	<h:outputScript name="js/easyAutocomplete.min.js" /> -->
+
+	<!-- 	<h:outputScript name="js/typeahead/bootstrap3-typeahead.min.js" /> -->
 
 	<h:outputScript
 		name="css/bootstrap/vendor/datatables-plugins/js/dataTables.bootstrap.min.js" />

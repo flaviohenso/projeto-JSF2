@@ -6,6 +6,9 @@ package com.flavio.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -54,6 +57,17 @@ public class CompraBean implements Serializable{
 	
 	public String list(){
 		return "/compras/listagem?faces-redirect=true";
+	}
+	
+	
+	public void salvar(){
+		System.out.println("salvando...");
+	}
+	
+	public void atualizaModel(AjaxBehaviorEvent event){
+		System.out.println("Atualizando modelo autocomplete fonecedor... " + ((UIInput) event.getSource()).getValue());
+		//this.pedido.setFornecedor(fornecedor);setAlugado((Integer) event.getNewValue());
+		FacesContext.getCurrentInstance().renderResponse();
 	}
 
 	public List<Pedido> getPedidos() {

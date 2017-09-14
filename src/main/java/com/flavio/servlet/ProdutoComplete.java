@@ -1,5 +1,5 @@
 /**
- * projeto-web : 10 de ago de 2017 
+ * projeto-web : 11 de ago de 2017 
  */
 package com.flavio.servlet;
 
@@ -13,20 +13,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.flavio.service.FornecedorService;
+import com.flavio.service.ProdutoService;
 import com.google.gson.Gson;
 
 /**
  * @author flavio
  *
  */
-@WebServlet(name="autoCompleteFornecedor", urlPatterns="/compras/autoCompleteFornecedor")
-public class AutoComplete extends HttpServlet{
+@WebServlet(name="autoCompleteProduto", urlPatterns="/compras/autoCompleteProduto")
+public class ProdutoComplete extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private FornecedorService fornecedorService;
+	private ProdutoService produtoService;
 	
 	protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
@@ -36,11 +36,9 @@ public class AutoComplete extends HttpServlet{
                     String term = request.getParameter("query");
                     System.out.println("Data from ajax call ");
                   
-                    ArrayList<String> list =  fornecedorService.autoComplete(term);
-                    
-                    System.out.println(new Gson().toJson(fornecedorService.autoComplete2(term)));
+                    ArrayList<String> list =  produtoService.autoComplete(term);
 
-                    String searchList = new Gson().toJson(fornecedorService.autoComplete2(term));
+                    String searchList = new Gson().toJson(list);
                     response.getWriter().write(searchList);
             } catch (Exception e) {
                     System.err.println(e.getMessage());

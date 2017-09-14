@@ -88,5 +88,9 @@ public class FornecedorService implements GenericService<Fornecedor>, Serializab
 		
 		return fornecedoresString;
 	}
+	
+	public List<Fornecedor> autoComplete2(String term) {
+		return fornecedorRepository.buscarPorNome(term);
+	}
 
 }

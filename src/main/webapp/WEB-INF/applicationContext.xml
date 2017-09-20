@@ -41,7 +41,7 @@
     
     <authentication-manager>
     	<authentication-provider user-service-ref="appUserDetailsService">
-    	 <password-encoder hash="md5"/>
+    	 <password-encoder hash="plaintext"/>
 <!--     		<user-service> -->
 <!--     			<user name="manoel" password="manoel" authorities="VENDEDORES"/> -->
 <!--     			<user name="flavio" password="flavio" authorities="ADMINISTRADORES"/> -->

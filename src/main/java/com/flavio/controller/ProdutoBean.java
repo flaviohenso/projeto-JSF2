@@ -44,27 +44,27 @@ public class ProdutoBean implements Serializable {
 	private Produto produto = new Produto();
 
 	private LazyDataModel<Produto> model;
-	
+
 	public void limpar() {
 		produto = new Produto();
 		log.info("passou pela limpeza...");
 	}
-	
+
 	@PostConstruct
-	public void consultaProdutos(){
+	public void consultaProdutos() {
 		this.model = produtoService.consultaPaginada(paginacao);
 	}
-	
+
 	public void buscar() {
 		paginacao.setDescricao(this.nomePesquisa);
 		model = produtoService.consultaPaginada(paginacao);
 	}
-	
-	public void edit(){
+
+	public void edit() {
 		System.out.println(produto.getNome() + " produto para editar");
-		//this.produto = produtoService.produtoByID(produto.getId());		
+		// this.produto = produtoService.produtoByID(produto.getId());
 	}
-	
+
 	public void salvar() {
 		try {
 			if (produtoService.salvar(produto)) {
@@ -81,10 +81,14 @@ public class ProdutoBean implements Serializable {
 		}
 
 	}
-	
 
 	public String list() {
-		produtos = produtoService.listRepository();
+		List<Produto> listRepository = produtoService.listRepository();
+
+		if (listRepository != null) {
+			produtos = listRepository;
+		}
+
 		return "/produto/listagem?faces-redirect=true";
 	}
 

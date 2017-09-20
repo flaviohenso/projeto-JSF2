@@ -12,22 +12,22 @@ public class InfoSecurity {
 
 	public String getUserName() {
 
-		UsuarioSistema usuarioSistema = this.getUsuarioLogado();
+		CustomUserDetail usuarioSistema = this.getUsuarioLogado();
 
 		if (usuarioSistema != null) {
-			return usuarioSistema.getUsuario().getNome();
+			return usuarioSistema.getUsuarioSistema().getUsuario().getNome();
 		}else{
 			return null;
 		}
 		
 	}
 
-	private UsuarioSistema getUsuarioLogado() {
+	private CustomUserDetail getUsuarioLogado() {
 
 		UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) FacesContext
 				.getCurrentInstance().getExternalContext().getUserPrincipal();
 		if (authenticationToken != null && authenticationToken.getPrincipal() != null) {
-			return (UsuarioSistema) authenticationToken.getPrincipal();
+			return (CustomUserDetail) authenticationToken.getPrincipal();
 		}
 		return null;
 	}

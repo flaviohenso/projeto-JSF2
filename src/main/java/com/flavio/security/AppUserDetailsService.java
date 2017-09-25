@@ -2,9 +2,7 @@ package com.flavio.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,17 +25,12 @@ public class AppUserDetailsService implements UserDetailsService {
 		Usuario usuario = usuarioRepository.porEmail(email);
 		
 		UsuarioSistema user = null;
-		CustomUserDetail customUserDetail = null;
 		
-        
 		if(usuario != null){
 			user = new UsuarioSistema(usuario, getAuthorities(usuario));
 		}
 		
-        customUserDetail.setUsuarioSistema(user);
-        customUserDetail.setAuthorities((Set<GrantedAuthority>) user.getAuthorities());
-		
-		return customUserDetail;
+		return user;
 	}
 
 	private Collection<? extends GrantedAuthority> getAuthorities(Usuario usuario) {

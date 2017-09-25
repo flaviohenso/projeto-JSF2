@@ -12,6 +12,9 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 //@NamedQueries({ 
 //	@NamedQuery(name = "Vendedor.findAll", query = "SELECT v FROM Vendedor v")
 //})
@@ -21,7 +24,7 @@ import javax.persistence.OneToMany;
  * banco de dados
  */
 @DiscriminatorValue("vendedor")
-//@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Cacheable(true)
 public class Vendedor extends Usuario implements Serializable{
 	

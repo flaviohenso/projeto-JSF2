@@ -48,7 +48,7 @@ public class UsuarioRepository implements GenericRepository<Usuario, Serializabl
 			return this.entityManager.createNamedQuery("Usuario.porEmail", Usuario.class)
 					.setParameter("email", email.toLowerCase()).getSingleResult();
 		} catch (NoResultException e) {
-			log.info("Nenhuma resultado encontrado!", e);
+			log.info("Nenhuma usuário encontrado para:"+ email +"!", e);
 		}
 		return null;
 	}

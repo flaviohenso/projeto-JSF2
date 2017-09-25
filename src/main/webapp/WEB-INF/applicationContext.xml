@@ -5,13 +5,14 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
     					http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                         http://www.springframework.org/schema/security
-                        http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+                        http://www.springframework.org/schema/security/spring-security-3.2.xsd">
                         
     <b:bean id="appUserDetailsService" class="com.flavio.security.AppUserDetailsService"/>
      
 	<http pattern="/javax.faces.resource/**" security="none"/>
 	<http pattern="/acesso.xhtml" security="none"/>
 	<http pattern="/erro.xhtml" security="none"/>
+	
 	
 <!-- 	  <http auto-config="true" use-expressions="true"> -->
 <!--     	<intercept-url pattern="/index.xhtml" access="isAuthenticated()"/> -->
@@ -23,16 +24,16 @@
 
     <http auto-config="false" use-expressions="true">
     	<intercept-url pattern="/index.xhtml" access="isAuthenticated()"/>
-    	<intercept-url pattern="/venda/**" access="hasAnyRole('VENDEDORES')"/>
-    	<intercept-url pattern="/vendedor/**" access="hasAnyRole('ADMINISTRADORES')"/>
-    	<intercept-url pattern="/cliente/**" access="hasAnyRole('ADMINISTRADORES')"/>
-    	<intercept-url pattern="/sistema/**" access="hasAnyRole('ADMINISTRADORES')"/>
-    	<intercept-url pattern="/categoria/**" access="hasAnyRole('ADMINISTRADORES')"/>
-    	<intercept-url pattern="/produto/**" access="hasAnyRole('ADMINISTRADORES')"/>
-    	<intercept-url pattern="/estoque/**" access="hasAnyRole('ADMINISTRADORES')"/>
-    	<intercept-url pattern="/compras/**" access="hasAnyRole('ADMINISTRADORES')"/>
-    	<intercept-url pattern="/fornecedor/**" access="hasAnyRole('ADMINISTRADORES')"/>
-    	<intercept-url pattern="/autoCompleteFornecedor/**" access="hasAnyRole('ADMINISTRADORES')"/>
+    	<intercept-url pattern="/venda/**" access="hasAnyRole('ROLE_VENDEDORES')"/>
+    	<intercept-url pattern="/vendedor/**" access="hasAnyRole('ROLE_ADMINISTRADORES')"/>
+    	<intercept-url pattern="/cliente/**" access="hasAnyRole('ROLE_ADMINISTRADORES')"/>
+    	<intercept-url pattern="/sistema/**" access="hasAnyRole('ROLE_ADMINISTRADORES')"/>
+    	<intercept-url pattern="/categoria/**" access="hasAnyRole('ROLE_ADMINISTRADORES')"/>
+    	<intercept-url pattern="/produto/**" access="hasAnyRole('ROLE_ADMINISTRADORES')"/>
+    	<intercept-url pattern="/estoque/**" access="hasAnyRole('ROLE_ADMINISTRADORES')"/>
+    	<intercept-url pattern="/compras/**" access="hasAnyRole('ROLE_ADMINISTRADORES')"/>
+    	<intercept-url pattern="/fornecedor/**" access="hasAnyRole('ROLE_ADMINISTRADORES')"/>
+    	<intercept-url pattern="/autoCompleteFornecedor/**" access="hasAnyRole('ROLE_ADMINISTRADORES')"/>
     	<intercept-url pattern="/**" access="denyAll"/>
     	
     	<form-login login-page="/acesso.xhtml" default-target-url="/" always-use-default-target="true"/>
@@ -41,7 +42,7 @@
     
     <authentication-manager>
     	<authentication-provider user-service-ref="appUserDetailsService">
-    	 <password-encoder hash="plaintext"/>
+    	 <password-encoder hash="md5"/>
 <!--     		<user-service> -->
 <!--     			<user name="manoel" password="manoel" authorities="VENDEDORES"/> -->
 <!--     			<user name="flavio" password="flavio" authorities="ADMINISTRADORES"/> -->

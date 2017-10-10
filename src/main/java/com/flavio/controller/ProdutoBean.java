@@ -18,6 +18,7 @@ import com.flavio.model.Produto;
 import com.flavio.service.ContextMensage;
 import com.flavio.service.Mensagem;
 import com.flavio.service.ProdutoService;
+import com.flavio.service.XmlService;
 import com.flavio.util.Paginacao;
 
 @Named
@@ -33,6 +34,8 @@ public class ProdutoBean implements Serializable {
 	private Mensagem mensagem;
 	@Inject
 	private ProdutoService produtoService;
+	@Inject
+	private XmlService xmlService;
 
 	public static Log log = LogFactory.getLog(ProdutoBean.class);
 
@@ -71,7 +74,9 @@ public class ProdutoBean implements Serializable {
 				this.contextMensage.addmsg("", FacesMessage.SEVERITY_INFO, "Dados salvos com sucesso!",
 						"Dados salvos com sucesso!");
 				model = produtoService.consultaPaginada(paginacao);
-				mensagem.enviar();
+				System.out.println(xmlService.objectTOxmlProduto(produto));
+				System.out.println(xmlService.xmlToObjectProduto("<produto><id>17</id><nome>monitor aoc</nome><sku>3463jd</sku><valorUnitario>23</valorUnitario><quantidadeEstoque>45</quantidadeEstoque><categoria><id>10</id><nome>Informatica</nome></categoria></produto>"));
+				//mensagem.enviar();
 				limpar();
 			}
 		} catch (Exception e) {

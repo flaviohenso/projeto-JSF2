@@ -16,16 +16,25 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("produto")
 @Entity(name = "produto")
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+ 	@XStreamAlias("id")
 	private Long id;
+ 	@XStreamAlias("nome")
 	private String nome;
+ 	@XStreamAlias("sku")
 	private String sku;
+ 	@XStreamAlias("valorUnitario")
 	private BigDecimal valorUnitario;
+ 	@XStreamAlias("quantidadeEstoque")
 	private Integer quantidadeEstoque;
+ 	@XStreamAlias("categoria")
 	private Categoria categoria;
 
 	@Id

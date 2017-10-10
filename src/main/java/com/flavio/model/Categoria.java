@@ -12,14 +12,22 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
+@XStreamAlias("categoria")
 @Entity(name="categoria")
 public class Categoria implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	@XStreamAlias("id")
 	private Long id;
+	@XStreamAlias("nome")
 	private String nome;
+	@XStreamAlias("subcategorias")
 	private Categoria subcategorias;
+	@XStreamOmitField
 	private List<Produto> produtos;
 	
 	public Categoria() {

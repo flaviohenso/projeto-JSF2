@@ -11,5 +11,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  */
 @XStreamAlias("contato")
 public class Reg_contato {
-
+	private String nmCtt;
+	private String cpfCtt;
+	private String foneFixo;
+	private String foneCel;
+	private String email;
 }

@@ -11,6 +11,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  */
 @XStreamAlias("infoOP")
 public class Reg_infoOP {
+	
+	private String nrSiafi;
+	
 	private Reg_infoEFR infoEFR;
 	private Reg_infoEnte infoEnte;
 }

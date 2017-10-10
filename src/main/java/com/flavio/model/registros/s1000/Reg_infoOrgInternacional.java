@@ -11,5 +11,5 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  */
 @XStreamAlias("infoOrgInternacional")
 public class Reg_infoOrgInternacional {
-
+	private String indAcordoIsenMulta;
 }

@@ -11,5 +11,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  */
 @XStreamAlias("ideEvento")
 public class Reg_ideEvento {
-
+	private String tpAmb;
+	private String procEmi;
+	private String verProc;
 }

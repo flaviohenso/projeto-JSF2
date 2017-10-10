@@ -11,5 +11,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  */
 @XStreamAlias("softwareHouse")
 public class Reg_softwareHouse {
-
+	private String cnpjSoftHouse;
+	private String nmRazao;
+	private String nmCont;
+	private String telefone;
+	private String email;
 }

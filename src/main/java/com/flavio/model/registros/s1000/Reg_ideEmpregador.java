@@ -11,5 +11,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  */
 @XStreamAlias("ideEmpregador")
 public class Reg_ideEmpregador {
-
+	private String tpInsc;
+	private String nrInsc;
 }

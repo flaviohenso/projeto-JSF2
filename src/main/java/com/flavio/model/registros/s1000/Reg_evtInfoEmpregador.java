@@ -12,6 +12,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("evtInfoEmpregador")
 public class Reg_evtInfoEmpregador {
 
+	private String id;
 	private Reg_ideEvento ideEvento;
 	private Reg_ideEmpregador deEmpregador;
 	private Reg_infoEmpregador infoEmpregador;

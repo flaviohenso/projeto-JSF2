@@ -11,5 +11,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  */
 @XStreamAlias("infoEFR")
 public class Reg_infoEFR {
-
+	
+	private String ideEFR;
+	private String cnpjEFR;
 }

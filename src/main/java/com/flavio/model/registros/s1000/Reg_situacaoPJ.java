@@ -11,5 +11,5 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  */
 @XStreamAlias("situacaoPJ")
 public class Reg_situacaoPJ {
-
+	private String indSitPJ;
 }

@@ -11,5 +11,12 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  */
 @XStreamAlias("dadosIsencao")
 public class Reg_dadosIsencao {
-
+	private String ideMinLei;
+	private String nrCertif;
+	private String dtEmisCertif;
+	private String dtVencCertif;
+	private String nrProtRenov;
+	private String dtProtRenov;
+	private String dtDou;
+	private String pagDou;
 }

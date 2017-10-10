@@ -11,5 +11,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  */
 @XStreamAlias("idePeriodo")
 public class Reg_idePeriodo {
-	
+	private String iniValid;
+	private String fimValid;
 }

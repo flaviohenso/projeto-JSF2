@@ -25,7 +25,7 @@ import com.flavio.util.Paginacao;
 @ViewScoped
 public class ProdutoBean implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
 
 	@Inject
 	private ContextMensage contextMensage;

@@ -1,5 +1,7 @@
 package com.flavio.util.jpa;
 
+import java.io.Serializable;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;
@@ -10,26 +12,45 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnit;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-@ApplicationScoped
-public class EntityManagerProducer {
+import com.flavio.anotation.Sin;
 
+@ApplicationScoped
+public class EntityManagerProducer implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private static final String PERSISTENCE_UNIT = "VendasPU";
 	public static Log log = LogFactory.getLog(EntityManagerProducer.class);
 	
-	//@PersistenceUnit(unitName = "VendasPU")
+//	@PersistenceUnit(unitName = "VendasPU")
 	private EntityManagerFactory emf;
+	
+	private EntityManagerFactory emf1;
+	
 
 	private static ThreadLocal<EntityManager> threadLocalEntityManager = new ThreadLocal<EntityManager>();
 
 	public EntityManagerProducer() {
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 	}
-
+	
+	@RequestScoped
+	@Produces
+	@Sin
+	public EntityManager createEntityManager() {
+		emf1 = Persistence.createEntityManagerFactory("sinPU");
+		return emf1.createEntityManager();
+	}
+	
 	@Produces
 	@RequestScoped
 	public EntityManager getConnection() {

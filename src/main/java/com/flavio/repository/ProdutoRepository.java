@@ -3,6 +3,7 @@ package com.flavio.repository;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
@@ -15,7 +16,9 @@ import javax.transaction.Transactional;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.flavio.anotation.Sin;
 import com.flavio.model.Produto;
+import com.flavio.model.Servidor;
 import com.flavio.util.Paginacao;
 import com.flavio.util.jpa.EntityManagerProducer;
 
@@ -27,6 +30,10 @@ public class ProdutoRepository implements GenericRepository<Produto, Serializabl
 
 	@Inject
 	private EntityManager entityManager;
+	
+	@Inject
+	@Sin
+	private EntityManager entityManager2;
 
 	private CriteriaQuery<Produto> criteriaQuery;
 
@@ -53,6 +60,10 @@ public class ProdutoRepository implements GenericRepository<Produto, Serializabl
 		}
 	}
 
+	public List<Servidor> listAllServidor() {
+		return entityManager2.createNamedQuery("Servidor.findAll", Servidor.class).getResultList();
+	}
+	
 	public List<Produto> listAll() {
 		return entityManager.createNamedQuery("Produto.findAll", Produto.class).getResultList();
 	}

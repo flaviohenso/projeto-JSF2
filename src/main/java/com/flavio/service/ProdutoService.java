@@ -24,6 +24,7 @@ public class ProdutoService implements GenericService<Produto>, Serializable {
 
 	@Override
 	public List<Produto> listRepository() {
+		System.out.println(produtoRepository.listAllServidor());//teste para conexão em outro banco de dados
 		return produtoRepository.listAll();
 	}
 
